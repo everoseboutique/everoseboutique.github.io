@@ -7,41 +7,40 @@
 <style>
 body {
   margin: 0;
-  font-family: "Georgia", serif;
-  background: linear-gradient(to bottom, #ffd6e8, #fff5fa);
-  color: #7a1f46;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #ffe6f0, #fff);
+  color: #7a003c;
   text-align: center;
 }
 
 nav {
-  background: #ffb6d5;
-  padding: 15px;
+  background: #ff8fbd;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 nav a {
-  margin: 0 15px;
   text-decoration: none;
-  font-weight: bold;
-  color: #7a1f46;
+  color: white;
+  font-weight: 600;
   font-size: 18px;
 }
 
-.box {
-  max-width: 850px;
+.section {
+  max-width: 900px;
   margin: 70px auto;
-  background: #ffe4f0;
-  padding: 45px;
-  border-radius: 25px;
+  background: #fff0f6;
+  padding: 50px 30px;
+  border-radius: 22px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 18px;
+iframe {
+  border-radius: 20px;
+  border: none;
 }
 </style>
 </head>
@@ -52,25 +51,21 @@ p {
   <a href="index.html">Home</a>
   <a href="hints.html">Hints</a>
   <a href="quiz.html">Find Your Scent</a>
-  <a href="questions.html">Questions</a>
+  <a href="questions.html">Ask Everose</a>
 </nav>
 
-<div class="box">
-<h1>Ask Everose</h1>
-<p>Curious about Everose? Our scents? The launch?</p>
-<p>Leave your question below.</p>
+<div class="section">
+  <h1>Ask Everose 💌</h1>
+  <p>Leave a question, thought, or message for Everose.</p>
 
-<iframe 
-  src="https://docs.google.com/forms/d/e/1FAIpQLScUXXr5BiGzwFhLArhFfg3fSBlaYPVaQ1GAohS4fGnUByoCvg/viewform?usp=header"
-  width="100%" 
-  height="550" 
-  frameborder="0">
-</iframe>
+  <!-- REPLACE THE LINK BELOW WITH YOUR GOOGLE FORM EMBED LINK -->
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScUXXr5BiGzwFhLArhFfg3fSBlaYPVaQ1GAohS4fGnUByoCvg/viewform?usp=header"100%" height="600"></iframe>
 
-<p style="margin-top:20px;">
-Your question will be sent directly to the Everose team.
-</p>
+  <p style="margin-top:20px;font-weight:600;">
+    Your message goes straight to the Everose team.
+  </p>
 </div>
 
 </body>
 </html>
+
