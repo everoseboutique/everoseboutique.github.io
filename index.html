@@ -6,98 +6,110 @@
 
 <style>
 body {
-margin: 0;
-font-family: "Georgia", serif;
-background: linear-gradient(to bottom, #ffd6e8, #fff0f7);
-color: #7a1f46;
-text-align: center;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #ffe6f0, #fff);
+  color: #7a003c;
+  text-align: center;
 }
 
 /* NAV BAR */
 nav {
-background: #ffb6d5;
-padding: 15px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: #ff8fbd;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 nav a {
-margin: 0 15px;
-text-decoration: none;
-color: #7a1f46;
-font-weight: bold;
-font-size: 18px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 nav a:hover {
-text-decoration: underline;
+  text-decoration: underline;
 }
 
-/* MAIN CARD */
-.card {
-background: #ffe6f1;
-width: 70%;
-margin: 80px auto;
-padding: 60px 30px;
-border-radius: 25px;
-box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+/* SECTIONS */
+.section {
+  max-width: 900px;
+  margin: 70px auto;
+  background: #fff0f6;
+  padding: 50px 30px;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
 h1 {
-font-size: 50px;
-margin-bottom: 10px;
+  font-size: 48px;
+  margin-bottom: 10px;
 }
 
-.subtitle {
-font-size: 20px;
-margin-bottom: 25px;
+h2 {
+  margin-top: 0;
+  font-weight: 500;
 }
 
-.section {
-margin-top: 50px;
-padding: 30px;
-background: #ffd9ea;
-border-radius: 20px;
+/* BUTTON */
+.button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 30px;
+  background: #ff5fa2;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 17px;
 }
 
-button {
-margin-top: 15px;
-padding: 12px 25px;
-border-radius: 20px;
-border: none;
-background: #ff8fbd;
-color: white;
-font-size: 16px;
-cursor: pointer;
-}
-
-button:hover {
-background: #ff6fae;
+.button:hover {
+  background: #ff3f8f;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV BAR -->
 <nav>
-<a href="index.html">Home</a>
-<a href="hints.html">Hints</a>
-<a href="quiz.html">Quiz</a>
+  <a href="index.html">Home</a>
+  <a href="hints.html">Hints</a>
+  <a href="quiz.html">Find Your Scent</a>
+  <a href="questions.html">Ask Everose</a>
 </nav>
 
-<!-- HOME -->
-<div class="card">
-<h1>Everose</h1>
-<p class="subtitle">Where every scent tells a story.</p>
-<p>Luxury fragrances inspired by beauty, emotion, and the seasons.</p>
-<p><b>Launching soon.</b></p>
+<div class="section">
+  <h1>Everose</h1>
+  <h2>Luxury fragrance, softly blooming.</h2>
+
+  <p>
+    Welcome to Everose — a fragrance brand inspired by beauty, emotion, and the soft power of scent.
+    Our debut collection is coming soon, and it’s designed to feel like a secret… not a spoiler.
+  </p>
+
+  <p>
+    Explore hints about the upcoming drop, discover your personal scent style, and leave questions for the Everose team.
+  </p>
+
+  <a class="button" href="hints.html">View Hints</a>
+  <a class="button" href="quiz.html">Find Your Scent</a>
+</div>
 
 <div class="section">
-<h2>Find Your Scent</h2>
-<p>Take our quiz to discover which Everose vibe fits you best.</p>
-<a href="quiz.html"><button>Start the Quiz</button></a>
-</div>
+  <h2>Launching Soon</h2>
+  <p>
+    Our first Everose collection is on its way.  
+    A carefully crafted experience.  
+    A story told through scent.  
+  </p>
+
+  <p style="font-weight:600;">Stay close. The rose is about to bloom.</p>
 </div>
 
 </body>
 </html>
+
