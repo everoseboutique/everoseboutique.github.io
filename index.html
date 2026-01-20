@@ -3,18 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <title>Everose</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
-  height: 100vh;
-  background: url("homepage.png") no-repeat center center fixed;
-  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+  color: #7a003c;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,143,189,0.95);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 120px auto;
+  background: #fff0f6;
+  padding: 70px 40px;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 10%;
+  gap: 40px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.hero img {
+  max-width: 420px;
+  border-radius: 30px;
+  filter: blur(1px);
+}
+
+/* BUTTONS */
+button {
+  background: #ff5fa2;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 25px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff3f8f;
+}
+
+/* COUNTDOWN */
+#countdown {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#hints">Hints</a>
+  <a href="#quiz">Find Your Scent</a>
+  <a href="#launch">Launch</a>
+</nav>
+
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Everose 🌸</h1>
+    <p>Luxury fragrance, softly blooming.</p>
+    <p><b>We are so excited to release our first scents.</b></p>
+    <p>Stay close. The rose is about to bloom.</p>
+  </div>
+
+  <!-- REPLACE src with your image link -->
+  <img src="https://chatgpt.com/s/m_696ee456f1a08191a81c2d2e75d975b5" alt="Everose perfume">
+</section>
+
+<!-- HINTS -->
+<div class="section" id="hints">
+  <h1>Everose Hints ✨</h1>
+  <p>Soft clues. Nothing obvious.</p>
+  <p>✨ One scent feels like sunlight on skin.</p>
+  <p>❄ One scent feels like silk in winter air.</p>
+  <p>🌷 One scent feels like something new beginning.</p>
+  <p>🍂 One scent feels warm… familiar… unforgettable.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <h1>Find Your Scent 💗</h1>
+  <p>Choose what feels most like you.</p>
+
+  <h3>Your perfect night is:</h3>
+  <button onclick="result('soft')">Soft music & candlelight</button>
+  <button onclick="result('warm')">Laughing & late talks</button>
+  <button onclick="result('fresh')">Fresh air & quiet</button>
+  <button onclick="result('bright')">Fun, energy & glow</button>
+
+  <p id="answer" style="margin-top:30px;font-weight:600;"></p>
+</div>
+
+<!-- LAUNCH -->
+<div class="section" id="launch">
+  <h1>Launching Soon 💐</h1>
+  <p>Our first scents arrive:</p>
+  <h2>September 29, 2026</h2>
+  <div id="countdown"></div>
+</div>
+
+<script>
+function result(type) {
+  let text = "";
+  if(type === "soft") text = "You’re drawn to soft, romantic, gentle scents.";
+  if(type === "warm") text = "You love warm, comforting, unforgettable scents.";
+  if(type === "fresh") text = "You’re drawn to clean, calm, airy scents.";
+  if(type === "bright") text = "You love playful, glowing, happy scents.";
+  document.getElementById("answer").innerText = text;
+}
+
+/* COUNTDOWN */
+const launchDate = new Date("September 29, 2026 00:00:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const gap = launchDate - now;
+
+  const days = Math.floor(gap / (1000*60*60*24));
+  const hours = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
+  const mins = Math.floor((gap % (1000*60*60)) / (1000*60));
+  const secs = Math.floor((gap % (1000*60)) / 1000);
+
+  document.getElementById("countdown").innerText =
+    days + "d " + hours + "h " + mins + "m " + secs + "s";
+}, 1000);
+</script>
+
 </body>
 </html>
