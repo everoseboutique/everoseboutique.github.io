@@ -183,3 +183,37 @@ setInterval(() => {
 
 </body>
 </html>
+<!-- WEBSITE UPDATE COUNTDOWN -->
+<div id="update-countdown-box" style="
+  text-align:center;
+  margin-top:30px;
+  font-family: 'Georgia', serif;
+  color:#c79ab4;
+">
+  <h3 style="font-size:22px; letter-spacing:1.5px;">
+    Next Website Update In
+  </h3>
+  <div id="updateCountdown" style="font-size:28px; font-weight:600;"></div>
+</div>
+
+<script>
+const updateDate = new Date("February 15, 2026 18:00:00").getTime(); // <-- CHANGE THIS DATE
+
+const updateTimer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = updateDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("updateCountdown").innerHTML =
+    days + "d  " + hours + "h  " + minutes + "m  " + seconds + "s";
+
+  if (distance < 0) {
+    clearInterval(updateTimer);
+    document.getElementById("updateCountdown").innerHTML = "Update Live ✨";
+  }
+}, 1000);
+</script>
