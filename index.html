@@ -5,161 +5,16 @@
 <title>Everose</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #fff4f7, #fdecef);
-  color: #5a2a3c;
-}
-
-/* NAV */
-nav {
-  background: #f2a1b3;
-  padding: 18px;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  font-weight: 500;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-}
-
-/* LAYOUT */
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 80px;
-  min-height: 85vh;
-}
-
-/* LEFT SIDE */
-.left {
-  max-width: 520px;
-}
-
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  margin-bottom: 10px;
-}
-
-.tagline {
-  font-size: 22px;
-  margin-bottom: 25px;
-}
-
-p {
-  line-height: 1.7;
-  font-size: 16px;
-}
-
-.countdown-box {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid #e9b7c4;
-}
-
-.countdown-box h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-}
-
-#countdown {
-  font-size: 36px;
-  margin: 15px 0;
-  font-weight: 500;
-}
-
-/* RIGHT SIDE */
-.right img {
-  width: 420px;
-  filter: blur(3px);
-  opacity: 0.9;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .right img {
-    margin-top: 40px;
-    width: 280px;
-  }
+  height: 100vh;
+  background: url("homepage.png") no-repeat center center fixed;
+  background-size: cover;
 }
 </style>
 </head>
 
 <body>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="hints.html">Hints</a>
-  <a href="findyourscent.html">Find Your Scent</a>
-</nav>
-
-<div class="container">
-
-  <div class="left">
-    <h1>Everose 🌸</h1>
-    <div class="tagline">Luxury fragrance, softly blooming.</div>
-
-    <p>
-      Everose is a fragrance brand inspired by emotion, softness, and quiet confidence.
-    </p>
-
-    <p>
-      We are so excited to release our first scents.
-      <br><br>
-      <i>Stay close. The rose is about to bloom.</i>
-    </p>
-
-    <div class="countdown-box">
-      <h2>Countdown to Our First Drop 💗</h2>
-      <div id="countdown">Loading...</div>
-      <p>Launching September 29, 2026</p>
-    </div>
-  </div>
-
-  <div class="right">
-    <!-- Replace the src with your perfume image file when you upload it -->
-    <img src="everose-bottle.png" alt="Everose perfume bottle">
-  </div>
-
-</div>
-
-<script>
-const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = launchDate - now;
-
-  if (distance < 0) {
-    document.getElementById("countdown").innerHTML = "We have launched 💐";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML =
-    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-}, 1000);
-</script>
-
 </body>
 </html>
-
