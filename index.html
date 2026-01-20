@@ -146,74 +146,61 @@ button:hover {
 
   <p id="answer" style="margin-top:30px;font-weight:600;"></p>
 </div>
-
-<!-- LAUNCH -->
-<div class="section" id="launch">
-  <h1>Launching Soon 💐</h1>
-  <p>Our first scents arrive:</p>
-  <h2>September 29, 2026</h2>
-  <div id="countdown"></div>
-</div>
-
-<script>
-function result(type) {
-  let text = "";
-  if(type === "Light scent") text = "You’re drawn to delicious but simple scents.";
-  if(type === "Medium scent") text = "You love a normal but AMAZING smelling scents.";
-  if(type === "Strong scent") text = "You LOVE smelling so good that you make the whole room smell SO good.";
-  if(type === "A mix of everything") text = "You will love our SOON to be released sets 🤫.";
-  document.getElementById("answer").innerText = text;
-}
-
-/* COUNTDOWN */
-const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-setInterval(() => {
-  const now = new Date().getTime();
-  const gap = launchDate - now;
-
-  const days = Math.floor(gap / (1000*60*60*24));
-  const hours = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
-  const mins = Math.floor((gap % (1000*60*60)) / (1000*60));
-  const secs = Math.floor((gap % (1000*60)) / 1000);
-
-  document.getElementById("countdown").innerText =
-    days + "d " + hours + "h " + mins + "m " + secs + "s";
-}, 1000);
-</script>
-
-</body>
-</html>
-<!-- WEBSITE UPDATE COUNTDOWN -->
-<div id="update-countdown-box" style="
+<!-- BOTH COUNTDOWNS SIDE BY SIDE -->
+<div style="
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-top:40px;
   text-align:center;
-  margin-top:30px;
   font-family: 'Georgia', serif;
-  color:#c79ab4;
+  color:#b88aa3;
 ">
-  <h3 style="font-size:22px; letter-spacing:1.5px;">
-    Next Website Update In
-  </h3>
-  <div id="updateCountdown" style="font-size:28px; font-weight:600;"></div>
+
+  <!-- LAUNCH COUNTDOWN -->
+  <div style="background:white;padding:20px 30px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);">
+    <h2 style="font-size:22px; letter-spacing:2px;">Launching In</h2>
+    <div id="launchCountdown" style="font-size:28px; font-weight:600;"></div>
+  </div>
+
+  <!-- UPDATE COUNTDOWN -->
+  <div style="background:white;padding:20px 30px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);">
+    <h2 style="font-size:22px; letter-spacing:2px;">Next Update In</h2>
+    <div id="updateCountdown" style="font-size:28px; font-weight:600;"></div>
+  </div>
+
 </div>
 
 <script>
-const updateDate = new Date("February 15, 2026 18:00:00").getTime(); // <-- CHANGE THIS DATE
+/* 🌸 LAUNCH DATE */
+const launchDate = new Date("September 29, 2026 00:00:00").getTime();
 
-const updateTimer = setInterval(function() {
+/* ✨ UPDATE DATE (CHANGE WHENEVER YOU WANT) */
+const updateDate = new Date("February 15, 2026 18:00:00").getTime();
+
+setInterval(function () {
   const now = new Date().getTime();
-  const distance = updateDate - now;
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  /* Launch */
+  let launchDistance = launchDate - now;
+  let ld = Math.floor(launchDistance / (1000 * 60 * 60 * 24));
+  let lh = Math.floor((launchDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let lm = Math.floor((launchDistance % (1000 * 60 * 60)) / (1000 * 60));
+  let ls = Math.floor((launchDistance % (1000 * 60)) / 1000);
+
+  document.getElementById("launchCountdown").innerHTML =
+    launchDistance > 0 ? ld+"d "+lh+"h "+lm+"m "+ls+"s" : "WE ARE LIVE ✨";
+
+  /* Update */
+  let updateDistance = updateDate - now;
+  let ud = Math.floor(updateDistance / (1000 * 60 * 60 * 24));
+  let uh = Math.floor((updateDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let um = Math.floor((updateDistance % (1000 * 60 * 60)) / (1000 * 60));
+  let us = Math.floor((updateDistance % (1000 * 60)) / 1000);
 
   document.getElementById("updateCountdown").innerHTML =
-    days + "d  " + hours + "h  " + minutes + "m  " + seconds + "s";
+    updateDistance > 0 ? ud+"d "+uh+"h "+um+"m "+us+"s" : "Update Live ✨";
 
-  if (distance < 0) {
-    clearInterval(updateTimer);
-    document.getElementById("updateCountdown").innerHTML = "Update Live ✨";
-  }
 }, 1000);
 </script>
