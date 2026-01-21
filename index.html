@@ -295,13 +295,11 @@ document.getElementById("bottle").addEventListener("click", () => {
   }
 });
 
-/* SECRET FEATURE: CURSOR MAGIC */
-let hoverCount = 0;
+/* SECRET FEATURE: HOVER BOTTLE FOR 5 SECONDS */
+let hoverTimer;
 
 bottle.addEventListener("mouseenter", () => {
-  hoverCount++;
-
-  if (hoverCount === 5) {
+  hoverTimer = setTimeout(() => {
     // Change cursor to flower
     document.body.style.cursor = "url('https://i.postimg.cc/Zq0g5zVf/flower-cursor.png'), auto";
 
@@ -326,7 +324,12 @@ bottle.addEventListener("mouseenter", () => {
       document.body.style.cursor = "auto";
       document.removeEventListener("mousemove", createHeart);
     }, 5000);
-  }
+
+  }, 5000); // 5-second hover
+});
+
+bottle.addEventListener("mouseleave", () => {
+  clearTimeout(hoverTimer); // cancel if mouse leaves early
 });
 </script>
 
