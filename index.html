@@ -35,17 +35,6 @@ nav a {
   font-size: 17px;
 }
 
-/* SECTIONS */
-.section {
-  max-width: 1100px;
-  margin: 120px auto;
-  background: #fff0f6;
-  padding: 70px 40px;
-  border-radius: 28px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  text-align: center;
-}
-
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -58,14 +47,39 @@ nav a {
 
 .hero-text { max-width: 520px; }
 
-.hero h1 { font-size: 64px; margin-bottom: 10px; }
+.hero h1 {
+  font-size: 64px;
+  margin-bottom: 10px;
+}
 
-.hero p { font-size: 20px; line-height: 1.6; }
+.hero p {
+  font-size: 20px;
+  line-height: 1.6;
+}
 
 .hero img {
-  max-width: 340px;
+  max-width: 360px;
   border-radius: 30px;
+  filter: blur(0.6px);
   box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  transition: all 0.8s ease;
+}
+
+/* bottle hover */
+.hero img:hover {
+  transform: translateY(-18px) scale(1.05) rotate(-1deg);
+  box-shadow: 0 30px 60px rgba(255, 120, 180, 0.45);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 120px auto;
+  background: #fff0f6;
+  padding: 70px 40px;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  text-align: center;
 }
 
 /* COUNTDOWN */
@@ -84,8 +98,15 @@ nav a {
   min-width:180px;
 }
 
-.countbox h2 { font-size:16px; letter-spacing:2px; }
-.countbox div { font-size:22px; font-weight:700; }
+.countbox h2 {
+  font-size:16px;
+  letter-spacing:2px;
+}
+
+.countbox div {
+  font-size:22px;
+  font-weight:700;
+}
 
 /* BUTTONS */
 button {
@@ -105,7 +126,7 @@ button:hover { background: #ff3f8f; }
 .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: 0.9s ease;
+  transition: all 1s ease;
 }
 
 .reveal.active {
@@ -129,7 +150,8 @@ button:hover { background: #ff3f8f; }
   <div class="hero-text">
     <h1>Everose 🌸</h1>
     <p>Luxury fragrance, softly blooming.</p>
-    <p><b>Our first scents are coming soon.</b></p>
+    <p><b>We are so excited to release our first scents.</b></p>
+    <p>Stay close. The rose is about to bloom.</p>
 
     <div class="countdown-wrap">
       <div class="countbox">
@@ -150,14 +172,92 @@ button:hover { background: #ff3f8f; }
 <!-- ABOUT -->
 <div class="section reveal" id="about">
   <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely LOVE perfume. I was born in New York, then moved to New Jersey, then Miami, and after a few more moves, I finally settled in Austin.</p>
-  <p>I go to Alpha School and I’m 13 years old.</p>
-  <p>My family is four people: my dad, mom, brother, and me. We also have a dog named Banner — a Rottweiler named after the Incredible Hulk.</p>
-  <p>I’m so excited to start my own fragrance brand and share my passion with the world.</p>
+  <p>Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey, then to Miami, and after a few more moves, I finally landed in Austin.</p>
+  <p>I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.</p>
+  <p>We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.</p>
+  <p>I’m so excited to start my own fragrance brand and share my love for scent with the world.</p>
 </div>
 
 <!-- HINTS -->
 <div class="section reveal" id="hints">
   <h1>Everose Hints ✨</h1>
+  <p>Soft clues. Nothing obvious.</p>
   <p>✨ One scent feels like getting a suntan.</p>
-  <p>❄ One scent feels like sil
+  <p>❄ One scent feels like silk in winter air.</p>
+  <p>🌷 One scent feels like something new beginning.</p>
+  <p>🍂 One scent feels warm… familiar… unforgettable.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="section reveal" id="quiz">
+  <h1>Find Your Scent 💗</h1>
+  <p>Choose what feels most like you.</p>
+
+  <button onclick="result('soft')">Light scent</button>
+  <button onclick="result('warm')">Medium scent</button>
+  <button onclick="result('fresh')">Strong scent</button>
+  <button onclick="result('bright')">A mix of everything</button>
+
+  <p id="answer" style="margin-top:30px;font-weight:600;"></p>
+</div>
+
+<script>
+/* COUNTDOWN DATES */
+const launchDate = new Date("September 29, 2026 00:00:00").getTime();
+const updateDate = new Date("February 14, 2026 00:00:00").getTime();
+
+function runCountdown() {
+  const now = new Date().getTime();
+
+  function countdown(target, element, doneText) {
+    let d = target - now;
+    if (d <= 0) {
+      document.getElementById(element).innerHTML = doneText;
+      return;
+    }
+
+    let days = Math.floor(d / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+    let secs = Math.floor((d % (1000 * 60)) / 1000);
+
+    document.getElementById(element).innerHTML =
+      days + "d " + hours + "h " + mins + "m " + secs + "s";
+  }
+
+  countdown(launchDate, "launchCountdown", "WE ARE LIVE ✨");
+  countdown(updateDate, "updateCountdown", "UPDATE LIVE ✨");
+}
+
+setInterval(runCountdown, 1000);
+runCountdown();
+
+/* QUIZ */
+function result(type) {
+  let text = "";
+  if(type === "soft") text = "You love soft, airy, gentle scents.";
+  if(type === "warm") text = "You’re drawn to warm, comforting scents.";
+  if(type === "fresh") text = "You like strong, clean, confident scents.";
+  if(type === "bright") text = "You love playful, layered, signature scents.";
+  document.getElementById("answer").innerText = text;
+}
+
+/* SCROLL ANIMATION */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+</script>
+
+</body>
+</html>
