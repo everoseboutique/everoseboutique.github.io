@@ -133,7 +133,7 @@ button:hover { background: #ff3f8f; }
   transform: translateY(0);
 }
 
-/* SECRET FEATURE HEARTS */
+/* HEARTS */
 .heart {
   position: fixed;
   bottom: 20px;
@@ -146,51 +146,48 @@ button:hover { background: #ff3f8f; }
   to { transform: translateY(-300px); opacity: 0; }
 }
 
-/* ===== SECRET ROSE CURSOR MODE (ADDED) ===== */
+/* 🌸 CURSOR MODE */
 body.rose-cursor {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='24' font-size='24'%3E%F0%9F%8C%B9%3C/text%3E%3C/svg%3E") 4 24, auto;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='24' font-size='24'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E") 4 24, auto;
 }
 
 body.rose-cursor button,
 body.rose-cursor a,
 body.rose-cursor img {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='24' font-size='24'%3E%F0%9F%8C%B9%3C/text%3E%3C/svg%3E") 4 24, pointer;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='24' font-size='24'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E") 4 24, pointer;
 }
 
-/* Petal trail particles */
+/* ✨ SPARKLE TRAIL */
 .petal {
   position: fixed;
   pointer-events: none;
-  font-size: 18px;
-  opacity: 0.9;
+  font-size: 16px;
+  opacity: 0.85;
   transform: translate(-50%, -50%);
-  animation: petalFade 0.9s ease-out forwards;
+  animation: petalFade 1s ease-out forwards;
   z-index: 9999;
 }
 
 @keyframes petalFade {
-  from { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
-  to   { opacity: 0;   transform: translate(-50%, -70%) scale(0.6); }
+  from { opacity: 0.85; transform: translate(-50%, -50%) scale(1); }
+  to   { opacity: 0; transform: translate(-50%, -80%) scale(0.5); }
 }
 
-/* ===== VIP POPUP (ADDED) ===== */
+/* VIP POPUP */
 .vip-popup {
   position: fixed;
   top: 90px;
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255,255,255,0.95);
   color: #7a003c;
-  border: 2px solid rgba(255, 95, 162, 0.35);
   padding: 12px 18px;
   border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   font-weight: 700;
-  letter-spacing: 0.4px;
   opacity: 0;
   pointer-events: none;
   z-index: 99999;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: 0.35s ease;
 }
 
 .vip-popup.show {
@@ -209,227 +206,70 @@ body.rose-cursor img {
   <a href="#quiz">Find Your Scent</a>
 </nav>
 
-<!-- HOME -->
 <section class="hero reveal active" id="home">
   <div class="hero-text">
     <h1>Everose 🌸</h1>
     <p>Luxury fragrance, softly blooming.</p>
-    <p><b>We are so excited to release our first scents.</b></p>
-    <p>Stay close. The rose is about to bloom! 
-      P.S- this website is full of mysteries.(Type- Do i smell good? and a secret message will pop up)</p>
-
-    <div class="countdown-wrap">
-      <div class="countbox">
-        <h2>LAUNCHING IN</h2>
-        <div id="launchCountdown"></div>
-      </div>
-
-      <div class="countbox">
-        <h2>NEXT UPDATE</h2>
-        <div id="updateCountdown"></div>
-      </div>
-    </div>
   </div>
 
   <div>
-    <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
-    <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">🌸 Welcome to Everose. You found the secret.</p>
+    <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png">
+    <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">
+      🌸 Welcome to Everose. You found the secret.
+    </p>
   </div>
 </section>
 
-<!-- ABOUT -->
-<div class="section reveal" id="about">
-  <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey, then to Miami, and after a few more moves, I finally landed in Austin.</p>
-  <p>I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.</p>
-  <p>We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.</p>
-  <p>I’m so excited to start my own fragrance brand and share my love for scent with the world.</p>
-</div>
-
-<!-- HINTS -->
-<div class="section reveal" id="hints">
-  <h1>Everose Hints ✨</h1>
-  <p>✨ One scent feels like getting a suntan.</p>
-  <p>❄ One scent feels like silk in winter air.</p>
-  <p>🌷 One scent feels like something new beginning.</p>
-  <p>🍂 One scent feels warm… familiar… unforgettable.</p>
-</div>
-
-<!-- QUIZ -->
-<div class="section reveal" id="quiz">
-  <h1>Find Your Scent 💗</h1>
-  <p>Choose what feels most like you.</p>
-
-  <button onclick="result('soft')">Light scent</button>
-  <button onclick="result('warm')">Medium scent</button>
-  <button onclick="result('fresh')">Strong scent</button>
-  <button onclick="result('bright')">A mix of everything</button>
-
-  <p id="answer" style="margin-top:30px;font-weight:600;"></p>
-</div>
-
 <script>
-/* COUNTDOWN */
-const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-const updateDate = new Date("February 14, 2026 00:00:00").getTime();
-
-function updateCountdown(target, elementId) {
-  const now = new Date().getTime();
-  const distance = target - now;
-
-  if (distance < 0) {
-    document.getElementById(elementId).innerHTML = "Unlocked ✨";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById(elementId).innerHTML =
-    `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-setInterval(() => {
-  updateCountdown(launchDate, "launchCountdown");
-  updateCountdown(updateDate, "updateCountdown");
-}, 1000);
-
-/* QUIZ */
-function result(type) {
-  let text = "";
-  if(type === "soft") text = "You love soft, airy, gentle scents.";
-  if(type === "warm") text = "You’re drawn to warm, comforting scents.";
-  if(type === "fresh") text = "You like strong, clean, confident scents.";
-  if(type === "bright") text = "You love playful, layered, signature scents.";
-  document.getElementById("answer").innerText = text;
-}
-
-/* SCROLL ANIMATION */
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  reveals.forEach(el => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 80) {
-      el.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-setTimeout(revealOnScroll, 100);
-
-/* SECRET FEATURE: CLICK BOTTLE */
-let clicks = 0;
-
-document.getElementById("bottle").addEventListener("click", () => {
-  clicks++;
-
-  if (clicks === 5) {
-    document.getElementById("secretText").style.display = "block";
-
-    for (let i = 0; i < 15; i++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💗";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 3000);
-    }
-  }
-});
-
-/* SECRET FEATURE: TYPE "do i smell good" */
-let typed = "";
-const secretPhrase = "do i smell good";
-
-document.addEventListener("keydown", (e) => {
-  typed += e.key.toLowerCase();
-
-  if (typed.length > secretPhrase.length) {
-    typed = typed.slice(typed.length - secretPhrase.length);
-  }
-
-  if (typed === secretPhrase) {
-    alert("You smell great! 💗\nThank you for exploring -Cruz");
-    typed = ""; // reset after showing message
-  }
-});
-
-/* ===== SECRET ROSE CURSOR VIP MODE + POPUP (ADDED + WORKS) ===== */
+/* 🌸 VIP CURSOR MODE */
 (() => {
-  const bottleEl = document.getElementById("bottle");
-  if (!bottleEl) return;
+  const bottle = document.getElementById("bottle");
+  let roseOn = false;
+  let clicks = 0;
+  let lastSparkle = 0;
+  let typed = "";
+  const phrase = "everose vip";
 
-  let roseModeOn = false;
-
-  // Change this if you want:
-  const secretCursorPhrase = "everose vip";
-  let typedVIP = "";
-
-  function enableRoseCursorMode() {
-    if (roseModeOn) return;
-    roseModeOn = true;
+  function enableVIP() {
+    if (roseOn) return;
+    roseOn = true;
     document.body.classList.add("rose-cursor");
 
-    // VIP popup
     const popup = document.createElement("div");
     popup.className = "vip-popup";
     popup.innerHTML = "VIP MODE UNLOCKED 💗";
     document.body.appendChild(popup);
-
-    requestAnimationFrame(() => popup.classList.add("show"));
-    setTimeout(() => popup.classList.remove("show"), 1800);
-    setTimeout(() => popup.remove(), 2300);
+    requestAnimationFrame(()=>popup.classList.add("show"));
+    setTimeout(()=>popup.remove(),2200);
   }
 
-  // Unlock after 7pm
-  const hour = new Date().getHours();
-  if (hour >= 19) enableRoseCursorMode();
+  if (new Date().getHours() >= 19) enableVIP();
 
-  // Unlock after 3 bottle clicks (does not interfere with 5-click hearts)
-  let bottleClicksForCursor = 0;
-  bottleEl.addEventListener("click", () => {
-    bottleClicksForCursor++;
-    if (bottleClicksForCursor === 3) enableRoseCursorMode();
+  bottle.addEventListener("click", () => {
+    clicks++;
+    if (clicks === 3) enableVIP();
   });
 
-  // Unlock by typing the secret phrase
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", e => {
     if (e.key.length !== 1) return;
-    typedVIP += e.key.toLowerCase();
-
-    if (typedVIP.length > secretCursorPhrase.length) {
-      typedVIP = typedVIP.slice(-secretCursorPhrase.length);
-    }
-
-    if (typedVIP === secretCursorPhrase) {
-      enableRoseCursorMode();
-      typedVIP = "";
-    }
+    typed += e.key.toLowerCase();
+    if (typed.length > phrase.length) typed = typed.slice(-phrase.length);
+    if (typed === phrase) enableVIP();
   });
 
-  // Petal trail
-  let lastPetalTime = 0;
-  document.addEventListener("mousemove", (e) => {
-    if (!roseModeOn) return;
-
+  document.addEventListener("mousemove", e => {
+    if (!roseOn) return;
     const now = Date.now();
-    if (now - lastPetalTime < 45) return;
-    lastPetalTime = now;
+    if (now - lastSparkle < 120) return; // ✨ slow + elegant
+    lastSparkle = now;
 
-    const petal = document.createElement("div");
-    petal.className = "petal";
-    petal.innerHTML = "🌸";
-    petal.style.left = e.clientX + "px";
-    petal.style.top = e.clientY + "px";
-
-    document.body.appendChild(petal);
-    setTimeout(() => petal.remove(), 900);
+    const s = document.createElement("div");
+    s.className = "petal";
+    s.innerHTML = "✨";
+    s.style.left = e.clientX + "px";
+    s.style.top = e.clientY + "px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1000);
   });
 })();
 </script>
