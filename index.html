@@ -133,7 +133,7 @@ button:hover { background: #ff3f8f; }
   transform: translateY(0);
 }
 
-/* SECRET FEATURE: HEARTS */
+/* SECRET FEATURE HEARTS */
 .heart {
   position: fixed;
   bottom: 20px;
@@ -179,7 +179,7 @@ button:hover { background: #ff3f8f; }
     </div>
   </div>
 
-  <!-- SECRET FEATURE: CLICK BOTTLE -->
+  <!-- SECRET FEATURE ADDED HERE -->
   <div>
     <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
     <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">🌸 Welcome to Everose. You found the secret.</p>
@@ -292,6 +292,24 @@ document.getElementById("bottle").addEventListener("click", () => {
 
       setTimeout(() => heart.remove(), 3000);
     }
+  }
+});
+
+/* SECRET FEATURE: TYPE "do i smell good" */
+let typed = "";
+const secretPhrase = "do i smell good";
+
+document.addEventListener("keydown", (e) => {
+  typed += e.key.toLowerCase();
+
+  // Keep typed length same as secretPhrase
+  if (typed.length > secretPhrase.length) {
+    typed = typed.slice(typed.length - secretPhrase.length);
+  }
+
+  if (typed === secretPhrase) {
+    alert("You smell great! 💗");
+    typed = ""; // reset after showing message
   }
 });
 </script>
