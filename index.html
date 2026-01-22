@@ -12,7 +12,6 @@ body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(to bottom, #ffe6f0, #ffffff);
   color: #7a003c;
-  overflow-x: hidden;
 }
 
 /* NAV */
@@ -65,36 +64,17 @@ nav a {
   transition: all 0.8s ease;
 }
 
-/* bottle hover */
 .hero img:hover {
-  transform: translateY(-18px) scale(1.05) rotate(-1deg);
+  transform: translateY(-18px) scale(1.05);
   box-shadow: 0 30px 60px rgba(255, 120, 180, 0.45);
-}
-
-/* CURSOR MAGIC BOX */
-.cursor-box {
-  margin-top: 30px;
-  background: white;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-}
-
-.cursor-box h3 {
-  margin-bottom: 10px;
-}
-
-.cursor-box button {
-  font-size: 14px;
-  padding: 8px 16px;
 }
 
 /* SECTIONS */
 .section {
   max-width: 1100px;
-  margin: 120px auto;
+  margin: 140px auto;
   background: #fff0f6;
-  padding: 70px 40px;
+  padding: 80px 50px;
   border-radius: 28px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.12);
   text-align: center;
@@ -134,16 +114,16 @@ button {
   padding: 12px 26px;
   border-radius: 25px;
   font-size: 16px;
-  margin: 6px;
+  margin: 10px;
   cursor: pointer;
 }
 
 button:hover { background: #ff3f8f; }
 
-/* SCROLL ANIMATION */
+/* SCROLL REVEAL */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(50px);
   transition: all 1s ease;
 }
 
@@ -152,16 +132,18 @@ button:hover { background: #ff3f8f; }
   transform: translateY(0);
 }
 
-/* FLOATING PARTS */
-.trail {
+/* FLOATING HEARTS */
+.heart {
   position: fixed;
-  pointer-events: none;
-  animation: floatUp 1.5s linear forwards;
+  bottom: 20px;
+  font-size: 24px;
+  animation: floatUp 3s linear forwards;
+  pointer-events:none;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(0) scale(1); opacity: 1; }
-  to { transform: translateY(-40px) scale(1.6); opacity: 0; }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-300px); opacity: 0; }
 }
 </style>
 </head>
@@ -181,8 +163,7 @@ button:hover { background: #ff3f8f; }
     <h1>Everose 🌸</h1>
     <p>Luxury fragrance, softly blooming.</p>
     <p><b>We are so excited to release our first scents.</b></p>
-    <p>Stay close. The rose is about to bloom!  
-    P.S — this website is full of mysteries.</p>
+    <p>Stay close. The rose is about to bloom.</p>
 
     <div class="countdown-wrap">
       <div class="countbox">
@@ -195,81 +176,119 @@ button:hover { background: #ff3f8f; }
         <div id="updateCountdown"></div>
       </div>
     </div>
-
-    <!-- CURSOR MAGIC -->
-    <div class="cursor-box">
-      <h3>✨ Cursor Magic</h3>
-      <p>Choose what follows your mouse</p>
-      <button onclick="setTrail('sparkle')">Sparkles</button>
-      <button onclick="setTrail('heart')">Hearts</button>
-      <button onclick="setTrail('flower')">Flowers</button>
-      <button onclick="setTrail('off')">Off</button>
-    </div>
   </div>
 
   <div>
     <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png">
     <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">
-      🌸 Welcome to Everose. You found the secret.
+      🌸 You found the secret of Everose.
     </p>
   </div>
 </section>
 
 <!-- ABOUT -->
 <div class="section reveal" id="about">
-  <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely love perfume...</p>
+  <h1>About Everose 🌷</h1>
+  <p>Everose is a luxury fragrance brand inspired by emotion, memory, and softness.</p>
+  <p>Each scent is designed to feel like a season, a moment, a secret.</p>
+</div>
+
+<!-- HINTS -->
+<div class="section reveal" id="hints">
+  <h1>Everose Hints ✨</h1>
+  <p>✨ One scent feels like getting a suntan.</p>
+  <p>❄ One scent feels like silk in winter air.</p>
+  <p>🌷 One scent feels like something new beginning.</p>
+  <p>🍂 One scent feels warm… familiar… unforgettable.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="section reveal" id="quiz">
+  <h1>Find Your Scent 💗</h1>
+  <p>Choose what feels most like you.</p>
+
+  <button onclick="result('soft')">Light scent</button>
+  <button onclick="result('warm')">Medium scent</button>
+  <button onclick="result('fresh')">Strong scent</button>
+  <button onclick="result('bright')">A mix of everything</button>
+
+  <p id="answer" style="margin-top:30px;font-weight:600;"></p>
 </div>
 
 <script>
-/* CURSOR TRAILS */
-let currentTrail = "off";
-
-function setTrail(type) {
-  currentTrail = type;
-}
-
-document.addEventListener("mousemove", (e) => {
-  if (currentTrail === "off") return;
-
-  const t = document.createElement("div");
-  t.className = "trail";
-  t.style.left = e.clientX + "px";
-  t.style.top = e.clientY + "px";
-  t.style.fontSize = "18px";
-
-  if (currentTrail === "sparkle") t.innerHTML = "✨";
-  if (currentTrail === "heart") t.innerHTML = " 💗 ";
-  if (currentTrail === "flower") t.innerHTML = "🌸";
-
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 1500);
-});
-
 /* COUNTDOWN */
 const launchDate = new Date("September 29, 2026 00:00:00").getTime();
 const updateDate = new Date("February 14, 2026 00:00:00").getTime();
 
 function runCountdown() {
   const now = new Date().getTime();
+
   function countdown(target, element, doneText) {
     let d = target - now;
     if (d <= 0) {
       document.getElementById(element).innerHTML = doneText;
       return;
     }
-    let days = Math.floor(d / (1000*60*60*24));
-    let hours = Math.floor((d % (1000*60*60*24))/(1000*60*60));
-    let mins = Math.floor((d % (1000*60*60))/(1000*60));
-    let secs = Math.floor((d % (1000*60))/1000);
+
+    let days = Math.floor(d / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+    let secs = Math.floor((d % (1000 * 60)) / 1000);
+
     document.getElementById(element).innerHTML =
-      days+"d "+hours+"h "+mins+"m "+secs+"s";
+      days + "d " + hours + "h " + mins + "m " + secs + "s";
   }
-  countdown(launchDate,"launchCountdown","WE ARE LIVE ✨");
-  countdown(updateDate,"updateCountdown","UPDATE LIVE ✨");
+
+  countdown(launchDate, "launchCountdown", "WE ARE LIVE ✨");
+  countdown(updateDate, "updateCountdown", "UPDATE LIVE ✨");
 }
-setInterval(runCountdown,1000);
+
+setInterval(runCountdown, 1000);
 runCountdown();
+
+/* QUIZ */
+function result(type) {
+  let text = "";
+  if(type === "soft") text = "You love soft, airy, gentle scents.";
+  if(type === "warm") text = "You’re drawn to warm, comforting scents.";
+  if(type === "fresh") text = "You like strong, clean, confident scents.";
+  if(type === "bright") text = "You love playful, layered, signature scents.";
+  document.getElementById("answer").innerText = text;
+}
+
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 80) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+setTimeout(revealOnScroll, 100);
+
+/* SECRET HEART EASTER EGG */
+let clicks = 0;
+
+document.getElementById("bottle").addEventListener("click", () => {
+  clicks++;
+  if (clicks === 5) {
+    document.getElementById("secretText").style.display = "block";
+    for (let i = 0; i < 18; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+  }
+});
 </script>
 
 </body>
