@@ -43,6 +43,7 @@ nav a {
   justify-content: space-between;
   padding: 140px 10%;
   gap: 60px;
+  position: relative;
 }
 
 .hero-text { max-width: 520px; }
@@ -62,6 +63,8 @@ nav a {
   border-radius: 30px;
   box-shadow: 0 20px 40px rgba(0,0,0,.15);
   transition: all 0.8s ease;
+  position: relative;
+  z-index: 2;
 }
 
 /* bottle hover */
@@ -133,7 +136,7 @@ button:hover { background: #ff3f8f; }
   transform: translateY(0);
 }
 
-/* SECRET FEATURE */
+/* HEARTS */
 .heart {
   position: fixed;
   bottom: 20px;
@@ -144,6 +147,37 @@ button:hover { background: #ff3f8f; }
 @keyframes floatUp {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(-300px); opacity: 0; }
+}
+
+/* 🌫️ SECRET AURA */
+#aura {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,160,200,0.35), transparent 70%);
+  filter: blur(25px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* 🔐 SECRET KEY MESSAGE */
+#keySecret {
+  display: none;
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: 700;
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -179,20 +213,18 @@ button:hover { background: #ff3f8f; }
     </div>
   </div>
 
-  <!-- SECRET FEATURE ADDED HERE -->
   <div>
     <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
+    <div id="aura"></div>
     <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">🌸 Welcome to Everose. You found the secret.</p>
+    <p id="keySecret">🌹 Access granted. You belong in Everose.</p>
   </div>
 </section>
 
 <!-- ABOUT -->
 <div class="section reveal" id="about">
   <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey, then to Miami, and after a few more moves, I finally landed in Austin.</p>
-  <p>I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.</p>
-  <p>We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.</p>
-  <p>I’m so excited to start my own fragrance brand and share my love for scent with the world.</p>
+  <p>Hi! My name is Cruz Keller, and I absolutely love perfume...</p>
 </div>
 
 <!-- HINTS -->
@@ -258,78 +290,90 @@ function result(type) {
   document.getElementById("answer").innerText = text;
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 const reveals = document.querySelectorAll(".reveal");
-
 function revealOnScroll() {
   reveals.forEach(el => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 80) {
+    if (el.getBoundingClientRect().top < window.innerHeight - 80) {
       el.classList.add("active");
     }
   });
 }
-
 window.addEventListener("scroll", revealOnScroll);
 setTimeout(revealOnScroll, 100);
 
-/* SECRET FEATURE: CLICK BOTTLE */
+/* 💗 CLICK SECRET */
 let clicks = 0;
+const bottle = document.getElementById("bottle");
 
-document.getElementById("bottle").addEventListener("click", () => {
+bottle.addEventListener("click", () => {
   clicks++;
-
   if (clicks === 5) {
     document.getElementById("secretText").style.display = "block";
-
     for (let i = 0; i < 15; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.innerHTML = "💗";
       heart.style.left = Math.random() * window.innerWidth + "px";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 3000);
     }
   }
 });
 
-/* SECRET FEATURE: HOVER BOTTLE FOR 5 SECONDS */
+/* 🌸 HOVER SECRET */
 let hoverTimer;
-
 bottle.addEventListener("mouseenter", () => {
   hoverTimer = setTimeout(() => {
-    // Change cursor to flower
     document.body.style.cursor = "url('https://i.postimg.cc/Zq0g5zVf/flower-cursor.png'), auto";
-
-    // Floating hearts follow cursor
-    function createHeart(e) {
-      for (let i = 0; i < 5; i++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "💗";
-        heart.style.left = e.clientX + Math.random()*20 - 10 + "px";
-        heart.style.top = e.clientY + Math.random()*20 - 10 + "px";
-        heart.style.fontSize = 16 + Math.random()*12 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 3000);
-      }
-    }
-
-    document.addEventListener("mousemove", createHeart);
-
-    // Reset cursor and remove hearts after 5 seconds
-    setTimeout(() => {
-      document.body.style.cursor = "auto";
-      document.removeEventListener("mousemove", createHeart);
-    }, 5000);
-
-  }, 5000); // 5-second hover
+  }, 5000);
+});
+bottle.addEventListener("mouseleave", () => {
+  clearTimeout(hoverTimer);
+  document.body.style.cursor = "auto";
 });
 
-bottle.addEventListener("mouseleave", () => {
-  clearTimeout(hoverTimer); // cancel if mouse leaves early
+/* 🌫️ SCENT AURA SECRET */
+let swirlCount = 0;
+let lastX = null;
+const aura = document.getElementById("aura");
+
+document.addEventListener("mousemove", (e) => {
+  const rect = bottle.getBoundingClientRect();
+  const near =
+    e.clientX > rect.left - 120 &&
+    e.clientX < rect.right + 120 &&
+    e.clientY > rect.top - 120 &&
+    e.clientY < rect.bottom + 120;
+
+  if (!near) { swirlCount = 0; lastX = null; return; }
+
+  if (lastX !== null) {
+    if ((lastX < e.clientX && swirlCount % 2 === 0) ||
+        (lastX > e.clientX && swirlCount % 2 === 1)) {
+      swirlCount++;
+    }
+  }
+  lastX = e.clientX;
+
+  if (swirlCount > 18) {
+    aura.style.opacity = "1";
+    swirlCount = 0;
+    setTimeout(() => aura.style.opacity = "0", 6000);
+  }
+});
+
+/* 🔐 KEYBOARD SECRET */
+let typed = "";
+const secretWord = "everose";
+
+document.addEventListener("keydown", (e) => {
+  typed += e.key.toLowerCase();
+  if (!secretWord.startsWith(typed)) typed = e.key.toLowerCase();
+  if (typed === secretWord) {
+    document.getElementById("keySecret").style.display = "block";
+    typed = "";
+  }
 });
 </script>
 
