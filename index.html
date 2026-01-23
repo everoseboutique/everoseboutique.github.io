@@ -64,10 +64,8 @@ nav a {
   transition: all 0.8s ease;
 }
 
-/* bottle hover */
 .hero img:hover {
-  transform: translateY(-18px) scale(1.05) rotate(-1deg);
-  box-shadow: 0 30px 60px rgba(255, 120, 180, 0.45);
+  transform: translateY(-18px) scale(1.05);
 }
 
 /* SECTIONS */
@@ -97,292 +95,100 @@ nav a {
   min-width:180px;
 }
 
-.countbox h2 {
-  font-size:16px;
-  letter-spacing:2px;
-}
-
-.countbox div {
-  font-size:22px;
-  font-weight:700;
-}
-
-/* BUTTONS */
-button {
-  background: #ff5fa2;
-  color: white;
-  border: none;
-  padding: 12px 26px;
-  border-radius: 25px;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-button:hover { background: #ff3f8f; }
-
 /* SCROLL ANIMATION */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: all 1s ease;
 }
-
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* SECRET FEATURE HEARTS */
+/* HEARTS */
 .heart {
   position: fixed;
   bottom: 20px;
   font-size: 24px;
   animation: floatUp 3s linear forwards;
 }
-
 @keyframes floatUp {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(-300px); opacity: 0; }
 }
 
 /* =========================
-   CURSOR STATION (ADDED)
-   ========================= */
-:root {
-  --everose-cursor: auto;
-  --everose-pointer: pointer;
-}
-
-/* apply cursor variables everywhere */
-body { cursor: var(--everose-cursor); }
-button, a, img { cursor: var(--everose-pointer); }
-
-.cursor-studio {
-  margin-top: 28px;
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(255,95,162,0.25);
-  border-radius: 22px;
-  padding: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  text-align: left;
-}
-
-.cursor-studio h3 {
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  letter-spacing: 0.4px;
-}
-
-.cursor-studio p {
-  margin: 0 0 12px 0;
-  opacity: 0.85;
-  font-size: 14px;
-}
-
-.cursor-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.cursor-btn {
-  background: rgba(255, 95, 162, 0.12);
-  border: 1px solid rgba(255,95,162,0.28);
-  border-radius: 16px;
-  padding: 10px 12px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: transform 0.18s ease, background 0.18s ease;
-  color: #7a003c;
-}
-
-.cursor-btn:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 95, 162, 0.18);
-}
-
-.cursor-actions {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.cursor-actions .mini {
-  background: #ff5fa2;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 18px;
-  font-size: 14px;
-  cursor: pointer;
-  margin: 0;
-}
-
-.cursor-actions .mini:hover { background: #ff3f8f; }
-
-/* =========================
-   ASK EVEROSE (AI CORNER) - UPDATED
-   bottom-left + label + scroll-friendly
+   ASK EVEROSE (AI)
    ========================= */
 #askEveroseWrap{
   position: fixed;
   left: 18px;
   bottom: 18px;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  pointer-events: none; /* lets page scroll normally */
 }
 
-#askEveroseBtn {
-  pointer-events: auto; /* clickable */
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,95,162,0.35));
-  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-#askEveroseBtn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 18px 40px rgba(255, 95, 162, 0.28);
-}
-
-#askEveroseBtn span { font-size: 22px; }
-
-#askEveroseLabel{
-  pointer-events: none;
-  font-size: 12px;
-  letter-spacing: .4px;
-  opacity: .75;
-}
-
-#askEverosePanel {
-  position: fixed;
-  left: 18px;
-  bottom: 92px;
-  width: 330px;
-  max-width: calc(100vw - 36px);
-  height: 430px;
-  max-height: calc(100vh - 140px);
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(255,95,162,0.22);
-  border-radius: 22px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
-  z-index: 9999;
-  display: none;
-  overflow: hidden;
-  backdrop-filter: blur(8px);
-  pointer-events: auto; /* only panel interactive */
-}
-
-.askHeader {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding: 12px 14px;
-  background: rgba(255,143,189,0.22);
-  border-bottom: 1px solid rgba(255,95,162,0.18);
-}
-
-.askTitle {
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-
-.askTitle b { font-size: 14px; letter-spacing: .3px; }
-.askTitle small { opacity: .75; font-size: 12px; }
-
-.askClose {
+#askEveroseBtn{
+  width:56px;
+  height:56px;
+  border-radius:999px;
   border:none;
-  background: transparent;
   cursor:pointer;
-  font-size: 18px;
-  opacity: .7;
+  background:#ff5fa2;
+  color:white;
+  font-size:22px;
 }
 
-.askClose:hover { opacity: 1; }
+#askEverosePanel{
+  position:fixed;
+  left:18px;
+  bottom:84px;
+  width:320px;
+  height:420px;
+  background:white;
+  border-radius:22px;
+  box-shadow:0 20px 50px rgba(0,0,0,.18);
+  display:none;
+  overflow:hidden;
+}
+
+.askHeader{
+  padding:12px;
+  background:#ffe6f0;
+  display:flex;
+  justify-content:space-between;
+}
 
 #askEveroseMessages{
-  padding: 12px;
-  height: calc(100% - 120px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  padding:12px;
+  height:calc(100% - 120px);
+  overflow:auto;
+  overscroll-behavior:contain;
 }
 
-.msg { margin: 10px 0; display:flex; }
-.msg.user { justify-content: flex-end; }
-.msg.bot { justify-content: flex-start; }
+.msg { margin:10px 0; display:flex; }
+.msg.user{ justify-content:flex-end; }
+.msg.bot{ justify-content:flex-start; }
 
-.bubble {
-  max-width: 85%;
-  padding: 10px 12px;
-  border-radius: 16px;
-  font-size: 13px;
-  line-height: 1.35;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
-  white-space: pre-wrap;
+.bubble{
+  max-width:85%;
+  padding:10px 12px;
+  border-radius:16px;
+  font-size:13px;
 }
+.msg.user .bubble{ background:#ffb3d9; }
+.msg.bot .bubble{ background:#fff0f6; }
 
-.msg.user .bubble {
-  background: rgba(255,95,162,0.22);
-  border: 1px solid rgba(255,95,162,0.18);
-}
-
-.msg.bot .bubble {
-  background: rgba(255,240,246,0.85);
-  border: 1px solid rgba(255,95,162,0.14);
-}
-
-#askEveroseForm {
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding: 10px;
-  border-top: 1px solid rgba(255,95,162,0.18);
-  background: rgba(255,255,255,0.85);
+#askEveroseForm{
   display:flex;
-  gap: 8px;
+  padding:10px;
+  gap:6px;
 }
+#askInput{ flex:1; padding:10px; border-radius:14px; }
+#askSend{ padding:10px; border:none; background:#ff5fa2; color:white; border-radius:14px; }
 
-#askInput {
-  flex:1;
-  border-radius: 16px;
-  border: 1px solid rgba(255,95,162,0.25);
-  padding: 10px 12px;
-  font-family: inherit;
-  outline: none;
-}
+/* ========================= */
 
-#askSend {
-  border: none;
-  border-radius: 16px;
-  padding: 10px 12px;
-  cursor:pointer;
-  background: #ff5fa2;
-  color:white;
-  font-weight:700;
-}
-
-#askSend:hover { background:#ff3f8f; }
-
-.typingDot{
-  display:inline-block;
-  animation: blink 1s infinite;
-  margin-left: 2px;
-  opacity: .85;
-}
-
-@keyframes blink { 0%,100%{opacity:.25} 50%{opacity:1} }
 </style>
 </head>
 
@@ -395,441 +201,115 @@ button, a, img { cursor: var(--everose-pointer); }
   <a href="#quiz">Find Your Scent</a>
 </nav>
 
-<!-- HOME -->
 <section class="hero reveal active" id="home">
   <div class="hero-text">
     <h1>Everose 🌸</h1>
     <p>Luxury fragrance, softly blooming.</p>
     <p><b>We are so excited to release our first scents.</b></p>
-    <p>
-      Stay close. The rose is about to bloom!
-      P.S- this website is full of mysteries. (Type- <b>Do i smell good?</b>)
-    </p>
-
-    <div class="countdown-wrap">
-      <div class="countbox">
-        <h2>LAUNCHING IN</h2>
-        <div id="launchCountdown"></div>
-      </div>
-
-      <div class="countbox">
-        <h2>NEXT UPDATE</h2>
-        <div id="updateCountdown"></div>
-      </div>
-    </div>
+    <p>P.S. This website has secrets 👀</p>
   </div>
 
-  <div>
-    <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
-    <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">🌸 Welcome to Everose. You found the secret.</p>
-  </div>
+  <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png">
 </section>
 
-<!-- ABOUT -->
 <div class="section reveal" id="about">
   <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey, then to Miami, and after a few more moves, I finally landed in Austin.</p>
-  <p>I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.</p>
-  <p>We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.</p>
-  <p>I’m so excited to start my own fragrance brand and share my love for scent with the world.</p>
+  <p>I’m Cruz. I love perfume and mystery.</p>
 </div>
 
-<!-- HINTS -->
 <div class="section reveal" id="hints">
   <h1>Everose Hints ✨</h1>
-  <p>✨ One scent feels like getting a suntan.</p>
-  <p>❄ One scent feels like silk in winter air.</p>
-  <p>🌷 One scent feels like something new beginning.</p>
-  <p>🍂 One scent feels warm… familiar… unforgettable.</p>
+  <p>Some things unlock if you’re curious.</p>
 </div>
 
-<!-- QUIZ -->
 <div class="section reveal" id="quiz">
   <h1>Find Your Scent 💗</h1>
-  <p>Choose what feels most like you.</p>
-
-  <button onclick="result('soft')">Light scent</button>
-  <button onclick="result('warm')">Medium scent</button>
-  <button onclick="result('fresh')">Strong scent</button>
-  <button onclick="result('bright')">A mix of everything</button>
-
-  <!-- CURSOR STATION (ADDED) -->
-  <div class="cursor-studio">
-    <h3>Cursor Station</h3>
-    <p>Pick a cursor. (It saves on your device.)</p>
-
-    <div class="cursor-grid" id="cursorGrid">
-      <button class="cursor-btn" data-emoji="🎀">🎀</button>
-      <button class="cursor-btn" data-emoji="🤍">🤍</button>
-      <button class="cursor-btn" data-emoji="🪞">🪞</button>
-      <button class="cursor-btn" data-emoji="🌸">🌸</button>
-    </div>
-
-    <div class="cursor-actions">
-      <button class="mini" id="cursorResetBtn">Reset cursor</button>
-    </div>
-  </div>
-
-  <p id="answer" style="margin-top:30px;font-weight:600;"></p>
+  <button>Light</button>
+  <button>Warm</button>
+  <button>Fresh</button>
 </div>
 
-<!-- =========================
-     ASK EVEROSE (AI CORNER)
-     ========================= -->
+<!-- ASK EVEROSE -->
 <div id="askEveroseWrap">
-  <button id="askEveroseBtn" aria-label="Ask Everose">
-    <span>💬</span>
-  </button>
-  <div id="askEveroseLabel">Ask Everose</div>
+  <button id="askEveroseBtn">💬</button>
 </div>
 
-<div id="askEverosePanel" role="dialog" aria-label="Ask Everose chat">
+<div id="askEverosePanel">
   <div class="askHeader">
-    <div class="askTitle">
-      <b>Ask Everose</b>
-      <small>soft answers • pink energy • scent help 🌸</small>
-    </div>
-    <button class="askClose" id="askCloseBtn" aria-label="Close">✕</button>
+    <b>Ask Everose</b>
+    <button onclick="panel.style.display='none'">✕</button>
   </div>
-
   <div id="askEveroseMessages"></div>
-
   <form id="askEveroseForm">
-    <input id="askInput" type="text" placeholder="Ask anything… 🌷" autocomplete="off" />
-    <button id="askSend" type="submit">Send</button>
+    <input id="askInput" placeholder="Ask me anything…" />
+    <button id="askSend">Send</button>
   </form>
 </div>
 
 <script>
-/* COUNTDOWN */
-const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-const updateDate = new Date("February 14, 2026 00:00:00").getTime();
-
-function updateCountdown(target, elementId) {
-  const now = new Date().getTime();
-  const distance = target - now;
-
-  if (distance < 0) {
-    document.getElementById(elementId).innerHTML = "Unlocked ✨";
-    return;
-  }
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById(elementId).innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-setInterval(() => {
-  updateCountdown(launchDate, "launchCountdown");
-  updateCountdown(updateDate, "updateCountdown");
-}, 1000);
-
-/* QUIZ */
-function result(type) {
-  let text = "";
-  if(type === "soft") text = "You love soft, airy, gentle scents.";
-  if(type === "warm") text = "You’re drawn to warm, comforting scents.";
-  if(type === "fresh") text = "You like strong, clean, confident scents.";
-  if(type === "bright") text = "You love playful, layered, signature scents.";
-  document.getElementById("answer").innerText = text;
-}
-
-/* SCROLL ANIMATION */
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  reveals.forEach(el => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 80) {
-      el.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-setTimeout(revealOnScroll, 100);
-
-/* SECRET FEATURE: CLICK BOTTLE (5 clicks hearts) */
-let clicks = 0;
-
-document.getElementById("bottle").addEventListener("click", () => {
-  clicks++;
-
-  if (clicks === 5) {
-    document.getElementById("secretText").style.display = "block";
-
-    for (let i = 0; i < 15; i++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💗";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 3000);
-    }
-  }
+/* Reveal */
+document.querySelectorAll(".reveal").forEach(el=>{
+  if(el.getBoundingClientRect().top < innerHeight-80) el.classList.add("active");
 });
 
-/* SECRET FEATURE: TYPE "do i smell good" */
-let typed = "";
-const secretPhrase = "do i smell good";
-
-document.addEventListener("keydown", (e) => {
-  if (e.key.length !== 1) return;
-  typed += e.key.toLowerCase();
-
-  if (typed.length > secretPhrase.length) {
-    typed = typed.slice(typed.length - secretPhrase.length);
+/* Bottle secret */
+let taps=0;
+document.getElementById("bottle").onclick=()=>{
+  taps++;
+  if(taps===5){
+    alert("You found something 💗");
+    for(let i=0;i<12;i++){
+      let h=document.createElement("div");
+      h.className="heart"; h.innerText="💗";
+      h.style.left=Math.random()*innerWidth+"px";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),3000);
+    }
   }
+};
 
-  if (typed === secretPhrase) {
-    alert("You smell great! 💗\nThank you for exploring -Cruz");
-    typed = "";
-  }
-});
+/* Ask Everose */
+const btn=document.getElementById("askEveroseBtn");
+const panel=document.getElementById("askEverosePanel");
+const form=document.getElementById("askEveroseForm");
+const input=document.getElementById("askInput");
+const msgs=document.getElementById("askEveroseMessages");
 
-/* =========================
-   CURSOR STATION (ADDED)
-   ========================= */
-function makeEmojiCursor(emoji) {
-  const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-      <text x="2" y="24" font-size="24">${emoji}</text>
-    </svg>`;
-  const data = encodeURIComponent(svg);
-  return {
-    cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
-    pointer: `url("data:image/svg+xml,${data}") 4 24, pointer`
-  };
+btn.onclick=()=>panel.style.display=panel.style.display==="block"?"none":"block";
+
+function add(text,who){
+  let m=document.createElement("div");
+  m.className="msg "+who;
+  let b=document.createElement("div");
+  b.className="bubble";
+  b.innerText=text;
+  m.appendChild(b);
+  msgs.appendChild(m);
+  msgs.scrollTop=msgs.scrollHeight;
 }
 
-function applyCursorEmoji(emoji) {
-  const c = makeEmojiCursor(emoji);
-  document.documentElement.style.setProperty("--everose-cursor", c.cursor);
-  document.documentElement.style.setProperty("--everose-pointer", c.pointer);
-  localStorage.setItem("everose_cursor_emoji", emoji);
+function reply(q){
+  if(/secret|mystery|hint/i.test(q))
+    return "Okayyy 🕵️‍♀️✨\n• Type **do i smell good**\n• Tap the bottle 5x\n• Ask me questions\nNot everything is obvious 😌";
+
+  if(/do i smell good/i.test(q))
+    return "Yes. Obviously. Next question 💅🌸";
+
+  return "Interesting 👀✨ I’m thinking…";
 }
 
-function resetCursor() {
-  document.documentElement.style.setProperty("--everose-cursor", "auto");
-  document.documentElement.style.setProperty("--everose-pointer", "pointer");
-  localStorage.removeItem("everose_cursor_emoji");
-  localStorage.removeItem("everose_cursor_combo_done");
-}
-
-/* click buttons */
-document.getElementById("cursorGrid").addEventListener("click", (e) => {
-  const btn = e.target.closest(".cursor-btn");
-  if (!btn) return;
-  const emoji = btn.getAttribute("data-emoji");
-  applyCursorEmoji(emoji);
-});
-
-/* reset */
-document.getElementById("cursorResetBtn").addEventListener("click", resetCursor);
-
-/* load saved cursor on refresh */
-const saved = localStorage.getItem("everose_cursor_emoji");
-if (saved) applyCursorEmoji(saved);
-
-/* OPTIONAL SECRET COMBO:
-   Type: "kisses mirror bloom"
-   It cycles 💋 → 🪞 → 🌸 once (and remembers it) */
-let comboTyped = "";
-const comboPhrase = "kisses mirror bloom";
-
-document.addEventListener("keydown", (e) => {
-  if (e.key.length !== 1) return;
-  comboTyped += e.key.toLowerCase();
-  if (comboTyped.length > comboPhrase.length) comboTyped = comboTyped.slice(-comboPhrase.length);
-
-  if (comboTyped === comboPhrase) {
-    const already = localStorage.getItem("everose_cursor_combo_done") === "true";
-    if (!already) {
-      applyCursorEmoji("💋");
-      setTimeout(() => applyCursorEmoji("🪞"), 650);
-      setTimeout(() => applyCursorEmoji("🌸"), 1300);
-      localStorage.setItem("everose_cursor_combo_done", "true");
-    }
-    comboTyped = "";
-  }
-});
-
-/* =========================
-   ASK EVEROSE (FAKE-AI CHAT) - SMART + 5s THINKING
-   ========================= */
-(function(){
-  const btn = document.getElementById("askEveroseBtn");
-  const panel = document.getElementById("askEverosePanel");
-  const closeBtn = document.getElementById("askCloseBtn");
-  const form = document.getElementById("askEveroseForm");
-  const input = document.getElementById("askInput");
-  const messages = document.getElementById("askEveroseMessages");
-
-  function openChat(){
-    panel.style.display = "block";
-    setTimeout(()=>input.focus(), 50);
-    if (!messages.dataset.greeted) {
-      bot("Hi bestie 🌸💗 I’m Ask Everose.\nAsk me about scents, launch, hints, or vibes ✨🪞");
-      messages.dataset.greeted = "true";
-    }
-  }
-  function closeChat(){ panel.style.display = "none"; }
-
-  btn.addEventListener("click", () => {
-    if (panel.style.display === "block") closeChat();
-    else openChat();
-  });
-  closeBtn.addEventListener("click", closeChat);
-
-  function addMsg(text, who="bot"){
-    const row = document.createElement("div");
-    row.className = `msg ${who}`;
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    bubble.innerText = text;
-    row.appendChild(bubble);
-    messages.appendChild(row);
-    messages.scrollTop = messages.scrollHeight;
-    return bubble;
-  }
-
-  function bot(text){ addMsg(text, "bot"); }
-  function user(text){ addMsg(text, "user"); }
-  function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
-
-  function isSecretsQuestion(q){
-    return /(mysteries|mystery|secrets|secret|easter|easter egg|hidden|vault|codes|code|what.*hidden|tell.*all)/i.test(q);
-  }
-
-  function isFirstProductQuestion(q){
-    return /(first product|first scent|first perfume|what.*product|what.*scent|what.*perfume|release.*scent)/i.test(q);
-  }
-
-  function reply(qRaw){
-    const q = qRaw.toLowerCase().trim();
-
-    // don’t spoil site secrets
-    if (isSecretsQuestion(qRaw)) {
-      return pick([
-        "Heheee nice try 😭🔎✨ I can’t spoil the mysteries.\nBut I *can* nudge you: interact with the bottle… and pay attention to what happens after a few tries 👀🌸",
-        "I’m not snitching on the secrets 🤫💗 That would ruin the fun.\nHint: the homepage likes curious people… especially ones who click + type things 😌✨",
-        "If I told you all the secrets it wouldn’t be magic 😭✨\nI’ll give ONE clue: try the bottle… and also try typing something while you’re on the site 👀🌸"
-      ]);
-    }
-
-    // first product is secret
-    if (isFirstProductQuestion(qRaw)) {
-      return "Ahhh the first Everose product… 🤫🪞✨\nIt’s a secret for now — BUT I can give hints 💗\n🌷 feels like: a new beginning\n✨ vibe: soft luxury + addictive\n🍂 memory: warm… familiar… unforgettable\nTell me what you like (fresh / warm / sweet / clean) and I’ll give a more specific hint 😌🌸";
-    }
-
-    // launch / update
-    if (q.includes("launch") || q.includes("release date") || q.includes("when does it release")) {
-      return "Launch is set for **September 29, 2026** ✨🌸\nThe countdown on the homepage is the official timer 💗⏳";
-    }
-    if (q.includes("next update") || q.includes("update date") || q.includes("when is the update") || q.includes("update")) {
-      return "Next update is **February 14, 2026** 💌✨\nVery Everose-coded honestly 😭💗";
-    }
-
-    // discount / code
-    if (q.includes("discount") || q.includes("promo") || q.includes("coupon") || q.includes("code")) {
-      return pick([
-        "Discount codes are… sometimes real 👀💗\nIf one appears, it won’t be obvious — it’s for curious people who explore 🤫✨",
-        "I can’t drop a code out loud 🤭💗\nBut I *can* say this: Everose rewards curiosity… keep exploring the site ✨🔎🌸",
-        "Codes are rare and sneaky 😭✨\nIf you ever find one, it’ll feel like a little secret gift 💗🎁"
-      ]);
-    }
-
-    // shipping / ordering (safe generic)
-    if (q.includes("ship") || q.includes("shipping") || q.includes("deliver") || q.includes("order") || q.includes("buy")) {
-      return "Ooo you’re planning ahead 💗📦\nShipping + ordering details will be shared closer to launch ✨\nFor now: explore the site + check back as the countdown gets closer 😌🌸";
-    }
-
-    // scent help / recommendations
-    if (q.includes("what scent") || q.includes("which scent") || q.includes("recommend") || q.includes("pick for me") || q.includes("choose")) {
-      if (q.includes("warm") || q.includes("cozy") || q.includes("vanilla") || q.includes("amber") || q.includes("sweet") || q.includes("spice")) {
-        return "Based on that… you’re a **warm glow** person 🍂✨\nThink: comforting, golden, unforgettable.\nIf you want it sweeter: say **sweet**.\nIf you want it deeper: say **spicy** 💗";
-      }
-      if (q.includes("fresh") || q.includes("clean") || q.includes("citrus") || q.includes("mint") || q.includes("ocean")) {
-        return "You’re giving **fresh + confident** ❄️✨\nClean air, crisp energy, ‘put-together’ vibes.\nDo you want **sparkly** fresh or **clean** fresh? 💗";
-      }
-      if (q.includes("soft") || q.includes("airy") || q.includes("floral") || q.includes("powder") || q.includes("light")) {
-        return "You’re a **soft bloom** person 🌸🫧\nGentle, airy, close-to-the-skin pretty.\nDo you like **rosy** soft or **creamy** soft? 💗";
-      }
-
-      return pick([
-        "Okay tell me ONE thing 😌🌸\nDo you want **warm 🍂** or **fresh ❄️**?",
-        "Quick vibe check 💗✨\nAre you feeling **soft 🌷** or **bold 😈** today?",
-        "Help me match you perfectly 🪞✨\nPick one word: **vanilla / clean / floral / spicy** 🌸"
-      ]);
-    }
-
-    // about
-    if (q.includes("what is everose") || q.includes("what is this") || q.includes("what is your website") || q.includes("what do you do")) {
-      return "Everose is a luxury fragrance brand 🌸✨\nSoft blooming energy, mysterious little details, and scents that feel like memories 💗\nIf you tell me your vibe, I can point you to the perfect hint section 😌";
-    }
-
-    // creator
-    if (q.includes("who made") || q.includes("who created") || q.includes("who is cruz") || q.includes("who are you")) {
-      return "Everose was created by **Cruz** 🌸💗\nA perfume lover building something dreamy, personal, and a little mysterious ✨🪞";
-    }
-
-    // notes / ingredients (keep vague)
-    if (q.includes("notes") || q.includes("ingredients") || q.includes("what's in it") || q.includes("what are the notes")) {
-      return "The exact notes are under wraps for now 🤫🌸\nBut the *feel* is what matters most:\n✨ sun-kissed warmth\n❄️ winter silk clean\n🌷 new beginnings\n🍂 unforgettable cozy\nTell me which one you want and I’ll give you hints 💗";
-    }
-
-    // fun compliments
-    if (q.includes("do i smell good") || q.includes("do i slay") || q.includes("compliment")) {
-      return pick([
-        "You smell AMAZING 💗✨ Like a signature scent people remember 🌸🪞",
-        "You smell so good it should be illegal 😭💗✨",
-        "Yes. You smell like main-character energy 💋🌸✨"
-      ]);
-    }
-
-    // general fallback (varied + helpful)
-    return pick([
-      "Wait I want to answer this perfectly 😭💗\nDo you mean this about **launch**, **scents**, **discounts**, or **shipping**? ✨",
-      "Ooo okay — do you mean the **brand**, the **scents**, or the **website**? 🌸🪞✨",
-      "I’m listeninggg 💗✨\nIf you rephrase it in one short sentence, I’ll answer way better 😌🌸",
-      "I don’t have that exact info yet 🤫✨\nBut tell me what you’re trying to figure out (like ‘when’, ‘what’, or ‘how’) and I’ll help 💗"
-    ]);
-  }
-
-  function addThinking(){
-    const row = document.createElement("div");
-    row.className = "msg bot";
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-    bubble.innerHTML = `Thinking<span class="typingDot">.</span><span class="typingDot">.</span><span class="typingDot">.</span>`;
-    row.appendChild(bubble);
-    messages.appendChild(row);
-    messages.scrollTop = messages.scrollHeight;
-    return row;
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const text = input.value.trim();
-    if (!text) return;
-
-    user(text);
-    input.value = "";
-
-    const thinkingRow = addThinking();
-
-    // 5 second “thinking” delay
-    setTimeout(() => {
-      thinkingRow.remove();
-      bot(reply(text));
-    }, 5000);
-  });
-})();
+form.onsubmit=e=>{
+  e.preventDefault();
+  let q=input.value.trim();
+  if(!q)return;
+  add(q,"user");
+  input.value="";
+  add("Thinking… 🤔","bot");
+  setTimeout(()=>{
+    msgs.lastChild.remove();
+    add(reply(q),"bot");
+  },5000);
+};
 </script>
 
 </body>
