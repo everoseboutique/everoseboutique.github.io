@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Everose</title>
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+  color: #7a003c;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,143,189,0.95);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 140px 10%;
+  gap: 60px;
+}
+
+.hero-text { max-width: 520px; }
+
+.hero h1 { font-size: 64px; }
+.hero p { font-size: 20px; line-height: 1.6; }
+
+.hero img {
+  max-width: 360px;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  transition: 0.8s ease;
+}
+
+.hero img:hover {
+  transform: translateY(-18px) scale(1.05);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 120px auto;
+  background: #fff0f6;
+  padding: 70px 40px;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+/* VIP CURSOR */
+body.vip {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='24' font-size='24'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E") 4 24, auto;
+}
+
+/* SPARKLES */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 16px;
+  opacity: 0.8;
+  animation: fade 1s forwards;
+}
+@keyframes fade {
+  to { opacity: 0; transform: translateY(-30px) scale(0.5); }
+}
+
+/* PORTAL */
+#portal {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: none;
+  place-items: center;
+  background: radial-gradient(circle, #fff, #ff9ec9);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#hints">Hints</a>
+  <a href="#quiz">Find Your Scent</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Everose 🌸</h1>
+    <p>Luxury fragrance, softly blooming.</p>
+    <p><b>We are so excited to release our first scents.</b></p>
+    <p>Type <b>everose vip</b> or click the bottle 3 times.</p>
+  </div>
+
+  <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png">
+</section>
+
+<div class="section" id="about">
+  <h1>About Me 🌸</h1>
+  <p>I’m Cruz Keller, and this is my fragrance world.</p>
+</div>
+
+<div class="section" id="hints">
+  <h1>Everose Hints ✨</h1>
+  <p>🌷 One scent feels like something new beginning.</p>
+</div>
+
+<div class="section" id="quiz">
+  <h1>Find Your Scent 💗</h1>
+</div>
+
+<button id="portal"><span>🌸</span></button>
+
+<script>
+let vip = false;
+let typed = "";
+let clicks = 0;
+
+// VIP unlock
+document.addEventListener("keydown", e => {
+  typed += e.key.toLowerCase();
+  if (typed.includes("everose vip")) unlockVIP();
+});
+
+document.getElementById("bottle").onclick = () => {
+  clicks++;
+  if (clicks === 3) unlockVIP();
+};
+
+function unlockVIP() {
+  if (vip) return;
+  vip = true;
+  document.body.classList.add("vip");
+  localStorage.setItem("everose_vip", "true");
+  document.getElementById("portal").style.display = "grid";
+  alert("VIP MODE UNLOCKED 💗");
+}
+
+// Sparkles
+document.addEventListener("mousemove", e => {
+  if (!vip) return;
+  const s = document.createElement("div");
+  s.className = "sparkle";
+  s.textContent = "✨";
+  s.style.left = e.clientX + "px";
+  s.style.top = e.clientY + "px";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 1000);
+});
+
+// Portal click
+document.getElementById("portal").onclick = () => {
+  window.location.href = "vault.html";
+};
+</script>
+
+</body>
+</html>
 
