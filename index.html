@@ -223,39 +223,141 @@ button, a, img { cursor: var(--everose-pointer); }
 .cursor-actions .mini:hover { background: #ff3f8f; }
 
 /* =========================
-   DONT CLICK ME BOTTLE (ADDED)
+   ASK EVEROSE (AI CORNER)
    ========================= */
-#dontClickBottle {
+#askEveroseBtn {
   position: fixed;
+  right: 18px;
   bottom: 18px;
-  left: 18px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
   cursor: pointer;
-  opacity: 0.85;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  z-index: 9999;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,95,162,0.35));
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-#dontClickBottle:hover {
-  transform: translateY(-2px) scale(1.05);
-  opacity: 1;
+#askEveroseBtn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(255, 95, 162, 0.28);
 }
 
-#dontClickBottle img {
-  width: 38px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+#askEveroseBtn span { font-size: 22px; }
+
+#askEverosePanel {
+  position: fixed;
+  right: 18px;
+  bottom: 84px;
+  width: 320px;
+  max-width: calc(100vw - 36px);
+  height: 420px;
+  max-height: calc(100vh - 140px);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,95,162,0.22);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  z-index: 9999;
+  display: none;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
-#dontClickBottle span {
-  font-size: 11px;
-  opacity: 0.6;
-  letter-spacing: 0.5px;
+.askHeader {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 12px 14px;
+  background: rgba(255,143,189,0.22);
+  border-bottom: 1px solid rgba(255,95,162,0.18);
 }
+
+.askTitle {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.askTitle b { font-size: 14px; letter-spacing: .3px; }
+.askTitle small { opacity: .75; font-size: 12px; }
+
+.askClose {
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  font-size: 18px;
+  opacity: .7;
+}
+
+.askClose:hover { opacity: 1; }
+
+#askEveroseMessages{
+  padding: 12px;
+  height: calc(100% - 112px);
+  overflow:auto;
+}
+
+.msg {
+  margin: 10px 0;
+  display:flex;
+}
+
+.msg.user { justify-content: flex-end; }
+.msg.bot { justify-content: flex-start; }
+
+.bubble {
+  max-width: 85%;
+  padding: 10px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.35;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.msg.user .bubble {
+  background: rgba(255,95,162,0.22);
+  border: 1px solid rgba(255,95,162,0.18);
+}
+
+.msg.bot .bubble {
+  background: rgba(255,240,246,0.85);
+  border: 1px solid rgba(255,95,162,0.14);
+}
+
+#askEveroseForm {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding: 10px;
+  border-top: 1px solid rgba(255,95,162,0.18);
+  background: rgba(255,255,255,0.85);
+  display:flex;
+  gap: 8px;
+}
+
+#askInput {
+  flex:1;
+  border-radius: 16px;
+  border: 1px solid rgba(255,95,162,0.25);
+  padding: 10px 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+#askSend {
+  border: none;
+  border-radius: 16px;
+  padding: 10px 12px;
+  cursor:pointer;
+  background: #ff5fa2;
+  color:white;
+  font-weight:700;
+}
+
+#askSend:hover { background:#ff3f8f; }
 </style>
 </head>
 
@@ -346,10 +448,28 @@ button, a, img { cursor: var(--everose-pointer); }
   <p id="answer" style="margin-top:30px;font-weight:600;"></p>
 </div>
 
-<!-- DONT CLICK ME EASTER EGG (ADDED) -->
-<div id="dontClickBottle" title="don’t click me">
-  <img src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Tiny perfume bottle">
-  <span>don’t click me</span>
+<!-- =========================
+     ASK EVEROSE (AI CORNER)
+     ========================= -->
+<button id="askEveroseBtn" aria-label="Ask Everose">
+  <span>💬</span>
+</button>
+
+<div id="askEverosePanel" role="dialog" aria-label="Ask Everose chat">
+  <div class="askHeader">
+    <div class="askTitle">
+      <b>Ask Everose</b>
+      <small>your fragrance assistant</small>
+    </div>
+    <button class="askClose" id="askCloseBtn" aria-label="Close">✕</button>
+  </div>
+
+  <div id="askEveroseMessages"></div>
+
+  <form id="askEveroseForm">
+    <input id="askInput" type="text" placeholder="Ask about scents, launch, notes..." autocomplete="off" />
+    <button id="askSend" type="submit">Send</button>
+  </form>
 </div>
 
 <script>
@@ -512,35 +632,86 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* =========================
-   DONT CLICK ME BOTTLE (ADDED)
+   ASK EVEROSE (FAKE-AI CHAT)
    ========================= */
-let dontClickCount = 0;
+(function(){
+  const btn = document.getElementById("askEveroseBtn");
+  const panel = document.getElementById("askEverosePanel");
+  const closeBtn = document.getElementById("askCloseBtn");
+  const form = document.getElementById("askEveroseForm");
+  const input = document.getElementById("askInput");
+  const messages = document.getElementById("askEveroseMessages");
 
-document.getElementById("dontClickBottle").addEventListener("click", () => {
-  dontClickCount++;
-
-  if (dontClickCount === 3) {
-    alert("hey.");
-  }
-
-  if (dontClickCount === 5) {
-    alert("I literally said don’t 😭");
-  }
-
-  if (dontClickCount === 7) {
-    alert("OK FINE YOU WIN 💗");
-
-    // heart burst (uses your existing .heart animation)
-    for (let i = 0; i < 18; i++) {
-      const h = document.createElement("div");
-      h.className = "heart";
-      h.innerText = "💗";
-      h.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 3000);
+  function openChat(){
+    panel.style.display = "block";
+    setTimeout(()=>input.focus(), 50);
+    if (!messages.dataset.greeted) {
+      bot("Hi 🌸 I’m Ask Everose. Tell me what you like: warm, fresh, soft, or bold.");
+      messages.dataset.greeted = "true";
     }
   }
-});
+  function closeChat(){ panel.style.display = "none"; }
+
+  btn.addEventListener("click", () => {
+    if (panel.style.display === "block") closeChat();
+    else openChat();
+  });
+  closeBtn.addEventListener("click", closeChat);
+
+  function addMsg(text, who="bot"){
+    const row = document.createElement("div");
+    row.className = `msg ${who}`;
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function bot(text){ addMsg(text, "bot"); }
+  function user(text){ addMsg(text, "user"); }
+
+  function reply(qRaw){
+    const q = qRaw.toLowerCase().trim();
+
+    if (q.includes("launch")) return "Launch is set for September 29, 2026 ✨ (countdown is on the homepage.)";
+    if (q.includes("update")) return "Next update is February 14, 2026 💗";
+    if (q.includes("discount") || q.includes("code")) return "Sometimes Everose drops codes for curious visitors… keep exploring 🤫";
+    if (q.includes("shipping")) return "Shipping details will be announced closer to launch — you’ll see updates on the site ✨";
+    if (q.includes("who are you") || q.includes("what are you")) return "I’m Ask Everose — a tiny fragrance helper living in the corner 🌸";
+
+    if (q.includes("warm") || q.includes("vanilla") || q.includes("cozy") || q.includes("amber")) {
+      return "You sound like a warm-scent person 🍂 Think: comforting, familiar, unforgettable.";
+    }
+    if (q.includes("fresh") || q.includes("clean") || q.includes("ocean") || q.includes("mint")) {
+      return "Fresh + confident ❄ Clean air, crisp energy, strong presence.";
+    }
+    if (q.includes("soft") || q.includes("light") || q.includes("airy") || q.includes("powder")) {
+      return "Soft + airy 🌷 Gentle, delicate, close-to-the-skin.";
+    }
+    if (q.includes("suntan") || q.includes("summer") || q.includes("beach") || q.includes("sun")) {
+      return "That sounds like the ‘suntan’ vibe ✨ warm glow, sun-kissed energy.";
+    }
+    if (q.includes("winter") || q.includes("silk") || q.includes("cold")) {
+      return "Silk in winter air ❄ smooth, cool, and clean.";
+    }
+    if (q.includes("new") || q.includes("beginning") || q.includes("spring")) {
+      return "New beginnings 🌸 fresh petals, bright optimism, soft bloom.";
+    }
+
+    return "Tell me 2 words: (1) warm or fresh, (2) soft or bold — and I’ll match your vibe 💗";
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    user(text);
+    input.value = "";
+    setTimeout(() => bot(reply(text)), 450);
+  });
+})();
 </script>
 
 </body>
