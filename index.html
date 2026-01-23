@@ -117,6 +117,19 @@ button:hover { background: #ff3f8f; }
   to { transform: translateY(-300px); opacity: 0; }
 }
 
+/* SPARKLES (subtle) */
+.sparkle {
+  position: fixed;
+  font-size: 14px;
+  pointer-events: none;
+  animation: sparkleUp 1.2s ease forwards;
+  opacity: 0.95;
+}
+@keyframes sparkleUp {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(-60px) scale(1.2); opacity: 0; }
+}
+
 /* NIGHT MODE (secret) */
 body.night {
   background: linear-gradient(to bottom, #1b0a12, #2a1020);
@@ -171,7 +184,6 @@ body.night nav { background: rgba(255,143,189,0.20); backdrop-filter: blur(10px)
   overflow: hidden;
   backdrop-filter: blur(8px);
 }
-
 .askHeader{
   display:flex;
   align-items:center;
@@ -198,8 +210,6 @@ body.night nav { background: rgba(255,143,189,0.20); backdrop-filter: blur(10px)
   height: calc(100% - 112px);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  /* IMPORTANT: do NOT use "contain" here; it can make page scroll feel stuck on some devices */
-  overscroll-behavior: auto;
 }
 
 .msg{ margin:10px 0; display:flex; }
@@ -251,6 +261,60 @@ body.night nav { background: rgba(255,143,189,0.20); backdrop-filter: blur(10px)
   font-weight:700;
 }
 #askSend:hover{ background:#ff3f8f; }
+
+/* =========================
+   CURSOR CHANGER (BOTTOM)
+   ========================= */
+#cursorStation {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  z-index: 9998;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,95,162,0.20);
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  padding: 10px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  backdrop-filter: blur(8px);
+}
+#cursorStation .label {
+  font-size: 12px;
+  opacity: .75;
+  letter-spacing: .3px;
+  margin-left: 6px;
+}
+.cursorPick {
+  border: none;
+  background: rgba(255,95,162,0.12);
+  border: 1px solid rgba(255,95,162,0.18);
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7a003c;
+  margin: 0;
+}
+.cursorPick:hover { background: rgba(255,95,162,0.18); }
+#cursorReset {
+  border:none;
+  background: #ff5fa2;
+  color:white;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+#cursorReset:hover { background:#ff3f8f; }
+
+/* Cursor variables */
+:root { --everose-cursor: auto; --everose-pointer: pointer; }
+body { cursor: var(--everose-cursor); }
+button, a, img, input { cursor: var(--everose-pointer); }
 </style>
 </head>
 
@@ -346,6 +410,18 @@ body.night nav { background: rgba(255,143,189,0.20); backdrop-filter: blur(10px)
   </form>
 </div>
 
+<!-- CURSOR STATION -->
+<div id="cursorStation" aria-label="Cursor station">
+  <span class="label">Cursor</span>
+  <button class="cursorPick" data-emoji="🎀" title="Bow">🎀</button>
+  <button class="cursorPick" data-emoji="🦢" title="Swan">🦢</button>
+  <button class="cursorPick" data-emoji="🤍" title="Heart">🤍</button>
+  <button class="cursorPick" data-emoji="✧" title="Star">✧</button>
+  <button class="cursorPick" data-emoji="♡" title="Heart Outline">♡</button>
+  <button class="cursorPick" data-emoji="💋" title="Kiss">💋</button>
+  <button id="cursorReset" title="Reset cursor">Reset</button>
+</div>
+
 <script>
 /* COUNTDOWN */
 const launchDate = new Date("September 29, 2026 00:00:00").getTime();
@@ -394,20 +470,13 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 setTimeout(revealOnScroll, 100);
 
-/* MAGIC #1: Tap bottle 5 times */
-let clicks = 0;
+/* MAGIC #1: Tap bottle 5 times (hearts) */
+let bottleClicks = 0;
 document.getElementById("bottle").addEventListener("click", () => {
-  clicks++;
-  if (clicks === 5) {
+  bottleClicks++;
+  if (bottleClicks === 5) {
     document.getElementById("secretText").style.display = "block";
-    for (let i = 0; i < 15; i++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💗";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 3000);
-    }
+    burstHearts(15);
   }
 });
 
@@ -427,6 +496,7 @@ document.addEventListener("keydown", (e) => {
 /* MAGIC #3: Double-click Everose title = Night Mode */
 document.getElementById("everoseTitle").addEventListener("dblclick", () => {
   document.body.classList.toggle("night");
+  sparkleBurst(10);
 });
 
 /* MAGIC #4: Type "everose vip" = VIP unlock */
@@ -438,6 +508,7 @@ document.addEventListener("keydown", (e) => {
   if (vipTyped.length > vipPhrase.length) vipTyped = vipTyped.slice(-vipPhrase.length);
   if (vipTyped === vipPhrase) {
     alert("💎 VIP unlocked ✨ Welcome to the inner circle 🤫🌸");
+    sparkleBurst(18);
     vipTyped = "";
   }
 });
@@ -450,12 +521,116 @@ document.addEventListener("keydown", (e) => {
   if (n % 10 === 0) {
     setTimeout(() => {
       alert("🎁 Surprise! You’re a super-visitor 💗✨\n(10 visits!)");
+      sparkleBurst(20);
     }, 900);
   }
 })();
 
+/* MAGIC #6 (subtle): Press "r" then "o" then "s" then "e" quickly */
+let roseSeq = "";
+const roseWord = "rose";
+let roseTimer = null;
+document.addEventListener("keydown", (e) => {
+  if (e.key.length !== 1) return;
+  roseSeq += e.key.toLowerCase();
+  if (roseSeq.length > 4) roseSeq = roseSeq.slice(-4);
+  clearTimeout(roseTimer);
+  roseTimer = setTimeout(()=> roseSeq="", 900);
+  if (roseSeq === roseWord) {
+    burstHearts(10);
+    sparkleBurst(10);
+    roseSeq = "";
+  }
+});
+
+/* MAGIC #7 (subtle): Triple click anywhere on background */
+let tripleClicks = 0;
+let tripleTimer = null;
+document.addEventListener("click", (e) => {
+  // ignore clicks inside Ask Everose panel and cursor station buttons
+  if (e.target.closest("#askEverosePanel") || e.target.closest("#askEveroseBtn") || e.target.closest("#cursorStation")) return;
+
+  tripleClicks++;
+  clearTimeout(tripleTimer);
+  tripleTimer = setTimeout(() => tripleClicks = 0, 550);
+
+  if (tripleClicks === 3) {
+    sparkleBurst(14);
+    tripleClicks = 0;
+  }
+});
+
 /* =========================
-   ASK EVEROSE (SMART FAKE-AI)
+   HEART + SPARKLE HELPERS
+   ========================= */
+function burstHearts(count){
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
+
+function sparkleBurst(count){
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerHTML = "✨";
+    s.style.left = (Math.random() * window.innerWidth) + "px";
+    s.style.bottom = (10 + Math.random() * 40) + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
+/* =========================
+   CURSOR CHANGER
+   ========================= */
+function makeEmojiCursor(emoji) {
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+      <text x="2" y="24" font-size="24">${emoji}</text>
+    </svg>`;
+  const data = encodeURIComponent(svg);
+  return {
+    cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
+    pointer: `url("data:image/svg+xml,${data}") 4 24, pointer`
+  };
+}
+
+function applyCursorEmoji(emoji) {
+  const c = makeEmojiCursor(emoji);
+  document.documentElement.style.setProperty("--everose-cursor", c.cursor);
+  document.documentElement.style.setProperty("--everose-pointer", c.pointer);
+  localStorage.setItem("everose_cursor_emoji", emoji);
+  sparkleBurst(6);
+}
+
+function resetCursor() {
+  document.documentElement.style.setProperty("--everose-cursor", "auto");
+  document.documentElement.style.setProperty("--everose-pointer", "pointer");
+  localStorage.removeItem("everose_cursor_emoji");
+  sparkleBurst(4);
+}
+
+document.getElementById("cursorStation").addEventListener("click", (e) => {
+  const btn = e.target.closest(".cursorPick");
+  if (!btn) return;
+  const emoji = btn.getAttribute("data-emoji");
+  applyCursorEmoji(emoji);
+});
+
+document.getElementById("cursorReset").addEventListener("click", resetCursor);
+
+// load saved cursor
+const savedCursor = localStorage.getItem("everose_cursor_emoji");
+if (savedCursor) applyCursorEmoji(savedCursor);
+
+/* =========================
+   ASK EVEROSE
    ========================= */
 (function(){
   const btn = document.getElementById("askEveroseBtn");
@@ -480,7 +655,7 @@ document.addEventListener("keydown", (e) => {
     panel.style.display = "block";
     setTimeout(()=>input.focus(), 60);
     if (!messages.dataset.greeted) {
-      addMsg("Hi bestie 🌸💗 I’m Ask Everose. Ask about scents, launch, hints, or secrets 👀✨", "bot");
+      addMsg("Hi bestie 🌸💗 I’m Ask Everose. Ask me about scents, launch, hints, or secrets 👀✨", "bot");
       messages.dataset.greeted = "true";
     }
   }
@@ -491,9 +666,6 @@ document.addEventListener("keydown", (e) => {
     else openChat();
   });
   closeBtn.addEventListener("click", closeChat);
-
-  // IMPORTANT: do NOT preventDefault on wheel/touch here (it can break scrolling)
-  // Let the browser handle it naturally.
 
   function reply(qRaw){
     const q = (qRaw || "").toLowerCase().trim();
@@ -514,8 +686,10 @@ document.addEventListener("keydown", (e) => {
         "2) 🧴 Tap the big bottle 5 times → hidden text + hearts 💞\n" +
         "3) 🌙 Double-click Everose → night mode\n" +
         "4) 💎 Type everose vip → VIP unlock\n" +
-        "5) 🎁 Every 10 visits → surprise\n\n" +
-        "If you want, I can add 2 more subtle ones 🤫🌸";
+        "5) 🎁 Every 10 visits → surprise\n" +
+        "6) 🌹 Type ROSE quickly → heart + sparkle burst\n" +
+        "7) ✨ Triple click the background → sparkle burst\n\n" +
+        "Want me to add 2 *more* subtle ones? 🤫🌸";
     }
 
     if (has(["first product","first scent","first perfume","what are you selling","product"])) {
