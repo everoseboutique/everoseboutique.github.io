@@ -399,14 +399,14 @@ button:hover { background: #ff3f8f; }
 <script>
 /* COUNTDOWN */
 const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-const updateDate = new Date("January 24, 2026 11:00:00").getTime();
+const updateDate = new Date("January 24, 2026 11:10:00").getTime();
 
 function updateCountdown(target, elementId) {
   const now = new Date().getTime();
   const distance = target - now;
 
   if (distance < 0) {
-    document.getElementById(elementId).innerHTML = "Unlocked ✨";
+    document.getElementById(elementId).innerHTML = "Update is live ✨";
     return;
   }
 
