@@ -12,29 +12,58 @@
 
 <style>
   :root{
-    --bg:#0b0b0e;
     --ink:#f4f4f6;
     --muted:rgba(255,255,255,.74);
-    --muted2:rgba(255,255,255,.62);
     --border:rgba(255,255,255,.16);
-    --soft:rgba(255,255,255,.08);
     --pink:#ff4fa3;
     --pink2:#ff87c7;
+
+    /* Ask Everose cursor vars (only affect chat panel) */
+    --askCursor:auto;
+    --askPointer:pointer;
+
+    /* ✅ BACKGROUND IMAGE PATH (put file in your repo) */
+    --bgImage: url("assets/everose-bg.jpg");
   }
 
   html{ scroll-behavior:smooth; }
+
   body{
     margin:0;
     color:var(--ink);
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:
-      radial-gradient(900px 600px at 12% 10%, rgba(255,79,163,.10), transparent 55%),
-      radial-gradient(900px 600px at 85% 35%, rgba(255,135,199,.07), transparent 55%),
-      linear-gradient(to bottom, #07070a, #0b0b0e, #0f1016);
+    background: #0a0a0d;
     overflow-x:hidden;
   }
 
-  /* ====== NAV (pill centered like inspo) ====== */
+  /* ====== FULL PAGE BACKGROUND IMAGE like inspo ====== */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--bgImage);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(1) contrast(1.08) brightness(0.55);
+    transform: scale(1.03);
+  }
+
+  /* dark veil + pink glow like inspo */
+  body::after{
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(900px 600px at 15% 12%, rgba(255,79,163,.18), transparent 55%),
+      radial-gradient(900px 600px at 85% 35%, rgba(255,135,199,.10), transparent 55%),
+      linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.82));
+    pointer-events:none;
+  }
+
+  /* ====== NAV pill centered ====== */
   nav{
     position:fixed;
     top:16px;
@@ -67,7 +96,7 @@
     color:#fff;
   }
 
-  /* ====== HERO (exact inspo layout: left text, right image) ====== */
+  /* ====== HERO (same layout as inspo) ====== */
   .hero{
     min-height: 100vh;
     display:flex;
@@ -77,7 +106,6 @@
     padding: 120px 7vw 70px;
     position:relative;
   }
-
   .hero-left{ max-width: 650px; z-index:1; }
   .hero-right{ flex:1; display:flex; justify-content:flex-end; z-index:1; }
 
@@ -91,7 +119,6 @@
   .hero-title .script{
     font-family:"Great Vibes", cursive;
     font-weight:400;
-    letter-spacing: 0;
     display:inline-block;
     transform: translateY(6px);
     color: rgba(255,255,255,.92);
@@ -132,6 +159,7 @@
     box-shadow: 0 20px 70px rgba(255,79,163,.14);
   }
 
+  /* right image card */
   .hero-img{
     width: min(600px, 50vw);
     aspect-ratio: 16 / 9;
@@ -146,7 +174,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    filter: saturate(0.12) contrast(1.08) brightness(0.90);
+    filter: grayscale(1) contrast(1.06) brightness(0.92);
     transform: scale(1.02);
   }
   .hero-img::after{
@@ -155,11 +183,11 @@
     inset:0;
     background:
       radial-gradient(900px 420px at 70% 40%, rgba(255,79,163,.22), transparent 55%),
-      linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.60));
+      linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.55));
     pointer-events:none;
   }
 
-  /* Countdown chips under hero text */
+  /* countdown chips */
   .chips{
     display:flex;
     flex-wrap:wrap;
@@ -188,18 +216,19 @@
     letter-spacing: .02em;
   }
 
-  /* ====== SECTIONS (same content you already have) ====== */
+  /* ====== SECTIONS ====== */
   .section{
     max-width: 1100px;
     margin: 80px auto;
     padding: 0 7vw;
   }
   .card{
-    background: rgba(255,255,255,.04);
+    background: rgba(10,10,14,.58);
     border: 1px solid rgba(255,255,255,.12);
     border-radius: 26px;
     padding: 34px 26px;
-    box-shadow: 0 30px 120px rgba(0,0,0,.40);
+    box-shadow: 0 30px 120px rgba(0,0,0,.55);
+    backdrop-filter: blur(10px);
   }
   .h{
     font-family:"Playfair Display", serif;
@@ -221,7 +250,7 @@
     line-height: 1.7;
   }
 
-  /* Find your scent buttons */
+  /* quiz buttons */
   .quiz-row{
     display:flex;
     gap:10px;
@@ -250,7 +279,6 @@
     white-space: pre-wrap;
   }
 
-  /* Footer */
   footer{
     margin-top: 80px;
     padding: 34px 7vw 80px;
@@ -260,6 +288,8 @@
     gap: 18px;
     flex-wrap:wrap;
     color: rgba(255,255,255,.58);
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(10px);
   }
   footer .brand{
     font-family:"Great Vibes", cursive;
@@ -272,7 +302,7 @@
     color: rgba(255,135,199,.90);
   }
 
-  /* ====== ASK EVEROSE (bottom-left) ====== */
+  /* ====== ASK EVEROSE ====== */
   #askWrap{
     position: fixed;
     left: 18px;
@@ -320,7 +350,10 @@
     display: none;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    cursor: var(--askCursor, auto);
   }
+  #askPanel button, #askPanel a, #askPanel input { cursor: var(--askPointer, pointer); }
+
   .askHeader{
     display:flex;
     align-items:center;
@@ -348,7 +381,6 @@
   }
   .askClose:hover{ color: #fff; }
 
-  /* Cursor mini bar inside Ask Everose */
   #cursorMini{
     display:none;
     padding: 10px 12px;
@@ -390,11 +422,6 @@
     letter-spacing: .06em;
     font-size: 11px;
   }
-  #cursorReset:hover{ background: rgba(255,79,163,.30); }
-
-  /* Cursor only affects Ask Everose panel */
-  #askPanel { cursor: var(--askCursor, auto); }
-  #askPanel button, #askPanel a, #askPanel input { cursor: var(--askPointer, pointer); }
 
   #askMessages{
     padding: 12px;
@@ -421,6 +448,7 @@
     border-color: rgba(255,79,163,.22);
   }
   .msg.bot .bubble{ background: rgba(255,255,255,.06); }
+
   .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
   .bubble li{ margin: 6px 0; }
 
@@ -454,9 +482,7 @@
     font-weight: 900;
     letter-spacing: .06em;
   }
-  #askSend:hover{ background: rgba(255,79,163,.34); }
 
-  /* Responsive */
   @media (max-width: 900px){
     .hero{ flex-direction: column; padding-top: 120px; }
     .hero-right{ width: 100%; justify-content:center; }
@@ -479,14 +505,13 @@
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
-    <!-- YOUR WORDS placed into the inspo text slots -->
     <h1 class="hero-title">
       Everose <span class="script">softly blooming</span>
     </h1>
 
     <p class="hero-sub">
-      Luxury fragrance, softly blooming. <span class="pink">We are so excited to release our first scents.</span><br/>
-      Stay close. The rose is about to bloom!
+      Luxury fragrance, softly blooming. <span class="pink">We’re building our first scents right now.</span><br/>
+      Clean. Personal. A little addictive. ✨
     </p>
 
     <button class="cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
@@ -507,7 +532,6 @@
 
   <div class="hero-right">
     <div class="hero-img" aria-label="Everose hero image">
-      <!-- Put your hero image in /assets and name it everose-hero.jpg (or change path) -->
       <img src="assets/everose-hero.jpg" alt="Everose hero image"/>
     </div>
   </div>
@@ -578,12 +602,11 @@
   <div class="askHeader">
     <div class="askTitle">
       <b>Ask Everose</b>
-      <small>soft answers • pink energy • scent help</small>
+      <small>black + white • pink details • scent help</small>
     </div>
     <button class="askClose" id="askClose" aria-label="Close">✕</button>
   </div>
 
-  <!-- Cursor bar appears ONLY when asked -->
   <div id="cursorMini">
     <span class="tag">Cursor</span>
     <button class="cursorPick" data-emoji="🎀">🎀</button>
@@ -605,40 +628,28 @@
 </div>
 
 <script>
-  /* =========================
-     DATES (per your message)
-     ========================= */
-  // LAUNCH: September 29, 2026 (time not specified — using 12:00:00)
+  /* DATES */
   const launchDate = new Date("September 29, 2026 12:00:00").getTime();
-
-  // UPDATE: January 24, 2026 at 2:00 PM
   const updateDate = new Date("January 24, 2026 14:00:00").getTime();
 
   function fmtCountdown(targetMs){
     const now = Date.now();
     const d = targetMs - now;
     if (d <= 0) return "Unlocked ✨";
-
     const days = Math.floor(d / (1000*60*60*24));
     const hours = Math.floor((d % (1000*60*60*24)) / (1000*60*60));
     const mins = Math.floor((d % (1000*60*60)) / (1000*60));
     const secs = Math.floor((d % (1000*60)) / 1000);
     return `${days}d ${hours}h ${mins}m ${secs}s`;
   }
-
   function tick(){
-    const lc = document.getElementById("launchCountdown");
-    const uc = document.getElementById("updateCountdown");
-    if (lc) lc.textContent = fmtCountdown(launchDate);
-    if (uc) uc.textContent = fmtCountdown(updateDate);
+    document.getElementById("launchCountdown").textContent = fmtCountdown(launchDate);
+    document.getElementById("updateCountdown").textContent = fmtCountdown(updateDate);
   }
-  tick();
-  setInterval(tick, 1000);
+  tick(); setInterval(tick, 1000);
 
-  /* QUIZ */
   function result(type){
     const a = document.getElementById("answer");
-    if (!a) return;
     const map = {
       soft:  "• Soft + airy 🌸\n• Gentle, close-to-the-skin\n• Pretty, clean, effortless ✨",
       warm:  "• Warm + comforting 🍂\n• Familiar, cozy, unforgettable\n• The kind of scent people remember 💗",
@@ -648,9 +659,6 @@
     a.textContent = map[type] || "";
   }
 
-  /* =========================
-     ASK EVEROSE (smarter-ish)
-     ========================= */
   (function(){
     const askBtn = document.getElementById("askBtn");
     const askPanel = document.getElementById("askPanel");
@@ -665,32 +673,20 @@
     let userName = localStorage.getItem("everose_name") || "";
     let vip = (localStorage.getItem("everose_vip") === "true");
 
-    function openChat(){
-      askPanel.style.display = "block";
-      setTimeout(()=> input.focus(), 50);
-
-      if (!messages.dataset.greeted){
-        botHTML(`
-          <b>Hi bestie 🌸</b><br/>
-          <ul>
-            <li>Ask me about <b>launch</b>, <b>update</b>, <b>hints</b>, or <b>finding your scent</b> ✨</li>
-            <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
-            <li>If you want the <b>cursor changer</b>, just ask 😭</li>
-            <li>VIP: type <b>everose vip</b> 💎</li>
-          </ul>
-        `);
-        messages.dataset.greeted = "true";
-      }
-      renderVIP();
+    function escapeHtml(s){
+      return (s||"").replace(/[&<>"']/g, (c)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[c]));
     }
-
-    function closeChat(){ askPanel.style.display = "none"; }
-
-    askBtn.addEventListener("click", () => {
-      if (askPanel.style.display === "block") closeChat();
-      else openChat();
-    });
-    askClose.addEventListener("click", closeChat);
+    function parseName(q){
+      let m = q.match(/\bmy name is\s+([a-zA-Z'-]{2,20})/i);
+      if (m) return m[1];
+      m = q.match(/\b(i'm|im|i am)\s+([a-zA-Z'-]{2,20})\b/i);
+      if (m) return m[2];
+      return "";
+    }
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function hasAny(q, words){ return words.some(w => q.includes(w)); }
 
     function addBubble(content, who="bot", html=false){
       const row = document.createElement("div");
@@ -704,33 +700,40 @@
       messages.scrollTop = messages.scrollHeight;
       return row;
     }
-
-    function bot(text){ addBubble(text, "bot"); }
     function botHTML(html){ addBubble(html, "bot", true); }
     function user(text){ addBubble(text, "user"); }
+
+    function openChat(){
+      askPanel.style.display = "block";
+      setTimeout(()=> input.focus(), 50);
+
+      if (!messages.dataset.greeted){
+        botHTML(`
+          <b>Hi bestie 🌸</b><br/>
+          <ul>
+            <li>Ask about <b>launch</b>, <b>update</b>, <b>hints</b>, or <b>finding your scent</b> ✨</li>
+            <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
+            <li>If you want the <b>cursor changer</b>, ask: <b>show cursor changer</b></li>
+            <li>VIP: type <b>everose vip</b> 💎</li>
+          </ul>
+        `);
+        messages.dataset.greeted = "true";
+      }
+      renderVIP();
+    }
+    function closeChat(){ askPanel.style.display = "none"; }
+
+    askBtn.addEventListener("click", () => {
+      if (askPanel.style.display === "block") closeChat();
+      else openChat();
+    });
+    askClose.addEventListener("click", closeChat);
 
     function thinking(){
       return addBubble("Interesting 👀✨ I’m thinking…", "bot");
     }
 
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-    function hasAny(q, words){ return words.some(w => q.includes(w)); }
-
-    function escapeHtml(s){
-      return (s||"").replace(/[&<>"']/g, (c)=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
-      }[c]));
-    }
-
-    function parseName(q){
-      let m = q.match(/\bmy name is\s+([a-zA-Z'-]{2,20})/i);
-      if (m) return m[1];
-      m = q.match(/\b(i'm|im|i am)\s+([a-zA-Z'-]{2,20})\b/i);
-      if (m) return m[2];
-      return "";
-    }
-
-    /* Cursor only for Ask Everose panel */
+    /* Cursor only inside Ask Everose */
     function makeEmojiCursor(emoji) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
         <text x="2" y="24" font-size="24">${emoji}</text>
@@ -806,7 +809,7 @@
         showCursorBar();
         const nameBit = userName ? `, <b>${escapeHtml(userName)}</b>` : "";
         return `
-          <b>Cursor station unlocked${nameBit} 😭✨</b><br/>
+          <b>Cursor station unlocked${nameBit} ✨</b><br/>
           <ul>
             <li>Pick one up top ☝️ (only affects <b>this chat</b>)</li>
             <li>Hit reset anytime 💗</li>
@@ -814,7 +817,7 @@
         `;
       }
 
-      if (hasAny(lower, ["launch", "when is launch", "release", "drop", "come out"])){
+      if (hasAny(lower, ["launch","release","drop","come out","when does it launch"])){
         return `
           <b>Launch info 📅✨</b><br/>
           <ul>
@@ -824,7 +827,7 @@
         `;
       }
 
-      if (hasAny(lower, ["update", "next update", "when is the update"])){
+      if (hasAny(lower, ["update","next update","when is the update"])){
         return `
           <b>Next update 💗</b><br/>
           <ul>
@@ -834,7 +837,7 @@
         `;
       }
 
-      if (hasAny(lower, ["hints", "what are the hints", "what does it smell like", "notes", "vibe"])){
+      if (hasAny(lower, ["hints","notes","vibe"])){
         return `
           <b>Everose hints ✨</b><br/>
           <ul>
@@ -846,44 +849,13 @@
         `;
       }
 
-      if (hasAny(lower, ["first scent","first perfume","first product","what are you selling","product"])){
+      if (hasAny(lower, ["first scent","first perfume","first product","product"])){
         return `
           <b>The first Everose scent? 🤫✨</b><br/>
           <ul>
             <li>Secret for now.</li>
             <li>But I can give hints based on your vibe 👀</li>
             <li>Pick one: <b>warm 🍂</b> / <b>fresh ❄️</b> / <b>soft 🌸</b></li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["soft","airy","light","floral","powder"])){
-        return `
-          <b>Soft bloom 🌸</b><br/>
-          <ul>
-            <li>Gentle + close-to-the-skin</li>
-            <li>Feels clean, pretty, effortless ✨</li>
-            <li>Do you like <b>rosy</b> soft or <b>creamy</b> soft?</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["warm","cozy","vanilla","amber","sweet"])){
-        return `
-          <b>Warm glow 🍂</b><br/>
-          <ul>
-            <li>Comforting + addictive</li>
-            <li>Familiar, unforgettable 💗</li>
-            <li>Warm-<b>sweet</b> or warm-<b>spicy</b>?</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["fresh","clean","citrus","mint","ocean"])){
-        return `
-          <b>Fresh energy ❄️</b><br/>
-          <ul>
-            <li>Crisp + confident</li>
-            <li>Clean, expensive, “just showered” ✨</li>
-            <li>Sparkly fresh or crisp fresh?</li>
           </ul>
         `;
       }
@@ -900,15 +872,15 @@
       return pick([
         `<b>I got you 👀✨</b><br/>
          <ul>
-           <li>If it’s about <b>launch</b> → ask “when is launch”</li>
-           <li>If it’s about <b>update</b> → ask “when is the update”</li>
-           <li>If it’s about <b>cursor</b> → ask “show cursor changer”</li>
-           <li>If it’s about <b>scents</b> → tell me warm/fresh/soft</li>
+           <li>Ask “when is launch”</li>
+           <li>Ask “when is the update”</li>
+           <li>Ask “show cursor changer”</li>
+           <li>Or drop 2–3 vibe words (clean/cozy/sweet/airy)</li>
          </ul>`,
         `<b>I’m listening 🪞✨</b><br/>
          <ul>
-           <li>Drop 2–3 keywords (example: “clean, pink, expensive”)</li>
-           <li>I’ll match you to a vibe 💗</li>
+           <li>Say it however you want — I’ll figure it out 💗</li>
+           <li>Give me 2–3 keywords and I’ll answer</li>
          </ul>`
       ]);
     }
@@ -925,7 +897,7 @@
       setTimeout(() => {
         if (t && t.parentNode) t.remove();
         botHTML(reply(text));
-      }, 1100);
+      }, 1200);
     });
   })();
 </script>
