@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Everose</title>
 
 <style>
@@ -27,12 +28,35 @@ nav {
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   z-index: 1000;
 }
-
 nav a {
   text-decoration: none;
   color: white;
   font-weight: 600;
   font-size: 17px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 140px 10%;
+  gap: 60px;
+}
+.hero-text { max-width: 520px; }
+.hero h1 { font-size: 64px; margin-bottom: 10px; }
+.hero p { font-size: 20px; line-height: 1.6; }
+
+.hero img {
+  max-width: 360px;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  transition: all 0.8s ease;
+}
+.hero img:hover {
+  transform: translateY(-18px) scale(1.05) rotate(-1deg);
+  box-shadow: 0 30px 60px rgba(255, 120, 180, 0.45);
 }
 
 /* SECTIONS */
@@ -46,64 +70,22 @@ nav a {
   text-align: center;
 }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 140px 10%;
-  gap: 60px;
-}
-
-.hero-text {
-  max-width: 520px;
-}
-
-.hero h1 {
-  font-size: 64px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-.hero img {
-  max-width: 360px;
-  border-radius: 30px;
-  filter: blur(0.8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,.15);
-}
-
-/* COUNTDOWN BOX */
+/* COUNTDOWN */
 .countdown-wrap {
   display:flex;
   gap:20px;
   margin-top:30px;
   flex-wrap:wrap;
 }
-
 .countbox {
   background:white;
   padding:18px 24px;
   border-radius:20px;
   box-shadow:0 8px 20px rgba(0,0,0,.08);
-  text-align:center;
   min-width:180px;
 }
-
-.countbox h2 {
-  font-size:16px;
-  letter-spacing:2px;
-  margin-bottom:6px;
-}
-
-.countbox div {
-  font-size:22px;
-  font-weight:700;
-}
+.countbox h2 { font-size:16px; letter-spacing:2px; }
+.countbox div { font-size:22px; font-weight:700; }
 
 /* BUTTONS */
 button {
@@ -116,10 +98,223 @@ button {
   margin: 10px;
   cursor: pointer;
 }
+button:hover { background: #ff3f8f; }
 
-button:hover {
-  background: #ff3f8f;
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* HEARTS */
+.heart {
+  position: fixed;
+  bottom: 20px;
+  font-size: 24px;
+  animation: floatUp 3s linear forwards;
+  pointer-events: none;
 }
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-300px); opacity: 0; }
+}
+
+/* SPARKLES (subtle) */
+.sparkle {
+  position: fixed;
+  font-size: 14px;
+  pointer-events: none;
+  animation: sparkleUp 1.2s ease forwards;
+  opacity: 0.95;
+}
+@keyframes sparkleUp {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(-60px) scale(1.2); opacity: 0; }
+}
+
+/* NIGHT MODE (secret) */
+body.night {
+  background: linear-gradient(to bottom, #1b0a12, #2a1020);
+  color: #ffd3e6;
+}
+body.night .section { background: rgba(255,240,246,0.10); }
+body.night nav { background: rgba(255,143,189,0.20); backdrop-filter: blur(10px); }
+
+/* =========================
+   ASK EVEROSE (BOTTOM LEFT)
+   ========================= */
+#askEveroseWrap{
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+#askEveroseBtn{
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,95,162,0.45));
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#askEveroseBtn:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 18px 40px rgba(255, 95, 162, 0.28);
+}
+#askEveroseBtn span{ font-size:22px; }
+#askEveroseLabel{ font-size:12px; opacity:.78; letter-spacing:.3px; }
+
+#askEverosePanel{
+  position: fixed;
+  left: 18px;
+  bottom: 92px;
+  width: 340px;
+  max-width: calc(100vw - 36px);
+  height: 440px;
+  max-height: calc(100vh - 140px);
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(255,95,162,0.22);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  display: none;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.askHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 12px 14px;
+  background: rgba(255,143,189,0.22);
+  border-bottom: 1px solid rgba(255,95,162,0.18);
+}
+.askTitle{ display:flex; flex-direction:column; gap:2px; }
+.askTitle b{ font-size:14px; letter-spacing:.3px; }
+.askTitle small{ font-size:12px; opacity:.75; }
+
+.askClose{
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:18px;
+  opacity:.75;
+}
+.askClose:hover{ opacity:1; }
+
+#askEveroseMessages{
+  padding: 12px;
+  height: calc(100% - 112px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.msg{ margin:10px 0; display:flex; }
+.msg.user{ justify-content:flex-end; }
+.msg.bot{ justify-content:flex-start; }
+
+.bubble{
+  max-width:85%;
+  padding:10px 12px;
+  border-radius:16px;
+  font-size:13px;
+  line-height:1.35;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+  white-space: pre-wrap;
+}
+.msg.user .bubble{
+  background: rgba(255,95,162,0.22);
+  border: 1px solid rgba(255,95,162,0.18);
+}
+.msg.bot .bubble{
+  background: rgba(255,240,246,0.85);
+  border: 1px solid rgba(255,95,162,0.14);
+}
+
+#askEveroseForm{
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding:10px;
+  border-top: 1px solid rgba(255,95,162,0.18);
+  background: rgba(255,255,255,0.88);
+  display:flex;
+  gap:8px;
+}
+#askInput{
+  flex:1;
+  border-radius:16px;
+  border:1px solid rgba(255,95,162,0.25);
+  padding:10px 12px;
+  font-family:inherit;
+  outline:none;
+}
+#askSend{
+  border:none;
+  border-radius:16px;
+  padding:10px 12px;
+  cursor:pointer;
+  background:#ff5fa2;
+  color:white;
+  font-weight:700;
+}
+#askSend:hover{ background:#ff3f8f; }
+
+/* =========================
+   CURSOR CHANGER (BOTTOM)
+   ========================= */
+#cursorStation {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  z-index: 9998;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,95,162,0.20);
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+  padding: 10px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  backdrop-filter: blur(8px);
+}
+#cursorStation .label {
+  font-size: 12px;
+  opacity: .75;
+  letter-spacing: .3px;
+  margin-left: 6px;
+}
+.cursorPick {
+  border: none;
+  background: rgba(255,95,162,0.12);
+  border: 1px solid rgba(255,95,162,0.18);
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7a003c;
+  margin: 0;
+}
+.cursorPick:hover { background: rgba(255,95,162,0.18); }
+#cursorReset {
+  border:none;
+  background: #ff5fa2;
+  color:white;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+#cursorReset:hover { background:#ff3f8f; }
+
+/* Cursor variables */
+:root { --everose-cursor: auto; --everose-pointer: pointer; }
+body { cursor: var(--everose-cursor); }
+button, a, img, input { cursor: var(--everose-pointer); }
 </style>
 </head>
 
@@ -127,25 +322,27 @@ button:hover {
 
 <nav>
   <a href="#home">Home</a>
+  <a href="#about">About</a>
   <a href="#hints">Hints</a>
   <a href="#quiz">Find Your Scent</a>
 </nav>
 
 <!-- HOME -->
-<section class="hero" id="home">
+<section class="hero reveal active" id="home">
   <div class="hero-text">
-    <h1>Everose 🌸</h1>
+    <h1 id="everoseTitle">Everose 🌸</h1>
     <p>Luxury fragrance, softly blooming.</p>
     <p><b>We are so excited to release our first scents.</b></p>
-    <p>Stay close. The rose is about to bloom.</p>
+    <p>
+      Stay close. The rose is about to bloom!
+      P.S- this website is full of mysteries. (Type- <b>Do i smell good?</b>)
+    </p>
 
-    <!-- COUNTDOWNS -->
     <div class="countdown-wrap">
       <div class="countbox">
         <h2>LAUNCHING IN</h2>
         <div id="launchCountdown"></div>
       </div>
-
       <div class="countbox">
         <h2>NEXT UPDATE</h2>
         <div id="updateCountdown"></div>
@@ -153,26 +350,35 @@ button:hover {
     </div>
   </div>
 
-  <!-- PERFUME IMAGE -->
-  <img src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
+  <div>
+    <img id="bottle" src="https://i.postimg.cc/hGjtnFQw/Screenshot-2026-01-20-at-6-55-11-PM.png" alt="Everose perfume bottle">
+    <p id="secretText" style="display:none;font-weight:700;margin-top:20px;">🌸 Welcome to Everose. You found the secret.</p>
+  </div>
 </section>
 
+<!-- ABOUT -->
+<div class="section reveal" id="about">
+  <h1>About Me 🌸</h1>
+  <p>Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey, then to Miami, and after a few more moves, I finally landed in Austin.</p>
+  <p>I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.</p>
+  <p>We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.</p>
+  <p>I’m so excited to start my own fragrance brand and share my love for scent with the world.</p>
+</div>
+
 <!-- HINTS -->
-<div class="section" id="hints">
+<div class="section reveal" id="hints">
   <h1>Everose Hints ✨</h1>
-  <p>Soft clues. Nothing obvious.</p>
-  <p>✨ One scent feels like getting a suntan</p>
+  <p>✨ One scent feels like getting a suntan.</p>
   <p>❄ One scent feels like silk in winter air.</p>
   <p>🌷 One scent feels like something new beginning.</p>
   <p>🍂 One scent feels warm… familiar… unforgettable.</p>
 </div>
 
 <!-- QUIZ -->
-<div class="section" id="quiz">
+<div class="section reveal" id="quiz">
   <h1>Find Your Scent 💗</h1>
   <p>Choose what feels most like you.</p>
 
-  <h3>Your perfect scent is:</h3>
   <button onclick="result('soft')">Light scent</button>
   <button onclick="result('warm')">Medium scent</button>
   <button onclick="result('fresh')">Strong scent</button>
@@ -181,50 +387,385 @@ button:hover {
   <p id="answer" style="margin-top:30px;font-weight:600;"></p>
 </div>
 
+<!-- ASK EVEROSE -->
+<div id="askEveroseWrap">
+  <button id="askEveroseBtn" aria-label="Ask Everose"><span>💬</span></button>
+  <div id="askEveroseLabel">Ask Everose</div>
+</div>
+
+<div id="askEverosePanel" role="dialog" aria-label="Ask Everose chat">
+  <div class="askHeader">
+    <div class="askTitle">
+      <b>Ask Everose</b>
+      <small>soft answers • pink energy • scent help</small>
+    </div>
+    <button class="askClose" id="askCloseBtn" aria-label="Close">✕</button>
+  </div>
+
+  <div id="askEveroseMessages"></div>
+
+  <form id="askEveroseForm">
+    <input id="askInput" type="text" placeholder="Ask anything… 🌸" autocomplete="off" />
+    <button id="askSend" type="submit">Send</button>
+  </form>
+</div>
+
+<!-- CURSOR STATION -->
+<div id="cursorStation" aria-label="Cursor station">
+  <span class="label">Cursor</span>
+  <button class="cursorPick" data-emoji="🎀" title="Bow">🎀</button>
+  <button class="cursorPick" data-emoji="🦢" title="Swan">🦢</button>
+  <button class="cursorPick" data-emoji="🤍" title="Heart">🤍</button>
+  <button class="cursorPick" data-emoji="✧" title="Star">✧</button>
+  <button class="cursorPick" data-emoji="♡" title="Heart Outline">♡</button>
+  <button class="cursorPick" data-emoji="💋" title="Kiss">💋</button>
+  <button id="cursorReset" title="Reset cursor">Reset</button>
+</div>
+
 <script>
-/* 🌸 CHANGE ONLY THESE TWO DATES */
+/* COUNTDOWN */
 const launchDate = new Date("September 29, 2026 00:00:00").getTime();
-const updateDate = new Date("Febuuary 14, 2026 00:00:00").getTime();
+const updateDate = new Date("February 14, 2026 00:00:00").getTime();
 
-setInterval(function () 
+function updateCountdown(target, elementId) {
   const now = new Date().getTime();
+  const distance = target - now;
 
-  function countdown(target, element, doneText) {
-    let d = target - now;
-    if (d <= 0) {
-      document.getElementById(element).innerHTML = doneText;
-      return;
-    }
-    let days = Math.floor(d / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-    let secs = Math.floor((d % (1000 * 60)) / 1000);
-    document.getElementById(element).innerHTML = 
-      days+"d "+hours+"h "+mins+"m "+secs+"s";
+  if (distance < 0) {
+    document.getElementById(elementId).innerHTML = "Unlocked ✨";
+    return;
   }
 
-  countdown(launchDate, "launchCountdown", "WE ARE LIVE ✨");
-  countdown(updateDate, "updateCountdown", "UPDATE LIVE ✨");
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+  document.getElementById(elementId).innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+setInterval(() => {
+  updateCountdown(launchDate, "launchCountdown");
+  updateCountdown(updateDate, "updateCountdown");
 }, 1000);
 
 /* QUIZ */
 function result(type) {
   let text = "";
-  if(type === "light scent") text = "You love soft, airy, gentle scents.";
-  if(type === "Medium scent") text = "People complement you when you walk by.";
-  if(type === "Strong scent") text = "You like strong, clean, confident scents that when you walk in the room it instantly smells amazing.";
-  if(type === "A mix of everything") text = "You love playful, layered, signature scents.";
+  if(type === "soft") text = "You love soft, airy, gentle scents. 🌸🫧";
+  if(type === "warm") text = "You’re drawn to warm, comforting scents. 🍂💗";
+  if(type === "fresh") text = "You like strong, clean, confident scents. ❄️✨";
+  if(type === "bright") text = "You love playful, layered, signature scents. 💋🪞✨";
   document.getElementById("answer").innerText = text;
 }
+
+/* REVEAL ON SCROLL */
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 80) el.classList.add("active");
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+setTimeout(revealOnScroll, 100);
+
+/* MAGIC #1: Tap bottle 5 times (hearts) */
+let bottleClicks = 0;
+document.getElementById("bottle").addEventListener("click", () => {
+  bottleClicks++;
+  if (bottleClicks === 5) {
+    document.getElementById("secretText").style.display = "block";
+    burstHearts(15);
+  }
+});
+
+/* MAGIC #2: Type "do i smell good" */
+let typed = "";
+const secretPhrase = "do i smell good";
+document.addEventListener("keydown", (e) => {
+  if (e.key.length !== 1) return;
+  typed += e.key.toLowerCase();
+  if (typed.length > secretPhrase.length) typed = typed.slice(-secretPhrase.length);
+  if (typed === secretPhrase) {
+    alert("You smell great! 💗\nThank you for exploring -Cruz");
+    typed = "";
+  }
+});
+
+/* MAGIC #3: Double-click Everose title = Night Mode */
+document.getElementById("everoseTitle").addEventListener("dblclick", () => {
+  document.body.classList.toggle("night");
+  sparkleBurst(10);
+});
+
+/* MAGIC #4: Type "everose vip" = VIP unlock */
+let vipTyped = "";
+const vipPhrase = "everose vip";
+document.addEventListener("keydown", (e) => {
+  if (e.key.length !== 1) return;
+  vipTyped += e.key.toLowerCase();
+  if (vipTyped.length > vipPhrase.length) vipTyped = vipTyped.slice(-vipPhrase.length);
+  if (vipTyped === vipPhrase) {
+    alert("💎 VIP unlocked ✨ Welcome to the inner circle 🤫🌸");
+    sparkleBurst(18);
+    vipTyped = "";
+  }
+});
+
+/* MAGIC #5: Every 10 visits surprise */
+(function(){
+  const k = "everose_visits";
+  const n = (parseInt(localStorage.getItem(k) || "0", 10) + 1);
+  localStorage.setItem(k, String(n));
+  if (n % 10 === 0) {
+    setTimeout(() => {
+      alert("🎁 Surprise! You’re a super-visitor 💗✨\n(10 visits!)");
+      sparkleBurst(20);
+    }, 900);
+  }
+})();
+
+/* MAGIC #6 (subtle): Press "r" then "o" then "s" then "e" quickly */
+let roseSeq = "";
+const roseWord = "rose";
+let roseTimer = null;
+document.addEventListener("keydown", (e) => {
+  if (e.key.length !== 1) return;
+  roseSeq += e.key.toLowerCase();
+  if (roseSeq.length > 4) roseSeq = roseSeq.slice(-4);
+  clearTimeout(roseTimer);
+  roseTimer = setTimeout(()=> roseSeq="", 900);
+  if (roseSeq === roseWord) {
+    burstHearts(10);
+    sparkleBurst(10);
+    roseSeq = "";
+  }
+});
+
+/* MAGIC #7 (subtle): Triple click anywhere on background */
+let tripleClicks = 0;
+let tripleTimer = null;
+document.addEventListener("click", (e) => {
+  // ignore clicks inside Ask Everose panel and cursor station buttons
+  if (e.target.closest("#askEverosePanel") || e.target.closest("#askEveroseBtn") || e.target.closest("#cursorStation")) return;
+
+  tripleClicks++;
+  clearTimeout(tripleTimer);
+  tripleTimer = setTimeout(() => tripleClicks = 0, 550);
+
+  if (tripleClicks === 3) {
+    sparkleBurst(14);
+    tripleClicks = 0;
+  }
+});
+
+/* =========================
+   HEART + SPARKLE HELPERS
+   ========================= */
+function burstHearts(count){
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
+
+function sparkleBurst(count){
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerHTML = "✨";
+    s.style.left = (Math.random() * window.innerWidth) + "px";
+    s.style.bottom = (10 + Math.random() * 40) + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
+/* =========================
+   CURSOR CHANGER
+   ========================= */
+function makeEmojiCursor(emoji) {
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+      <text x="2" y="24" font-size="24">${emoji}</text>
+    </svg>`;
+  const data = encodeURIComponent(svg);
+  return {
+    cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
+    pointer: `url("data:image/svg+xml,${data}") 4 24, pointer`
+  };
+}
+
+function applyCursorEmoji(emoji) {
+  const c = makeEmojiCursor(emoji);
+  document.documentElement.style.setProperty("--everose-cursor", c.cursor);
+  document.documentElement.style.setProperty("--everose-pointer", c.pointer);
+  localStorage.setItem("everose_cursor_emoji", emoji);
+  sparkleBurst(6);
+}
+
+function resetCursor() {
+  document.documentElement.style.setProperty("--everose-cursor", "auto");
+  document.documentElement.style.setProperty("--everose-pointer", "pointer");
+  localStorage.removeItem("everose_cursor_emoji");
+  sparkleBurst(4);
+}
+
+document.getElementById("cursorStation").addEventListener("click", (e) => {
+  const btn = e.target.closest(".cursorPick");
+  if (!btn) return;
+  const emoji = btn.getAttribute("data-emoji");
+  applyCursorEmoji(emoji);
+});
+
+document.getElementById("cursorReset").addEventListener("click", resetCursor);
+
+// load saved cursor
+const savedCursor = localStorage.getItem("everose_cursor_emoji");
+if (savedCursor) applyCursorEmoji(savedCursor);
+
+/* =========================
+   ASK EVEROSE
+   ========================= */
+(function(){
+  const btn = document.getElementById("askEveroseBtn");
+  const panel = document.getElementById("askEverosePanel");
+  const closeBtn = document.getElementById("askCloseBtn");
+  const form = document.getElementById("askEveroseForm");
+  const input = document.getElementById("askInput");
+  const messages = document.getElementById("askEveroseMessages");
+
+  function addMsg(text, who="bot"){
+    const row = document.createElement("div");
+    row.className = `msg ${who}`;
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function openChat(){
+    panel.style.display = "block";
+    setTimeout(()=>input.focus(), 60);
+    if (!messages.dataset.greeted) {
+      addMsg("Hi bestie 🌸💗 I’m Ask Everose. Ask me about scents, launch, hints, or secrets 👀✨", "bot");
+      messages.dataset.greeted = "true";
+    }
+  }
+  function closeChat(){ panel.style.display = "none"; }
+
+  btn.addEventListener("click", () => {
+    if (panel.style.display === "block") closeChat();
+    else openChat();
+  });
+  closeBtn.addEventListener("click", closeChat);
+
+  function reply(qRaw){
+    const q = (qRaw || "").toLowerCase().trim();
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const has = (words) => words.some(w => q.includes(w));
+
+    if (has(["hi","hello","hey","hii","yo"])) {
+      return pick([
+        "Hiiii 🌸💗 What are we doing — scent help, secrets, or pure chaos? 👀✨",
+        "Hey bestie 😭💗 Ask me anything: launch, hints, vibes, mysteries ✨🪞",
+        "Hello hello 💋✨ Tell me what you like (fresh / warm / soft / bold) 🌸"
+      ]);
+    }
+
+    if (has(["mystery","mysteries","secret","secrets","hidden","easter","hints","vault","tell me all"])) {
+      return "Okayyy detective 🕵️‍♀️✨ Here are the secrets:\n\n" +
+        "1) ⌨️ Type: do i smell good → secret message 💗\n" +
+        "2) 🧴 Tap the big bottle 5 times → hidden text + hearts 💞\n" +
+        "3) 🌙 Double-click Everose → night mode\n" +
+        "4) 💎 Type everose vip → VIP unlock\n" +
+        "5) 🎁 Every 10 visits → surprise\n" +
+        "6) 🌹 Type ROSE quickly → heart + sparkle burst\n" +
+        "7) ✨ Triple click the background → sparkle burst\n\n" +
+        "Want me to add 2 *more* subtle ones? 🤫🌸";
+    }
+
+    if (has(["first product","first scent","first perfume","what are you selling","product"])) {
+      return "The first Everose product? 🤫✨ Secret for now.\nBut here are hints:\n" +
+        "🌷 new beginning energy\n❄️ clean + silky vibe\n🍂 warm + unforgettable\n\n" +
+        "Tell me what you like (fresh/warm/soft) and I’ll hint harder 💗";
+    }
+
+    if (has(["launch","release","drop","when does it come out"])) {
+      return "Launch is September 29, 2026 📅✨ (countdown = official timer 💗⏳)";
+    }
+
+    if (has(["update","next update"])) {
+      return "Next update is February 14, 2026 💌✨ (romantic on purpose 😭💗)";
+    }
+
+    if (has(["discount","code","promo","coupon"])) {
+      return pick([
+        "Codes are sneaky 🤫✨ If one appears, it’s for curious people who explore 👀💗",
+        "I can’t just hand you a code 😭💗 but I can say… the site rewards curiosity ✨🔎",
+        "Discount codes = rare sparkle energy ✨ if you find one, you earned it 💗"
+      ]);
+    }
+
+    if (q.includes("do i smell good")) {
+      return pick([
+        "YES. Obviously. Next question 💅🌸",
+        "You smell like main-character energy 😭💗✨",
+        "You smell like someone people remember 🪞💗✨"
+      ]);
+    }
+
+    if (has(["recommend","what scent","which scent","pick for me","match me","vibe"])) {
+      return pick([
+        "Okay vibe check 🪞✨ Are you warm 🍂 or fresh ❄️ today? 💗",
+        "Pick one word: clean / sweet / cozy / airy 🌸✨",
+        "Are we feeling soft 🌷 or bold 😈? (no wrong answers 💗)"
+      ]);
+    }
+
+    if (has(["warm","cozy","vanilla","amber","sweet"])) {
+      return "Warm glow 🍂✨ comforting + addictive 💗\nDo you want warm-sweet or warm-spicy? 👀";
+    }
+    if (has(["fresh","clean","citrus","mint","ocean"])) {
+      return "Fresh energy ❄️✨ clean + confident 💗\nSparkly fresh or crisp fresh? 🌸";
+    }
+    if (has(["soft","airy","light","floral","powder"])) {
+      return "Soft bloom 🌸🫧 gentle + pretty 💗\nRosy soft or creamy soft? 🪞✨";
+    }
+
+    return pick([
+      "Ooo interesting 👀✨ Are you asking about the brand, the scents, or the website? 🌸",
+      "Wait—say that again but shorter 😭💗 I wanna answer perfectly ✨",
+      "I’m listeninggg 🪞✨ Give me 2–3 keywords and I’ll lock in 💗",
+      "I don’t have that exact info yet 🤫✨ but tell me what you’re trying to do 💗"
+    ]);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMsg(text, "user");
+    input.value = "";
+
+    addMsg("Thinking… 🤔✨", "bot");
+    const thinkingRow = messages.lastChild;
+
+    setTimeout(() => {
+      if (thinkingRow && thinkingRow.parentNode) thinkingRow.remove();
+      addMsg(reply(text), "bot");
+    }, 5000);
+  });
+})();
 </script>
 
 </body>
 </html>
-<!-- ABOUT ME -->
-<div class="section" id="about">
-  <h1>About Me 🌸</h1>
-  <p>Hi! My name is Cruz Keller, and I absolutely LOVE perfume. I was born in New York and then moved to New Jersey, followed by Miami, and after a few more moves, I finally settled in Austin! I currently attend Alpha School and I’m 13 years old.</p>
-  <p>My family is a group of four: my dad, mom, brother, and me. We also have a dog named Banner, a Rottweiler named after the Incredible Hulk.</p>
-  <p>I’m so excited to start my very own fragrance brand and share my passion for perfume with the world!</p>
-</div>
