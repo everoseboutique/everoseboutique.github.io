@@ -1,296 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everose</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --bg:#e7e7ea;                 /* main grey */
-    --bg2:#f3f3f5;                /* lighter grey */
-    --panel:rgba(255,255,255,.74);
-    --panel2:rgba(255,255,255,.62);
-    --ink:#111114;                /* black text */
-    --muted:rgba(17,17,20,.68);
-    --muted2:rgba(17,17,20,.55);
-    --border:rgba(17,17,20,.14);
-    --soft:rgba(17,17,20,.06);
-    --pink:#ff3d9a;               /* darker pink pop */
-    --pink2:#ff78bd;
-  }
+:root{
+  --grey:#e5e5e8;
+  --dark:#111;
+  --pink:#ff4fa3;
+}
 
-  html{ scroll-behavior:smooth; }
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  background:linear-gradient(to bottom,#e5e5e8,#f1f1f3);
+  color:var(--dark);
+}
 
-  body{
-    margin:0;
-    color:var(--ink);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:
-      radial-gradient(900px 520px at 14% 18%, rgba(255,61,154,.07), transparent 55%),
-      radial-gradient(900px 520px at 85% 22%, rgba(255,120,189,.05), transparent 58%),
-      linear-gradient(to bottom, var(--bg), var(--bg2));
-    overflow-x:hidden;
-  }
+/* NAV */
+nav{
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.85);
+  border-radius:999px;
+  padding:10px 18px;
+  display:flex;
+  gap:18px;
+  z-index:1000;
+}
+nav a{
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.2em;
+  font-weight:700;
+  text-transform:uppercase;
+  color:#111;
+}
+nav a:hover{color:var(--pink);}
 
-  /* Top bar */
-  .topbar{
-    position:fixed;
-    top:14px; left:0; right:0;
-    z-index:1000;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 0 22px;
-    pointer-events:none;
-  }
-  .navLeft, .navRight{ pointer-events:auto; }
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 7vw;
+  gap:40px;
+}
+.hero-left{max-width:600px;}
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:72px;
+  margin:0;
+}
+.hero h1 span{
+  font-family:"Great Vibes",cursive;
+  display:block;
+  font-size:60px;
+}
+.hero p{
+  margin:18px 0;
+  line-height:1.7;
+}
+.cta{
+  border:2px solid var(--pink);
+  background:transparent;
+  padding:14px 22px;
+  font-weight:700;
+  cursor:pointer;
+}
+.cta:hover{background:rgba(255,79,163,.12);}
 
-  .navLeft{
-    display:flex;
-    gap:10px;
-    align-items:center;
-  }
-  .navLeft a{
-    text-decoration:none;
-    font-weight:800;
-    letter-spacing:.12em;
-    font-size:12px;
-    text-transform:uppercase;
-    padding:10px 14px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid var(--border);
-    color: rgba(17,17,20,.88);
-    box-shadow: 0 10px 30px rgba(0,0,0,.10);
-    transition: transform .15s ease, background .15s ease, border-color .15s ease;
-  }
-  .navLeft a:hover{
-    transform: translateY(-1px);
-    border-color: rgba(255,61,154,.35);
-    box-shadow: 0 14px 40px rgba(255,61,154,.10);
-  }
+.hero-img{
+  width:480px;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+.hero-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(1) contrast(1.1);
+}
 
-  .navRight{
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  .iconBtn{
-    width:38px;
-    height:38px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.68);
-    color: rgba(17,17,20,.78);
-    display:grid;
-    place-items:center;
-    cursor:pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,.10);
-    transition: transform .15s ease, border-color .15s ease;
-  }
-  .iconBtn:hover{
-    transform: translateY(-1px);
-    border-color: rgba(255,61,154,.35);
-  }
+/* COUNTDOWN */
+.chips{display:flex;gap:14px;margin-top:20px;}
+.chip{
+  background:white;
+  padding:14px 18px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+.chip small{
+  display:block;
+  font-size:11px;
+  letter-spacing:.2em;
+}
+.chip b{font-size:16px;}
 
-  /* Hero */
-  .hero{
-    min-height: 100vh;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 46px;
-    padding: 110px 6vw 60px;
-    position:relative;
-  }
-  .hero-left{ max-width: 640px; }
-  .hero-right{ flex:1; display:flex; justify-content:flex-end; }
+/* SECTIONS */
+.section{
+  max-width:1000px;
+  margin:100px auto;
+  padding:0 7vw;
+}
+.card{
+  background:white;
+  padding:40px;
+  border-radius:26px;
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+}
+.h{
+  font-family:"Playfair Display",serif;
+  font-size:42px;
+}
+.p{line-height:1.7;}
 
-  .hero-title{
-    font-family:"Playfair Display", serif;
-    font-size: clamp(52px, 6vw, 88px);
-    line-height: .95;
-    margin: 0 0 10px;
-    letter-spacing:-0.02em;
-    color: rgba(17,17,20,.92);
-  }
-  .hero-title .script{
-    font-family:"Great Vibes", cursive;
-    font-weight:400;
-    letter-spacing: 0;
-    display:inline-block;
-    transform: translateY(8px);
-    color: rgba(255,61,154,.95);
-  }
+/* FOOTER */
+footer{
+  padding:40px 7vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+footer .brand{
+  font-family:"Great Vibes",cursive;
+  font-size:36px;
+}
+footer .by{color:var(--pink);}
 
-  .hero-sub{
-    max-width: 560px;
-    color: var(--muted);
-    font-size: 16px;
-    line-height:1.75;
-    margin: 0 0 18px;
-  }
+/* ASK EVEROSE */
+#askWrap{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+}
+#askBtn{
+  width:56px;
+  height:56px;
+  border-radius:999px;
+  border:none;
+  background:var(--pink);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+#askPanel{
+  position:fixed;
+  bottom:90px;
+  left:20px;
+  width:340px;
+  height:420px;
+  background:white;
+  border-radius:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  display:none;
+}
+.askHeader{
+  padding:14px;
+  font-weight:700;
+  border-bottom:1px solid #ddd;
+}
+#askMessages{
+  padding:14px;
+  height:calc(100% - 120px);
+  overflow:auto;
+}
+.msg{margin-bottom:10px;}
+.msg.user{text-align:right;}
+.bubble{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:16px;
+  background:#f2f2f4;
+}
+.msg.user .bubble{background:rgba(255,79,163,.2);}
+#askForm{
+  display:flex;
+  padding:10px;
+  border-top:1px solid #ddd;
+}
+#askInput{flex:1;padding:10px;}
+#askSend{background:var(--pink);border:none;color:white;padding:10px 14px;}
 
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding: 14px 18px;
-    border-radius: 10px;
-    border: 2px solid rgba(255,61,154,.75);
-    background: rgba(255,255,255,.62);
-    color: rgba(17,17,20,.90);
-    font-weight: 900;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    font-size: 12px;
-    cursor:pointer;
-    box-shadow: 0 18px 60px rgba(0,0,0,.10);
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-  .cta:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 22px 80px rgba(255,61,154,.12);
-  }
-
-  .hero-img{
-    width: min(640px, 54vw);
-    aspect-ratio: 16 / 9;
-    border-radius: 26px;
-    overflow:hidden;
-    position:relative;
-    border: 1px solid rgba(17,17,20,.14);
-    box-shadow: 0 30px 120px rgba(0,0,0,.18);
-    background: #dcdce0;
-  }
-  .hero-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter: saturate(0.08) contrast(1.06) brightness(1.02);
-    transform: scale(1.02);
-  }
-  .hero-img::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(900px 420px at 70% 45%, rgba(255,61,154,.10), transparent 58%),
-      linear-gradient(to bottom, rgba(255,255,255,.08), rgba(0,0,0,.06));
-    pointer-events:none;
-  }
-
-  /* Countdown box */
-  .countBox{
-    margin-top: 20px;
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(17,17,20,.14);
-    border-radius: 14px;
-    padding: 14px 16px;
-    max-width: 520px;
-    box-shadow: 0 30px 120px rgba(0,0,0,.12);
-  }
-  .countRow{
-    display:flex;
-    justify-content:space-between;
-    gap: 14px;
-    padding: 10px 0;
-    border-top: 1px solid rgba(17,17,20,.10);
-  }
-  .countRow:first-child{ border-top:none; }
-  .countRow span{
-    font-weight: 900;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: rgba(17,17,20,.62);
-  }
-  .countRow b{
-    font-family:"Playfair Display", serif;
-    font-size: 18px;
-    letter-spacing:.02em;
-    color: rgba(17,17,20,.90);
-    white-space:nowrap;
-  }
-
-  /* Sections */
-  .section{
-    max-width: 1100px;
-    margin: 80px auto;
-    padding: 0 6vw;
-  }
-  .card{
-    background: rgba(255,255,255,.72);
-    border: 1px solid rgba(17,17,20,.12);
-    border-radius: 22px;
-    padding: 34px 26px;
-    box-shadow: 0 30px 120px rgba(0,0,0,.12);
-  }
-  .h{
-    font-family:"Playfair Display", serif;
-    font-size: 44px;
-    margin: 0 0 8px;
-    color: rgba(17,17,20,.92);
-  }
-  .subline{
-    height:2px;
-    width:84px;
-    background: rgba(255,61,154,.95);
-    border-radius:999px;
-    margin: 10px 0 18px;
-  }
-  .p{
-    margin:0;
-    color: rgba(17,17,20,.70);
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  /* Buttons */
-  .quiz-row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top: 14px;
-  }
-  .quiz-row button{
-    background: rgba(255,255,255,.78);
-    border: 1px solid rgba(17,17,20,.16);
-    color: rgba(17,17,20,.88);
-    padding: 12px 14px;
-    border-radius: 999px;
-    cursor:pointer;
-    font-weight: 900;
-    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-  }
-  .quiz-row button:hover{
-    transform: translateY(-2px);
-    border-color: rgba(255,61,154,.38);
-    box-shadow: 0 18px 70px rgba(255,61,154,.10);
-  }
-
-  /* Ask Everose stays readable on grey */
-  #askPanel{
-    background: rgba(255,255,255,.86) !important;
-    border: 1px solid rgba(17,17,20,.14) !important;
-  }
-  .askHeader{
-    background: rgba(255,255,255,.72) !important;
-    border-bottom: 1px solid rgba(17,17,20,.10) !important;
-  }
-  .askTitle small{ color: rgba(17,17,20,.60) !important; }
-  .askClose{ color: rgba(17,17,20,.65) !important; }
-  .msg.bot .bubble{ background: rgba(255,255,255,.78) !important; }
-  .bubble{ border: 1px solid rgba(17,17,20,.10) !important; color: rgba(17,17,20,.88) !important; }
-  #askInput{
-    background: rgba(255,255,255,.78) !important;
-    border: 1px solid rgba(17,17,20,.14) !important;
-    color: rgba(17,17,20,.88) !important;
-  }
-  #askForm{
-    background: rgba(255,255,255,.86) !important;
-    border-top: 1px solid rgba(17,17,20,.10) !important;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px){
-    .hero{ flex-direction: column; padding-top: 120px; }
-    .hero-right{ width: 100%; justify-content:center; }
-    .hero-img{ width: 100%; }
-    .navRight{ display:none; }
-  }
+@media(max-width:900px){
+  .hero{flex-direction:column;}
+  .hero-img{width:100%;}
+}
 </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#hints">Hints</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-left">
+    <h1>Everose <span>softly blooming</span></h1>
+    <p>Luxury fragrance — soft, personal, quietly unforgettable.</p>
+    <button class="cta">Explore</button>
+
+    <div class="chips">
+      <div class="chip">
+        <small>LAUNCH</small>
+        <b id="launchCountdown"></b>
+      </div>
+      <div class="chip">
+        <small>UPDATE</small>
+        <b id="updateCountdown"></b>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-img">
+    <!-- THIS IS THE IMAGE -->
+    <img src="assets/everose-hero.jpg" alt="Everose perfume">
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="card">
+    <h2 class="h">About Me</h2>
+    <p class="p">
+      Hi, my name is Cruz Keller.  
+      Everose is about fragrance that feels personal — something you don’t forget.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="hints">
+  <div class="card">
+    <h2 class="h">Hints</h2>
+    <p class="p">
+      🌞 sun-warmed<br>
+      ❄ clean & airy<br>
+      🌷 new beginnings<br>
+      🍂 familiar warmth
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">Everose</div>
+  <div class="by">founded by Cruz Keller</div>
+</footer>
+
+<div id="askWrap">
+  <button id="askBtn">💬</button>
+</div>
+
+<div id="askPanel">
+  <div class="askHeader">Ask Everose</div>
+  <div id="askMessages"></div>
+  <form id="askForm">
+    <input id="askInput" placeholder="Ask anything…">
+    <button id="askSend">Send</button>
+  </form>
+</div>
+
+<script>
+const launchDate=new Date("September 29, 2026 12:00:00").getTime();
+const updateDate=new Date("January 24, 2026 14:00:00").getTime();
+
+function tick(){
+  const now=Date.now();
+  document.getElementById("launchCountdown").textContent =
+    Math.floor((launchDate-now)/86400000)+" days";
+  document.getElementById("updateCountdown").textContent =
+    Math.floor((updateDate-now)/86400000)+" days";
+}
+tick();setInterval(tick,1000);
+
+const askBtn=document.getElementById("askBtn");
+const askPanel=document.getElementById("askPanel");
+askBtn.onclick=()=>askPanel.style.display=
+  askPanel.style.display==="block"?"none":"block";
+
+document.getElementById("askForm").onsubmit=e=>{
+  e.preventDefault();
+  const i=document.getElementById("askInput");
+  const m=document.getElementById("askMessages");
+  m.innerHTML+=`<div class="msg user"><div class="bubble">${i.value}</div></div>`;
+  setTimeout(()=>m.innerHTML+=`<div class="msg"><div class="bubble">I got you 🌸</div></div>`,600);
+  i.value="";
+  m.scrollTop=m.scrollHeight;
+}
+</script>
+
+</body>
+</html>
