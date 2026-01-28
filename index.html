@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Everose</title>
+<title>Everose Boutique</title>
 
 <!-- Fonts (serif + cursive like inspo) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -227,7 +227,7 @@
     overflow:hidden;
   }
 
-  /* IMPORTANT: put your fragrance photo at assets/everose-hero.jpg */
+  /* Put your fragrance photo at assets/everose-hero.jpg */
   .hero-right::before{
     content:"";
     position:absolute;
@@ -239,7 +239,6 @@
     transform: scale(1.02);
   }
 
-  /* subtle film overlay + pink pop */
   .hero-right::after{
     content:"";
     position:absolute;
@@ -251,10 +250,7 @@
     pointer-events:none;
   }
 
-  /* Sections */
-  section{
-    scroll-margin-top: 120px;
-  }
+  section{ scroll-margin-top: 120px; }
 
   .wrap{
     max-width: 1100px;
@@ -290,7 +286,6 @@
     line-height: 1.75;
   }
 
-  /* Quiz buttons */
   .quiz-row{
     display:flex;
     gap:10px;
@@ -422,7 +417,6 @@
   }
   .askClose:hover{ color: #000; }
 
-  /* Cursor mini bar INSIDE chat, hidden unless asked */
   #cursorMini{
     display:none;
     padding: 10px 12px;
@@ -468,7 +462,6 @@
   }
   #cursorReset:hover{ background: rgba(255,79,163,.16); }
 
-  /* Cursor affects ONLY chat panel */
   #askPanel { cursor: var(--askCursor, auto); }
   #askPanel button, #askPanel a, #askPanel input { cursor: var(--askPointer, pointer); }
 
@@ -498,9 +491,7 @@
     background: rgba(255,79,163,.12);
     border-color: rgba(255,79,163,.22);
   }
-  .msg.bot .bubble{
-    background: rgba(0,0,0,.03);
-  }
+  .msg.bot .bubble{ background: rgba(0,0,0,.03); }
   .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
   .bubble li{ margin: 6px 0; }
 
@@ -538,18 +529,12 @@
   }
   #askSend:hover{ background: rgba(255,79,163,.24); }
 
-  /* Responsive */
   @media (max-width: 900px){
-    .hero{
-      grid-template-columns: 1fr;
-    }
+    .hero{ grid-template-columns: 1fr; }
     .hero-right{
       min-height: 44vh;
       border-left:none;
       border-top:1px solid var(--line);
-    }
-    .header-inner{
-      grid-template-columns: 1fr auto 1fr;
     }
     .nav-left a{ display:none; }
   }
@@ -569,7 +554,7 @@
       <a href="#quiz">FIND YOUR SCENT</a>
     </div>
 
-    <h1 class="brand">Everose</h1>
+    <h1 class="brand">Everose Boutique</h1>
 
     <div class="icons" aria-label="header icons">
       <button class="icon-btn" aria-label="Search">
@@ -596,15 +581,13 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
-    <!-- YOUR WORDS in the exact “headline + script line” pattern -->
     <h2 class="hero-title">Luxury fragrance</h2>
     <div class="hero-script">Right this way</div>
 
     <p class="hero-sub">
-      Everose is soft, personal, and effortlessly you — fragrance that highlights what’s already there.
+      Everose Boutique is soft, personal, and effortlessly you — fragrance that highlights what’s already there.
       <br><br>
       <b>We are so excited to release our first scents.</b> Stay close. The rose is about to bloom.
     </p>
@@ -625,11 +608,9 @@
     </div>
   </div>
 
-  <!-- Right side background image (your fragrance photo) -->
   <div class="hero-right" aria-label="Everose fragrance photo background"></div>
 </section>
 
-<!-- ABOUT ME -->
 <section class="wrap" id="story">
   <div class="card">
     <div class="h2">About Me</div>
@@ -644,7 +625,6 @@
   </div>
 </section>
 
-<!-- HINTS -->
 <section class="wrap" id="hints">
   <div class="card">
     <div class="h2">Everose Hints</div>
@@ -658,7 +638,6 @@
   </div>
 </section>
 
-<!-- FIND YOUR SCENT -->
 <section class="wrap" id="quiz">
   <div class="card">
     <div class="h2">Find Your Scent</div>
@@ -679,14 +658,13 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="fbrand">Everose</div>
+      <div class="fbrand">Everose Boutique</div>
       <div style="margin-top:6px;color:rgba(0,0,0,.55)">Luxury fragrance • softly blooming</div>
     </div>
     <div class="fby">founded by Cruz Keller</div>
   </div>
 </footer>
 
-<!-- ASK EVEROSE -->
 <div id="askWrap">
   <button id="askBtn" aria-label="Ask Everose"><span>💬</span></button>
   <div id="askLabel">Ask Everose</div>
@@ -695,13 +673,12 @@
 <div id="askPanel" role="dialog" aria-label="Ask Everose chat">
   <div class="askHeader">
     <div class="askTitle">
-      <b>Ask Everose</b>
+      <b>Ask Everose Boutique</b>
       <small>soft answers • pink energy • scent help</small>
     </div>
     <button class="askClose" id="askClose" aria-label="Close">✕</button>
   </div>
 
-  <!-- Cursor bar appears ONLY when asked -->
   <div id="cursorMini">
     <span class="tag">Cursor</span>
     <button class="cursorPick" data-emoji="🎀">🎀</button>
@@ -723,12 +700,7 @@
 </div>
 
 <script>
-  /* =========================
-     DATES (your latest)
-     ========================= */
-  // LAUNCH: September 29, 2026 at 12:00:00
   const launchDate = new Date("September 29, 2026 12:00:00").getTime();
-  // UPDATE: January 24, 2026 at 2:00 PM
   const updateDate = new Date("January 24, 2026 14:00:00").getTime();
 
   function fmtCountdown(targetMs){
@@ -750,7 +722,6 @@
   tick();
   setInterval(tick, 1000);
 
-  /* QUIZ */
   function result(type){
     const a = document.getElementById("answer");
     if (!a) return;
@@ -763,9 +734,6 @@
     a.textContent = map[type] || "";
   }
 
-  /* =========================
-     ASK EVEROSE
-     ========================= */
   (function(){
     const askBtn = document.getElementById("askBtn");
     const askPanel = document.getElementById("askPanel");
@@ -786,7 +754,7 @@
 
       if (!messages.dataset.greeted){
         botHTML(`
-          <b>Hi 🌸 I’m Ask Everose.</b><br/>
+          <b>Hi 🌸 I’m Ask Everose Boutique.</b><br/>
           <ul>
             <li>Ask me about <b>launch</b>, <b>update</b>, <b>hints</b>, or <b>finding your scent</b> ✨</li>
             <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
@@ -821,10 +789,7 @@
 
     function botHTML(html){ addBubble(html, "bot", true); }
     function user(text){ addBubble(text, "user"); }
-
-    function thinking(){
-      return addBubble("Interesting 👀✨ I’m thinking…", "bot");
-    }
+    function thinking(){ return addBubble("Interesting 👀✨ I’m thinking…", "bot"); }
 
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
     function hasAny(q, words){ return words.some(w => q.includes(w)); }
@@ -843,7 +808,6 @@
       return "";
     }
 
-    /* Cursor only for Ask Everose panel */
     function makeEmojiCursor(emoji) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
         <text x="2" y="24" font-size="24">${emoji}</text>
@@ -955,48 +919,6 @@
             <li>❄ One scent feels like silk in winter air</li>
             <li>🌷 One scent feels like something new beginning</li>
             <li>🍂 One scent feels warm… familiar… unforgettable</li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["first scent","first perfume","first product","product"])){
-        return `
-          <b>The first Everose scent? 🤫✨</b><br/>
-          <ul>
-            <li>Secret for now.</li>
-            <li>But I can give hints based on your vibe 👀</li>
-            <li>Pick one: <b>warm 🍂</b> / <b>fresh ❄️</b> / <b>soft 🌸</b></li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["soft","airy","light","floral","powder"])){
-        return `
-          <b>Soft bloom 🌸</b><br/>
-          <ul>
-            <li>Gentle + close-to-the-skin</li>
-            <li>Pretty, clean, effortless ✨</li>
-            <li>Rosy soft or creamy soft?</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["warm","cozy","vanilla","amber","sweet"])){
-        return `
-          <b>Warm glow 🍂</b><br/>
-          <ul>
-            <li>Comforting + addictive</li>
-            <li>Familiar, unforgettable 💗</li>
-            <li>Warm-sweet or warm-spicy?</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["fresh","clean","citrus","mint","ocean"])){
-        return `
-          <b>Fresh energy ❄️</b><br/>
-          <ul>
-            <li>Crisp + confident</li>
-            <li>Clean, expensive, “just showered” ✨</li>
-            <li>Sparkly fresh or crisp fresh?</li>
           </ul>
         `;
       }
