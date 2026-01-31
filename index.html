@@ -12,11 +12,14 @@
 
 <style>
   :root{
-    --bg:#f2f2f2;
+    /* Slightly darker gray than before */
+    --bg:#e7e7e7;
+
     --paper:#ffffff;
     --ink:#111111;
     --muted:#4a4a4a;
     --line:rgba(0,0,0,.12);
+
     --pink:#ff4fa3;
     --pinkSoft:rgba(255,79,163,.12);
   }
@@ -31,24 +34,12 @@
     overflow-x:hidden;
   }
 
-  /* Top shipping bar */
-  .topbar{
-    background:#f7f1c9;
-    color:#111;
-    border-bottom:1px solid rgba(0,0,0,.15);
-    text-align:center;
-    font-weight:700;
-    letter-spacing:.03em;
-    font-size:12px;
-    padding:8px 10px;
-  }
-
   /* Header like inspo */
   header{
     position:sticky;
     top:0;
     z-index:1000;
-    background: rgba(242,242,242,.85);
+    background: rgba(231,231,231,.88);
     backdrop-filter: blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -128,7 +119,7 @@
   /* HERO split like inspo */
   .hero{
     position:relative;
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 76px);
     display:grid;
     grid-template-columns: 1.15fr 1fr;
     align-items:stretch;
@@ -169,6 +160,7 @@
     line-height: 1.7;
   }
 
+  /* Make this look like the inspo button (pink outline, clean, slightly rounded) */
   .hero-cta{
     display:inline-flex;
     align-items:center;
@@ -227,12 +219,12 @@
     overflow:hidden;
   }
 
-  /* Put your fragrance photo at assets/everose-hero.jpg */
+  /* ✅ YOUR IMAGE LINK inserted here */
   .hero-right::before{
     content:"";
     position:absolute;
     inset:0;
-    background-image: url("assets/everose-hero.jpg");
+    background-image: url("https://i.postimg.cc/MH73SY8L/Screenshot-2026-01-31-at-1-51-34-PM.png");
     background-size: cover;
     background-position: center;
     filter: grayscale(100%) contrast(1.08) brightness(1.03);
@@ -543,8 +535,6 @@
 
 <body>
 
-<div class="topbar">FREE SHIPPING ON ALL ORDERS $35 AND OVER!</div>
-
 <header>
   <div class="header-inner">
     <div class="nav-left">
@@ -592,6 +582,7 @@
       <b>We are so excited to release our first scents.</b> Stay close. The rose is about to bloom.
     </p>
 
+    <!-- This is the button you wanted like “Shop your perfect lash” -->
     <button class="hero-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
       FIND YOUR SCENT
     </button>
@@ -801,9 +792,9 @@
     }
 
     function parseName(q){
-      let m = q.match(/\bmy name is\s+([a-zA-Z'-]{2,20})/i);
+      let m = q.match(/\\bmy name is\\s+([a-zA-Z'-]{2,20})/i);
       if (m) return m[1];
-      m = q.match(/\b(i'm|im|i am)\s+([a-zA-Z'-]{2,20})\b/i);
+      m = q.match(/\\b(i'm|im|i am)\\s+([a-zA-Z'-]{2,20})\\b/i);
       if (m) return m[2];
       return "";
     }
