@@ -12,7 +12,6 @@
 
 <style>
   :root{
-    /* slightly darker gray like you asked */
     --bg:#e7e7e7;
     --paper:#ffffff;
     --ink:#111111;
@@ -21,7 +20,6 @@
     --pink:#ff4fa3;
     --pinkSoft:rgba(255,79,163,.12);
 
-    /* global cursor system (works on the whole screen) */
     --globalCursor: auto;
     --globalPointer: pointer;
   }
@@ -36,7 +34,7 @@
     overflow-x:hidden;
   }
 
-  /* MAKE CURSOR CHANGER WORK EVERYWHERE */
+  /* CURSOR CHANGER WORKS EVERYWHERE */
   html, body{
     cursor: var(--globalCursor) !important;
   }
@@ -44,7 +42,6 @@
     cursor: var(--globalPointer) !important;
   }
 
-  /* Header like inspo */
   header{
     position:sticky;
     top:0;
@@ -126,7 +123,7 @@
     display:block;
   }
 
-  /* HERO split like inspo */
+  /* HERO */
   .hero{
     position:relative;
     min-height: calc(100vh - 78px);
@@ -169,7 +166,6 @@
     line-height: 1.7;
   }
 
-  /* button like your inspo */
   .hero-cta{
     display:inline-flex;
     align-items:center;
@@ -199,7 +195,6 @@
     overflow:hidden;
   }
 
-  /* YOUR IMAGE (direct link) */
   .hero-right::before{
     content:"";
     position:absolute;
@@ -261,7 +256,6 @@
   }
   .shopAllBtn:hover{ transform: translateY(-1px); background:#f8f8f8; }
 
-  /* product cards (pastel like inspo) */
   .grid{
     display:grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -306,7 +300,6 @@
     overflow:hidden;
   }
 
-  /* simple “bottle placeholder” (you can replace with real product images later) */
   .bottle{
     width: 78px;
     height: 150px;
@@ -376,7 +369,6 @@
     border-color: rgba(255,79,163,.55);
   }
 
-  /* “features row” like inspo (but perfume-themed) */
   .features{
     margin-top: 56px;
     border-top: 1px solid var(--line);
@@ -425,7 +417,7 @@
     line-height: 1.5;
   }
 
-  /* quote section (your “5th photo” request) */
+  /* QUOTE (kept, but nav link removed like you asked) */
   .quoteWrap{
     margin-top: 64px;
     border-top: 1px solid var(--line);
@@ -476,7 +468,7 @@
     font-size: 34px;
   }
 
-  /* ===== ASK EVEROSE + GLOBAL CURSOR PICKER ===== */
+  /* ===== CHAT + GLOBAL CURSOR PICKER ===== */
   #askWrap{
     position: fixed;
     left: 16px;
@@ -555,7 +547,6 @@
   }
   .askClose:hover{ color: #000; }
 
-  /* GLOBAL cursor bar (now controls the WHOLE PAGE) */
   #cursorMini{
     padding: 10px 12px;
     border-bottom: 1px solid rgba(0,0,0,.10);
@@ -628,8 +619,6 @@
     border-color: rgba(255,79,163,.22);
   }
   .msg.bot .bubble{ background: rgba(0,0,0,.03); }
-  .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
-  .bubble li{ margin: 6px 0; }
 
   #askForm{
     position:absolute;
@@ -693,6 +682,7 @@
       <button class="shop-btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">SHOP</button>
       <a href="#shop">SHOP</a>
       <a href="#features">WHY EVEROSE</a>
+      <!-- removed “A NOTE” link (it was basically the same) -->
     </div>
 
     <h1 class="brand">Everose Boutique</h1>
@@ -733,7 +723,6 @@
       <b>Find your scent, then shop your vibe.</b>
     </p>
 
-    <!-- changed to match inspo button vibe -->
     <button class="hero-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
       FIND YOUR SCENT
     </button>
@@ -820,11 +809,12 @@
     </div>
   </div>
 
-  <div class="quoteWrap" id="note">
+  <!-- still included as a section, but NOT in the top nav anymore -->
+  <div class="quoteWrap">
     <div class="quoteCard">
       <p class="quoteBig">“Perfume is a memory you can wear.”</p>
       <p class="quoteSmall">Softly blooming, always.</p>
-      <div class="sig">, Cruz</div>
+      <div class="sig">with love, Cruz</div>
     </div>
   </div>
 </section>
@@ -841,7 +831,6 @@
   </div>
 </footer>
 
-<!-- Bubble + chat -->
 <div id="askWrap">
   <button id="askBtn" aria-label="Ask Everose"><span>💬</span></button>
   <div id="askLabel">Ask Everose</div>
@@ -856,7 +845,6 @@
     <button class="askClose" id="askClose" aria-label="Close">✕</button>
   </div>
 
-  <!-- GLOBAL cursor changer bar (affects the whole screen now) -->
   <div id="cursorMini">
     <span class="tag">Cursor</span>
     <button class="cursorPick" data-emoji="🎀">🎀</button>
@@ -877,7 +865,7 @@
 </div>
 
 <script>
-  // ===== GLOBAL CURSOR CHANGER (WHOLE PAGE) =====
+  // GLOBAL CURSOR CHANGER (WHOLE PAGE)
   function makeEmojiCursor(emoji) {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
       <text x="2" y="24" font-size="24">${emoji}</text>
@@ -912,7 +900,7 @@
   });
   document.getElementById("cursorReset").addEventListener("click", resetGlobalCursor);
 
-  // ===== CHAT (kept, but simplified to match your new site sections) =====
+  // CHAT
   (function(){
     const askBtn = document.getElementById("askBtn");
     const askPanel = document.getElementById("askPanel");
@@ -955,7 +943,6 @@
       row.appendChild(bubble);
       messages.appendChild(row);
       messages.scrollTop = messages.scrollHeight;
-      return row;
     }
 
     function botHTML(html){ addBubble(html, "bot", true); }
