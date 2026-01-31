@@ -11,7 +11,7 @@
 
 <style>
 :root{
-  --bg:#e6e6e6;
+  --bg:#e2e2e2;
   --paper:#ffffff;
   --ink:#111;
   --muted:#555;
@@ -29,8 +29,9 @@ body{
 a, button { cursor: var(--askPointer, pointer); }
 
 header{
-  position:sticky; top:0;
-  background:rgba(230,230,230,.9);
+  position:sticky;
+  top:0;
+  background:rgba(226,226,226,.9);
   backdrop-filter: blur(10px);
   border-bottom:1px solid rgba(0,0,0,.1);
   z-index:1000;
@@ -48,14 +49,13 @@ header{
   font-size:40px;
   text-align:center;
 }
-
 .nav a{
   text-decoration:none;
   font-weight:700;
   font-size:12px;
   letter-spacing:.1em;
   color:#111;
-  margin-right:16px;
+  margin-right:18px;
 }
 
 .hero{
@@ -64,27 +64,28 @@ header{
   min-height:90vh;
 }
 .hero-left{
-  padding:80px 60px;
+  padding:90px 60px;
 }
 .hero-left h2{
   font-family:"Playfair Display", serif;
-  font-size:70px;
+  font-size:72px;
   line-height:.95;
   margin:0;
 }
 .hero-left .script{
   font-family:"Great Vibes", cursive;
-  font-size:76px;
+  font-size:78px;
   margin-top:-10px;
 }
 .hero-left p{
   max-width:520px;
   color:var(--muted);
   line-height:1.7;
+  margin-top:18px;
 }
 .cta{
-  margin-top:24px;
-  padding:14px 22px;
+  margin-top:28px;
+  padding:14px 24px;
   border:2px solid var(--pink);
   background:#fff;
   font-weight:800;
@@ -100,64 +101,84 @@ header{
 .section{
   max-width:1200px;
   margin:auto;
-  padding:80px 20px;
+  padding:90px 20px;
 }
 .section h3{
   font-family:"Great Vibes", cursive;
-  font-size:54px;
-  margin-bottom:30px;
+  font-size:56px;
+  margin-bottom:14px;
+}
+.section p{
+  max-width:520px;
+  color:var(--muted);
 }
 
-.products{
+.shop-grid{
+  margin-top:48px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
 }
-.product{
+.shop-card{
   background:#fff;
-  border-radius:20px;
-  padding:30px;
+  border-radius:22px;
+  padding:36px 28px;
   text-align:center;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.product.pink{background:#ffe3ef}
-.product.yellow{background:#fff6cc}
-.product.lavender{background:#f0e9ff}
-.product h4{
+.shop-card:hover{
+  transform: translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+.shop-card.pink{ background:#ffe3ef; }
+.shop-card.lavender{ background:#f0e9ff; }
+.shop-card.butter{ background:#fff6cc; }
+
+.shop-card h4{
   font-family:"Playfair Display", serif;
+  font-size:24px;
   margin-bottom:10px;
 }
-.product button{
-  margin-top:14px;
-  padding:12px;
-  border-radius:999px;
-  border:2px solid #111;
-  background:#fff;
-  font-weight:700;
+.shop-card p{
+  font-size:14px;
+  color:#444;
+}
+.shop-card span{
+  display:block;
+  margin-top:18px;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.7;
 }
 
 .quote{
   background:#111;
   color:#fff;
-  padding:120px 20px;
+  padding:140px 20px;
   text-align:center;
 }
 .quote h2{
   font-family:"Playfair Display", serif;
   font-size:48px;
+  max-width:720px;
+  margin:auto;
 }
 .quote p{
   font-family:"Great Vibes", cursive;
-  font-size:32px;
+  font-size:34px;
   color:var(--pink);
+  margin-top:18px;
 }
 
 footer{
-  padding:40px 20px;
+  padding:46px 20px;
   background:#fff;
   text-align:center;
 }
 footer .brand{
-  font-size:32px;
+  font-size:34px;
 }
 
 #askWrap{
@@ -182,6 +203,7 @@ footer .brand{
   <div class="header-inner">
     <div class="nav">
       <a href="#shop">SHOP</a>
+      <a href="#vibes">VIBES</a>
     </div>
     <div class="brand">Everose Boutique</div>
     <div></div>
@@ -191,33 +213,57 @@ footer .brand{
 <section class="hero">
   <div class="hero-left">
     <h2>Signature scent</h2>
-    <div class="script">This way</div>
+    <div class="script">this way</div>
     <p>
-      Everose Boutique is fragrance that feels personal, soft, and quietly unforgettable.
-      Designed to blend into your life — not overpower it.
+      Everose Boutique is fragrance designed to feel personal —
+      soft, intentional, and quietly unforgettable.
     </p>
-    <button class="cta">Find Your Scent</button>
+    <button class="cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Shop
+    </button>
   </div>
   <div class="hero-right"></div>
 </section>
 
 <section class="section" id="shop">
-  <h3>Meet the Scents</h3>
-  <div class="products">
-    <div class="product pink">
-      <h4>The Bloom</h4>
-      <p>Light, fresh, and effortless.</p>
-      <button>Add to cart</button>
+  <h3>Shop Everose</h3>
+  <p>Our first collection is coming soon. Until then, explore the world we’re building.</p>
+
+  <div class="shop-grid">
+    <div class="shop-card pink">
+      <h4>Shop All</h4>
+      <p>Explore everything Everose will offer.</p>
+      <span>Coming soon</span>
     </div>
-    <div class="product yellow">
-      <h4>The Darling</h4>
-      <p>Warm, soft, everyday comfort.</p>
-      <button>Add to cart</button>
+
+    <div class="shop-card lavender">
+      <h4>Shop by Mood</h4>
+      <p>Soft. Warm. Clean. Romantic.</p>
+      <span>Coming soon</span>
     </div>
-    <div class="product lavender">
-      <h4>The Velvet</h4>
-      <p>Romantic, smooth, unforgettable.</p>
-      <button>Add to cart</button>
+
+    <div class="shop-card butter">
+      <h4>Limited Drops</h4>
+      <p>Small releases, special moments.</p>
+      <span>Coming soon</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="vibes">
+  <h3>Everose Energy</h3>
+  <div class="shop-grid">
+    <div class="shop-card">
+      <h4>Soft & Airy</h4>
+      <span>🌸</span>
+    </div>
+    <div class="shop-card">
+      <h4>Warm & Familiar</h4>
+      <span>🍂</span>
+    </div>
+    <div class="shop-card">
+      <h4>Clean & Confident</h4>
+      <span>❄️</span>
     </div>
   </div>
 </section>
