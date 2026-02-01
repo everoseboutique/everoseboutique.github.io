@@ -5,132 +5,162 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Everose Boutique</title>
 
+<!-- Fonts (serif + cursive like inspo) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#dcdcdc;
+    /* Slightly darker gray than before */
+    --bg:#e7e7e7;
+
     --paper:#ffffff;
     --ink:#111111;
-    --muted:#5a5a5a;
+    --muted:#4a4a4a;
     --line:rgba(0,0,0,.12);
-    --pink:#ff4fa3;
-    --shadow:0 18px 45px rgba(0,0,0,.10);
 
-    --cursor:auto;
-    --pointer:pointer;
+    --pink:#ff4fa3;
+    --pinkSoft:rgba(255,79,163,.12);
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     overflow-x:hidden;
-    cursor: var(--cursor);
   }
-  a, button, input { cursor: var(--pointer); }
 
+  /* Header like inspo */
   header{
     position:sticky;
     top:0;
     z-index:1000;
-    background: rgba(220,220,220,.88);
+    background: rgba(231,231,231,.88);
     backdrop-filter: blur(10px);
     border-bottom:1px solid var(--line);
   }
+
   .header-inner{
-    max-width:1200px;
+    max-width: 1200px;
     margin:0 auto;
-    padding:14px 16px;
+    padding: 14px 16px;
     display:grid;
     grid-template-columns: 1fr auto 1fr;
     align-items:center;
-    gap:12px;
+    gap: 12px;
   }
+
   .nav-left{
-    display:flex; align-items:center; gap:18px;
+    display:flex;
+    align-items:center;
+    gap: 18px;
+    min-width: 0;
   }
+
+  .shop-btn{
+    border:2px solid #111;
+    background:#fff;
+    color:#111;
+    font-weight:800;
+    font-size:12px;
+    padding:10px 16px;
+    border-radius:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .shop-btn:hover{ transform: translateY(-1px); background: #f8f8f8; }
+
   .nav-left a{
     text-decoration:none;
     color:#111;
-    font-weight:800;
+    font-weight:700;
     font-size:12px;
     letter-spacing:.10em;
     text-transform:uppercase;
     opacity:.9;
   }
-  .nav-left a:hover{opacity:1}
+  .nav-left a:hover{ opacity:1; }
 
   .brand{
-    font-family:"Great Vibes", cursive;
-    font-size:40px;
-    line-height:1;
+    font-family: "Great Vibes", cursive;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: .02em;
     margin:0;
     text-align:center;
   }
 
-  .nav-right{
+  .icons{
     display:flex;
     justify-content:flex-end;
-    gap:10px;
+    align-items:center;
+    gap: 14px;
   }
-  .pill{
-    border:1px solid var(--line);
-    background:rgba(255,255,255,.65);
-    padding:10px 12px;
-    border-radius:999px;
-    font-weight:800;
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    transition: transform .15s ease, background .15s ease;
+  .icon-btn{
+    border:none;
+    background:transparent;
+    padding:8px;
+    border-radius:10px;
+    cursor:pointer;
+    opacity:.85;
   }
-  .pill:hover{
-    transform: translateY(-1px);
-    background: rgba(255,79,163,.08);
+  .icon-btn:hover{ opacity:1; background: rgba(0,0,0,.04); }
+  .icon{
+    width:20px; height:20px;
+    display:block;
   }
 
+  /* HERO split like inspo */
   .hero{
     position:relative;
-    min-height: calc(100vh - 72px);
+    min-height: calc(100vh - 76px);
     display:grid;
     grid-template-columns: 1.15fr 1fr;
     align-items:stretch;
     border-bottom:1px solid var(--line);
     background: var(--bg);
   }
+
+  /* left side */
   .hero-left{
-    padding: clamp(40px, 5vw, 74px);
+    padding: clamp(38px, 5vw, 70px);
     display:flex;
     flex-direction:column;
     justify-content:center;
     gap: 16px;
   }
+
   .hero-title{
-    font-family:"Playfair Display", serif;
+    font-family: "Playfair Display", serif;
     font-size: clamp(54px, 6vw, 86px);
     line-height: .93;
     margin:0;
     letter-spacing:-0.02em;
   }
+
   .hero-script{
-    font-family:"Great Vibes", cursive;
+    font-family: "Great Vibes", cursive;
     font-size: clamp(52px, 6vw, 84px);
     line-height: .9;
     margin: -10px 0 0;
     color:#111;
   }
+
   .hero-sub{
-    max-width: 620px;
+    max-width: 640px;
     margin:0;
     color: var(--muted);
     font-size: 15px;
     line-height: 1.7;
   }
+
+  /* Make this look like the inspo button (pink outline, clean, slightly rounded) */
   .hero-cta{
     display:inline-flex;
     align-items:center;
@@ -140,12 +170,12 @@
     color:#111;
     background: #fff;
     padding: 12px 18px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 900;
-    letter-spacing: .08em;
+    letter-spacing: .06em;
     text-transform: uppercase;
     font-size: 12px;
-    text-decoration:none;
+    cursor:pointer;
     transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
   }
   .hero-cta:hover{
@@ -154,12 +184,42 @@
     box-shadow: 0 12px 30px rgba(255,79,163,.18);
   }
 
+  .countdowns{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top: 6px;
+  }
+  .count{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    min-width: 220px;
+  }
+  .count small{
+    display:block;
+    font-weight:800;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color: rgba(0,0,0,.55);
+    margin-bottom:8px;
+  }
+  .count b{
+    font-family:"Playfair Display", serif;
+    font-size:18px;
+  }
+
+  /* right side image */
   .hero-right{
     position:relative;
     border-left:1px solid var(--line);
+    background:#ddd;
     overflow:hidden;
-    background:#e7e7e7;
   }
+
+  /* ✅ YOUR IMAGE LINK inserted here */
   .hero-right::before{
     content:"";
     position:absolute;
@@ -167,74 +227,299 @@
     background-image: url("https://i.postimg.cc/MH73SY8L/Screenshot-2026-01-31-at-1-51-34-PM.png");
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%) contrast(1.08) brightness(1.02);
+    filter: grayscale(100%) contrast(1.08) brightness(1.03);
     transform: scale(1.02);
   }
+
   .hero-right::after{
     content:"";
     position:absolute;
     inset:0;
     background:
-      radial-gradient(900px 520px at 18% 75%, rgba(255,79,163,.20), transparent 58%),
+      radial-gradient(900px 520px at 18% 75%, rgba(255,79,163,.18), transparent 58%),
       linear-gradient(to left, rgba(0,0,0,.06), rgba(0,0,0,.00) 55%),
       linear-gradient(to bottom, rgba(255,255,255,.18), rgba(255,255,255,.05));
     pointer-events:none;
   }
 
-  .quote{
-    padding: 84px 18px;
-    text-align:center;
-    background: #111;
-    color:#fff;
+  section{ scroll-margin-top: 120px; }
+
+  .wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 16px;
   }
-  .quote h2{
+
+  .card{
+    background: var(--paper);
+    border:1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px 24px;
+  }
+
+  .h2{
     font-family:"Playfair Display", serif;
     font-size: 42px;
-    max-width: 820px;
-    margin: 0 auto;
-    line-height:1.25;
+    margin:0 0 10px;
   }
-  .quote p{
-    font-family:"Great Vibes", cursive;
-    font-size: 34px;
-    margin: 16px 0 0;
-    color: var(--pink);
+
+  .pinkline{
+    width: 74px;
+    height: 3px;
+    background: var(--pink);
+    border-radius: 999px;
+    margin: 10px 0 18px;
+  }
+
+  .p{
+    margin:0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .quiz-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top: 14px;
+  }
+  .quiz-row button{
+    border:1px solid rgba(0,0,0,.18);
+    background:#fff;
+    color:#111;
+    padding: 12px 14px;
+    border-radius: 999px;
+    cursor:pointer;
+    font-weight: 800;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .quiz-row button:hover{
+    transform: translateY(-1px);
+    background: rgba(255,79,163,.06);
+    border-color: rgba(255,79,163,.35);
+  }
+  #answer{
+    margin-top: 16px;
+    font-weight: 650;
+    color:#111;
+    white-space: pre-wrap;
   }
 
   footer{
     border-top:1px solid var(--line);
-    padding: 34px 16px 90px;
-    background: rgba(255,255,255,.55);
-    text-align:center;
+    padding: 26px 16px 90px;
+    background: rgba(255,255,255,.35);
   }
-  footer .fbrand{ font-family:"Great Vibes", cursive; font-size: 34px; }
-  footer .sub{ margin-top:6px; color: rgba(0,0,0,.55); }
-  footer .by{
-    margin-top:10px;
+  .footer-inner{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .fbrand{
+    font-family:"Great Vibes", cursive;
+    font-size: 34px;
+  }
+  .fby{
     font-family:"Great Vibes", cursive;
     font-size: 24px;
     color: rgba(255,79,163,.95);
   }
 
-  /* Cursor button (global) */
-  #cursorBtn{
+  /* ===== ASK EVEROSE bottom-left ===== */
+  #askWrap{
     position: fixed;
     left: 16px;
     bottom: 16px;
+    z-index: 9999;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap: 6px;
+  }
+  #askBtn{
     width: 56px;
     height: 56px;
     border-radius: 999px;
     border: 1px solid rgba(0,0,0,.18);
+    cursor: pointer;
     background: #fff;
     box-shadow: 0 14px 30px rgba(0,0,0,0.18);
-    font-size: 22px;
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
-  #cursorBtn:hover{
+  #askBtn:hover{
     transform: translateY(-2px) scale(1.03);
     border-color: rgba(255,79,163,.55);
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   }
+  #askBtn span{ font-size: 22px; }
+  #askLabel{
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: rgba(0,0,0,.65);
+    padding-left: 6px;
+    text-transform: uppercase;
+    font-weight:800;
+  }
+
+  #askPanel{
+    position: fixed;
+    left: 16px;
+    bottom: 92px;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    height: 470px;
+    max-height: calc(100vh - 140px);
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(0,0,0,.16);
+    border-radius: 18px;
+    box-shadow: 0 20px 70px rgba(0,0,0,.28);
+    display: none;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .askHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 12px 12px 10px;
+    background: rgba(0,0,0,.04);
+    border-bottom: 1px solid rgba(0,0,0,.10);
+  }
+  .askTitle b{
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+  }
+  .askTitle small{
+    display:block;
+    color: rgba(0,0,0,.60);
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .askClose{
+    border:none;
+    background: transparent;
+    cursor:pointer;
+    font-size: 18px;
+    color: rgba(0,0,0,.65);
+  }
+  .askClose:hover{ color: #000; }
+
+  #cursorMini{
+    display:none;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,.10);
+    background: rgba(255,79,163,.06);
+    gap: 8px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+  #cursorMini .tag{
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.55);
+    margin-right: 6px;
+    font-weight: 900;
+  }
+  .cursorPick{
+    border: 1px solid rgba(0,0,0,.14);
+    background: #fff;
+    color: #111;
+    border-radius: 999px;
+    padding: 8px 10px;
+    cursor:pointer;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .cursorPick:hover{
+    border-color: rgba(255,79,163,.45);
+    background: rgba(255,79,163,.05);
+  }
+  #cursorReset{
+    border:1px solid rgba(255,79,163,.45);
+    background: rgba(255,79,163,.12);
+    color:#111;
+    border-radius: 999px;
+    padding: 8px 10px;
+    cursor:pointer;
+    font-weight: 900;
+    letter-spacing: .06em;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  #cursorReset:hover{ background: rgba(255,79,163,.16); }
+
+  #askPanel { cursor: var(--askCursor, auto); }
+  #askPanel button, #askPanel a, #askPanel input { cursor: var(--askPointer, pointer); }
+
+  #askMessages{
+    padding: 12px;
+    height: calc(100% - 160px);
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .msg{ margin: 10px 0; display:flex; }
+  .msg.user{ justify-content:flex-end; }
+  .msg.bot{ justify-content:flex-start; }
+  .bubble{
+    max-width: 86%;
+    padding: 10px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.42;
+    border: 1px solid rgba(0,0,0,.10);
+    box-shadow: 0 10px 18px rgba(0,0,0,.10);
+    white-space: pre-wrap;
+    background:#fff;
+  }
+  .msg.user .bubble{
+    background: rgba(255,79,163,.12);
+    border-color: rgba(255,79,163,.22);
+  }
+  .msg.bot .bubble{ background: rgba(0,0,0,.03); }
+  .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
+  .bubble li{ margin: 6px 0; }
+
+  #askForm{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding: 10px;
+    display:flex;
+    gap: 8px;
+    border-top: 1px solid rgba(0,0,0,.10);
+    background: rgba(255,255,255,.96);
+  }
+  #askInput{
+    flex:1;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,.14);
+    padding: 10px 12px;
+    outline:none;
+    background: #fff;
+    color: #111;
+    font-family: inherit;
+  }
+  #askSend{
+    border:none;
+    border-radius: 16px;
+    padding: 10px 14px;
+    cursor:pointer;
+    background: rgba(255,79,163,.18);
+    border: 1px solid rgba(255,79,163,.45);
+    color: #111;
+    font-weight: 900;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+  #askSend:hover{ background: rgba(255,79,163,.24); }
 
   @media (max-width: 900px){
     .hero{ grid-template-columns: 1fr; }
@@ -253,15 +538,35 @@
 <header>
   <div class="header-inner">
     <div class="nav-left">
-      <a href="shop.html">SHOP</a>
-      <a href="#note">NOTE</a>
+      <button class="shop-btn" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">SHOP</button>
+      <a href="#story">OUR STORY</a>
+      <a href="#hints">HINTS</a>
+      <a href="#quiz">FIND YOUR SCENT</a>
     </div>
 
     <h1 class="brand">Everose Boutique</h1>
 
-    <div class="nav-right">
-      <a class="pill" href="shop.html">Shop</a>
-      <button class="pill" onclick="setCursorPrompt()">Cursor</button>
+    <div class="icons" aria-label="header icons">
+      <button class="icon-btn" aria-label="Search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M20 20l-3.5-3.5"></path>
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Account">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21a8 8 0 0 0-16 0"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6h15l-2 9H7L6 6Z"></path>
+          <path d="M6 6 5 3H2"></path>
+          <circle cx="9" cy="20" r="1"></circle>
+          <circle cx="18" cy="20" r="1"></circle>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
@@ -269,60 +574,386 @@
 <section class="hero" id="home">
   <div class="hero-left">
     <h2 class="hero-title">Luxury fragrance</h2>
-    <div class="hero-script">right this way</div>
+    <div class="hero-script">Right this way</div>
 
     <p class="hero-sub">
-      Everose Boutique is fragrance designed to feel personal — soft, intentional, and quietly unforgettable.
+      Everose Boutique is soft, personal, and effortlessly you — fragrance that highlights what’s already there.
       <br><br>
-      <b>The boutique opens soon.</b> You’re early. That’s the whole point.
+      <b>We are so excited to release our first scents.</b> Stay close. The rose is about to bloom.
     </p>
 
-    <a class="hero-cta" href="shop.html">ENTER THE BOUTIQUE</a>
+    <!-- This is the button you wanted like “Shop your perfect lash” -->
+    <button class="hero-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
+      FIND YOUR SCENT
+    </button>
+
+    <div class="countdowns">
+      <div class="count">
+        <small>LAUNCHING IN</small>
+        <b id="launchCountdown">—</b>
+      </div>
+      <div class="count">
+        <small>NEXT UPDATE</small>
+        <b id="updateCountdown">—</b>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-right" aria-label="Everose background photo"></div>
+  <div class="hero-right" aria-label="Everose fragrance photo background"></div>
 </section>
 
-<section class="quote" id="note">
-  <h2>Perfume should feel like a memory you want to keep.</h2>
-  <p>with love, Cruz</p>
+<section class="wrap" id="story">
+  <div class="card">
+    <div class="h2">About Me</div>
+    <div class="pinkline"></div>
+    <p class="p">
+      Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey,
+      then to Miami, and after a few more moves, I finally landed in Austin.<br/><br/>
+      I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.<br/><br/>
+      We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.<br/><br/>
+      I’m so excited to start my own fragrance brand and share my love for scent with the world.
+    </p>
+  </div>
+</section>
+
+<section class="wrap" id="hints">
+  <div class="card">
+    <div class="h2">Everose Hints</div>
+    <div class="pinkline"></div>
+    <p class="p">
+      ✨ One scent feels like getting a suntan.<br/>
+      ❄ One scent feels like silk in winter air.<br/>
+      🌷 One scent feels like something new beginning.<br/>
+      🍂 One scent feels warm… familiar… unforgettable.
+    </p>
+  </div>
+</section>
+
+<section class="wrap" id="quiz">
+  <div class="card">
+    <div class="h2">Find Your Scent</div>
+    <div class="pinkline"></div>
+    <p class="p">Choose what feels most like you 💗</p>
+
+    <div class="quiz-row">
+      <button onclick="result('soft')">Light scent</button>
+      <button onclick="result('warm')">Medium scent</button>
+      <button onclick="result('fresh')">Strong scent</button>
+      <button onclick="result('bright')">A mix of everything</button>
+    </div>
+
+    <div id="answer"></div>
+  </div>
 </section>
 
 <footer>
-  <div class="fbrand">Everose Boutique</div>
-  <div class="sub">Luxury fragrance • softly blooming</div>
-  <div class="by">founded by Cruz Keller</div>
+  <div class="footer-inner">
+    <div>
+      <div class="fbrand">Everose Boutique</div>
+      <div style="margin-top:6px;color:rgba(0,0,0,.55)">Luxury fragrance • softly blooming</div>
+    </div>
+    <div class="fby">founded by Cruz Keller</div>
+  </div>
 </footer>
 
-<button id="cursorBtn" title="Change cursor">🎀</button>
+<div id="askWrap">
+  <button id="askBtn" aria-label="Ask Everose"><span>💬</span></button>
+  <div id="askLabel">Ask Everose</div>
+</div>
+
+<div id="askPanel" role="dialog" aria-label="Ask Everose chat">
+  <div class="askHeader">
+    <div class="askTitle">
+      <b>Ask Everose Boutique</b>
+      <small>soft answers • pink energy • scent help</small>
+    </div>
+    <button class="askClose" id="askClose" aria-label="Close">✕</button>
+  </div>
+
+  <div id="cursorMini">
+    <span class="tag">Cursor</span>
+    <button class="cursorPick" data-emoji="🎀">🎀</button>
+    <button class="cursorPick" data-emoji="🦢">🦢</button>
+    <button class="cursorPick" data-emoji="🤍">🤍</button>
+    <button class="cursorPick" data-emoji="✧">✧</button>
+    <button class="cursorPick" data-emoji="♡">♡</button>
+    <button class="cursorPick" data-emoji="💋">💋</button>
+    <button class="cursorPick" data-emoji="💎" id="diamondCursorBtn" style="display:none;">💎</button>
+    <button id="cursorReset">Reset</button>
+  </div>
+
+  <div id="askMessages"></div>
+
+  <form id="askForm">
+    <input id="askInput" type="text" placeholder="Ask anything… 🌸" autocomplete="off" />
+    <button id="askSend" type="submit">Send</button>
+  </form>
+</div>
 
 <script>
-  /* Global cursor (works everywhere) */
-  function makeEmojiCursor(emoji) {
-    const svg =
-      `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+  const launchDate = new Date("September 29, 2026 12:00:00").getTime();
+  const updateDate = new Date("January 24, 2026 14:00:00").getTime();
+
+  function fmtCountdown(targetMs){
+    const now = Date.now();
+    const d = targetMs - now;
+    if (d <= 0) return "Unlocked ✨";
+    const days = Math.floor(d / (1000*60*60*24));
+    const hours = Math.floor((d % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((d % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((d % (1000*60)) / 1000);
+    return `${days}d ${hours}h ${mins}m ${secs}s`;
+  }
+  function tick(){
+    const lc = document.getElementById("launchCountdown");
+    const uc = document.getElementById("updateCountdown");
+    if (lc) lc.textContent = fmtCountdown(launchDate);
+    if (uc) uc.textContent = fmtCountdown(updateDate);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  function result(type){
+    const a = document.getElementById("answer");
+    if (!a) return;
+    const map = {
+      soft:  "• Soft + airy 🌸\n• Gentle, close-to-the-skin\n• Pretty, clean, effortless ✨",
+      warm:  "• Warm + comforting 🍂\n• Familiar, cozy, unforgettable\n• The kind of scent people remember 💗",
+      fresh: "• Fresh + confident ❄️\n• Clean, crisp, bold energy\n• Signature / main-character vibes ✨",
+      bright:"• Playful + layered 💋\n• A little sweet, a little clean, a little warm\n• Total signature scent energy ✨"
+    };
+    a.textContent = map[type] || "";
+  }
+
+  (function(){
+    const askBtn = document.getElementById("askBtn");
+    const askPanel = document.getElementById("askPanel");
+    const askClose = document.getElementById("askClose");
+    const form = document.getElementById("askForm");
+    const input = document.getElementById("askInput");
+    const messages = document.getElementById("askMessages");
+
+    const cursorMini = document.getElementById("cursorMini");
+    const diamondBtn = document.getElementById("diamondCursorBtn");
+
+    let userName = localStorage.getItem("everose_name") || "";
+    let vip = (localStorage.getItem("everose_vip") === "true");
+
+    function openChat(){
+      askPanel.style.display = "block";
+      setTimeout(()=> input.focus(), 50);
+
+      if (!messages.dataset.greeted){
+        botHTML(`
+          <b>Hi 🌸 I’m Ask Everose Boutique.</b><br/>
+          <ul>
+            <li>Ask me about <b>launch</b>, <b>update</b>, <b>hints</b>, or <b>finding your scent</b> ✨</li>
+            <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
+            <li>If you want the <b>cursor changer</b>, just ask 😭</li>
+            <li>VIP: type <b>everose vip</b> 💎</li>
+          </ul>
+        `);
+        messages.dataset.greeted = "true";
+      }
+      renderVIP();
+    }
+    function closeChat(){ askPanel.style.display = "none"; }
+
+    askBtn.addEventListener("click", () => {
+      if (askPanel.style.display === "block") closeChat();
+      else openChat();
+    });
+    askClose.addEventListener("click", closeChat);
+
+    function addBubble(content, who="bot", html=false){
+      const row = document.createElement("div");
+      row.className = `msg ${who}`;
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      if (html) bubble.innerHTML = content;
+      else bubble.textContent = content;
+      row.appendChild(bubble);
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
+      return row;
+    }
+
+    function botHTML(html){ addBubble(html, "bot", true); }
+    function user(text){ addBubble(text, "user"); }
+    function thinking(){ return addBubble("Interesting 👀✨ I’m thinking…", "bot"); }
+
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function hasAny(q, words){ return words.some(w => q.includes(w)); }
+
+    function escapeHtml(s){
+      return (s||"").replace(/[&<>"']/g, (c)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
+      }[c]));
+    }
+
+    function parseName(q){
+      let m = q.match(/\\bmy name is\\s+([a-zA-Z'-]{2,20})/i);
+      if (m) return m[1];
+      m = q.match(/\\b(i'm|im|i am)\\s+([a-zA-Z'-]{2,20})\\b/i);
+      if (m) return m[2];
+      return "";
+    }
+
+    function makeEmojiCursor(emoji) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
         <text x="2" y="24" font-size="24">${emoji}</text>
       </svg>`;
-    const data = encodeURIComponent(svg);
-    return {
-      cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
-      pointer:`url("data:image/svg+xml,${data}") 4 24, pointer`
-    };
-  }
-  function applyCursor(emoji){
-    const c = makeEmojiCursor(emoji);
-    document.documentElement.style.setProperty("--cursor", c.cursor);
-    document.documentElement.style.setProperty("--pointer", c.pointer);
-    localStorage.setItem("everose_cursor", emoji);
-  }
-  function setCursorPrompt(){
-    const pick = prompt("Pick a cursor emoji (examples: 🎀 💗 ✧ 💎)","🎀");
-    if (pick && pick.trim()) applyCursor(pick.trim());
-  }
-  document.getElementById("cursorBtn").addEventListener("click", setCursorPrompt);
+      const data = encodeURIComponent(svg);
+      return {
+        cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
+        pointer:`url("data:image/svg+xml,${data}") 4 24, pointer`
+      };
+    }
+    function applyAskCursor(emoji){
+      const c = makeEmojiCursor(emoji);
+      document.documentElement.style.setProperty("--askCursor", c.cursor);
+      document.documentElement.style.setProperty("--askPointer", c.pointer);
+      localStorage.setItem("everose_ask_cursor", emoji);
+    }
+    function resetAskCursor(){
+      document.documentElement.style.setProperty("--askCursor", "auto");
+      document.documentElement.style.setProperty("--askPointer", "pointer");
+      localStorage.removeItem("everose_ask_cursor");
+    }
 
-  const saved = localStorage.getItem("everose_cursor");
-  if (saved) applyCursor(saved);
+    function showCursorBar(){
+      cursorMini.style.display = "flex";
+      renderVIP();
+    }
+    function renderVIP(){
+      diamondBtn.style.display = vip ? "inline-flex" : "none";
+    }
+
+    cursorMini.addEventListener("click", (e) => {
+      const b = e.target.closest(".cursorPick");
+      if (!b) return;
+      applyAskCursor(b.getAttribute("data-emoji"));
+    });
+    document.getElementById("cursorReset").addEventListener("click", resetAskCursor);
+
+    const savedAskCursor = localStorage.getItem("everose_ask_cursor");
+    if (savedAskCursor) applyAskCursor(savedAskCursor);
+
+    function reply(qRaw){
+      const q = (qRaw||"").trim();
+      const lower = q.toLowerCase();
+
+      const nm = parseName(q);
+      if (nm){
+        userName = nm;
+        localStorage.setItem("everose_name", userName);
+        return `
+          <b>Nice to meet you, ${escapeHtml(userName)} 💗</b><br/>
+          <ul>
+            <li>I’ll remember your name next time ✨</li>
+            <li>Want scent help or launch info?</li>
+          </ul>
+        `;
+      }
+
+      if (lower.includes("everose vip") || lower.includes("unlock vip") || lower.includes("vip mode")){
+        vip = true;
+        localStorage.setItem("everose_vip","true");
+        renderVIP();
+        return `
+          <b>VIP unlocked 💎✨</b><br/>
+          <ul>
+            <li>Diamond cursor is now available 💎</li>
+            <li>Ask: <b>show cursor changer</b> to open it</li>
+            <li>Welcome to the inner circle 🤫</li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["cursor", "cursor changer", "change cursor", "show cursor"])){
+        showCursorBar();
+        const nameBit = userName ? `, <b>${escapeHtml(userName)}</b>` : "";
+        return `
+          <b>Cursor station unlocked${nameBit} 😭✨</b><br/>
+          <ul>
+            <li>Pick one up top ☝️ (only affects <b>this chat</b>)</li>
+            <li>Hit reset anytime 💗</li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["launch", "when is launch", "release", "drop", "come out"])){
+        return `
+          <b>Launch info 📅✨</b><br/>
+          <ul>
+            <li><b>September 29, 2026</b> at <b>12:00 PM</b></li>
+            <li>Countdown is on the homepage ⏳</li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["update", "next update", "when is the update"])){
+        return `
+          <b>Next update 💗</b><br/>
+          <ul>
+            <li><b>January 24, 2026</b></li>
+            <li><b>2:00 PM</b></li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["hints", "what are the hints", "notes", "vibe"])){
+        return `
+          <b>Everose hints ✨</b><br/>
+          <ul>
+            <li>🌞 One scent feels like getting a suntan</li>
+            <li>❄ One scent feels like silk in winter air</li>
+            <li>🌷 One scent feels like something new beginning</li>
+            <li>🍂 One scent feels warm… familiar… unforgettable</li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["hi","hello","hey","hii","yo"])){
+        const nameBit = userName ? ` ${escapeHtml(userName)} 💗` : " bestie 💗";
+        return pick([
+          `<b>Hii${nameBit} 🌸</b><br/><ul><li>Do you want <b>launch</b>, <b>update</b>, or <b>scent help</b>?</li></ul>`,
+          `<b>Hey${nameBit} ✨</b><br/><ul><li>Tell me one word: clean / cozy / sweet / airy 👀</li></ul>`,
+          `<b>Hello${nameBit} 💋</b><br/><ul><li>I can help with hints + matching your vibe ✨</li></ul>`
+        ]);
+      }
+
+      return pick([
+        `<b>I got you 👀✨</b><br/>
+         <ul>
+           <li>If it’s about <b>launch</b> → ask “when is launch”</li>
+           <li>If it’s about <b>update</b> → ask “when is the update”</li>
+           <li>If it’s about <b>cursor</b> → ask “show cursor changer”</li>
+           <li>If it’s about <b>scents</b> → tell me warm/fresh/soft</li>
+         </ul>`,
+        `<b>I’m listening ✨</b><br/>
+         <ul>
+           <li>Drop 2–3 keywords (example: “clean, pink, expensive”)</li>
+           <li>I’ll match you to a vibe 💗</li>
+         </ul>`
+      ]);
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+
+      user(text);
+      input.value = "";
+
+      const t = thinking();
+      setTimeout(() => {
+        if (t && t.parentNode) t.remove();
+        botHTML(reply(text));
+      }, 900);
+    });
+  })();
 </script>
 
 </body>
