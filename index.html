@@ -5,23 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Everose Boutique</title>
 
-<!-- Fonts (serif + cursive like inspo) -->
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    /* Slightly darker gray than before */
-    --bg:#e7e7e7;
-
+    --bg:#e9e9ec;              /* slightly darker gray */
     --paper:#ffffff;
     --ink:#111111;
     --muted:#4a4a4a;
     --line:rgba(0,0,0,.12);
-
     --pink:#ff4fa3;
-    --pinkSoft:rgba(255,79,163,.12);
+    --pinkSoft:rgba(255,79,163,.16); /* slightly more pink */
+    --gold:#c7a24b;
+
+    /* global cursor */
+    --siteCursor:auto;
+    --sitePointer:pointer;
   }
 
   *{ box-sizing:border-box; }
@@ -32,14 +34,16 @@
     color: var(--ink);
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     overflow-x:hidden;
+    cursor: var(--siteCursor);
   }
+  button, a, input, textarea { cursor: var(--sitePointer); }
 
   /* Header like inspo */
   header{
     position:sticky;
     top:0;
     z-index:1000;
-    background: rgba(231,231,231,.88);
+    background: rgba(233,233,236,.86);
     backdrop-filter: blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -65,27 +69,36 @@
     border:2px solid #111;
     background:#fff;
     color:#111;
-    font-weight:800;
+    font-weight:900;
     font-size:12px;
     padding:10px 16px;
     border-radius:10px;
     letter-spacing:.08em;
     text-transform:uppercase;
     cursor:pointer;
-    transition: transform .15s ease, background .15s ease;
+    transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
   }
-  .shop-btn:hover{ transform: translateY(-1px); background: #f8f8f8; }
+  .shop-btn:hover{
+    transform: translateY(-1px);
+    background: rgba(255,79,163,.06);
+    box-shadow: 0 10px 26px rgba(255,79,163,.12);
+  }
 
   .nav-left a{
     text-decoration:none;
     color:#111;
-    font-weight:700;
+    font-weight:800;
     font-size:12px;
     letter-spacing:.10em;
     text-transform:uppercase;
-    opacity:.9;
+    opacity:.88;
+    padding:8px 6px;
+    border-radius:10px;
   }
-  .nav-left a:hover{ opacity:1; }
+  .nav-left a:hover{
+    opacity:1;
+    background: rgba(255,79,163,.08);
+  }
 
   .brand{
     font-family: "Great Vibes", cursive;
@@ -119,7 +132,7 @@
   /* HERO split like inspo */
   .hero{
     position:relative;
-    min-height: calc(100vh - 76px);
+    min-height: calc(100vh - 78px);
     display:grid;
     grid-template-columns: 1.15fr 1fr;
     align-items:stretch;
@@ -127,13 +140,21 @@
     background: var(--bg);
   }
 
-  /* left side */
   .hero-left{
     padding: clamp(38px, 5vw, 70px);
     display:flex;
     flex-direction:column;
     justify-content:center;
     gap: 16px;
+    position:relative;
+  }
+
+  .hero-left::before{
+    content:"";
+    position:absolute;
+    inset: 10px 0 10px 0;
+    background: radial-gradient(700px 520px at 20% 30%, rgba(255,79,163,.10), transparent 60%);
+    pointer-events:none;
   }
 
   .hero-title{
@@ -142,6 +163,7 @@
     line-height: .93;
     margin:0;
     letter-spacing:-0.02em;
+    position:relative;
   }
 
   .hero-script{
@@ -150,6 +172,7 @@
     line-height: .9;
     margin: -10px 0 0;
     color:#111;
+    position:relative;
   }
 
   .hero-sub{
@@ -158,9 +181,9 @@
     color: var(--muted);
     font-size: 15px;
     line-height: 1.7;
+    position:relative;
   }
 
-  /* Make this look like the inspo button (pink outline, clean, slightly rounded) */
   .hero-cta{
     display:inline-flex;
     align-items:center;
@@ -177,41 +200,15 @@
     font-size: 12px;
     cursor:pointer;
     transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    position:relative;
   }
   .hero-cta:hover{
     transform: translateY(-1px);
-    background: rgba(255,79,163,.06);
+    background: rgba(255,79,163,.08);
     box-shadow: 0 12px 30px rgba(255,79,163,.18);
   }
 
-  .countdowns{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top: 6px;
-  }
-  .count{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 14px;
-    min-width: 220px;
-  }
-  .count small{
-    display:block;
-    font-weight:800;
-    font-size:11px;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color: rgba(0,0,0,.55);
-    margin-bottom:8px;
-  }
-  .count b{
-    font-family:"Playfair Display", serif;
-    font-size:18px;
-  }
-
-  /* right side image */
+  /* Right side image */
   .hero-right{
     position:relative;
     border-left:1px solid var(--line);
@@ -219,7 +216,7 @@
     overflow:hidden;
   }
 
-  /* ✅ YOUR IMAGE LINK inserted here */
+  /* Your hero image */
   .hero-right::before{
     content:"";
     position:absolute;
@@ -227,22 +224,23 @@
     background-image: url("https://i.postimg.cc/MH73SY8L/Screenshot-2026-01-31-at-1-51-34-PM.png");
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%) contrast(1.08) brightness(1.03);
+    filter: grayscale(100%) contrast(1.08) brightness(1.04);
     transform: scale(1.02);
   }
 
+  /* subtle overlay + pink pop */
   .hero-right::after{
     content:"";
     position:absolute;
     inset:0;
     background:
-      radial-gradient(900px 520px at 18% 75%, rgba(255,79,163,.18), transparent 58%),
+      radial-gradient(900px 520px at 18% 75%, rgba(255,79,163,.22), transparent 58%),
       linear-gradient(to left, rgba(0,0,0,.06), rgba(0,0,0,.00) 55%),
-      linear-gradient(to bottom, rgba(255,255,255,.18), rgba(255,255,255,.05));
+      linear-gradient(to bottom, rgba(255,255,255,.20), rgba(255,255,255,.06));
     pointer-events:none;
   }
 
-  section{ scroll-margin-top: 120px; }
+  section{ scroll-margin-top: 110px; }
 
   .wrap{
     max-width: 1100px;
@@ -255,6 +253,7 @@
     border:1px solid var(--line);
     border-radius: 18px;
     padding: 30px 24px;
+    box-shadow: 0 16px 50px rgba(0,0,0,.06);
   }
 
   .h2{
@@ -278,11 +277,40 @@
     line-height: 1.75;
   }
 
+  /* Quiz buttons - styled like “shop your perfect ____” vibe */
+  .quiz-wrap{
+    margin-top: 14px;
+    border:1px solid rgba(0,0,0,.12);
+    border-radius: 16px;
+    padding: 18px;
+    background:
+      linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,.92)),
+      radial-gradient(700px 240px at 20% 30%, rgba(255,79,163,.10), transparent 65%);
+  }
+  .quiz-title{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap: 12px;
+    flex-wrap:wrap;
+    margin-bottom: 12px;
+  }
+  .quiz-title b{
+    font-family:"Playfair Display", serif;
+    font-size: 22px;
+  }
+  .quiz-title small{
+    color: rgba(0,0,0,.55);
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    font-weight:900;
+    font-size: 11px;
+  }
+
   .quiz-row{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-top: 14px;
   }
   .quiz-row button{
     border:1px solid rgba(0,0,0,.18);
@@ -291,25 +319,41 @@
     padding: 12px 14px;
     border-radius: 999px;
     cursor:pointer;
-    font-weight: 800;
-    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    font-weight: 900;
+    letter-spacing:.02em;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
   }
   .quiz-row button:hover{
     transform: translateY(-1px);
-    background: rgba(255,79,163,.06);
-    border-color: rgba(255,79,163,.35);
+    background: rgba(255,79,163,.08);
+    border-color: rgba(255,79,163,.45);
+    box-shadow: 0 12px 26px rgba(255,79,163,.12);
   }
   #answer{
-    margin-top: 16px;
+    margin-top: 14px;
     font-weight: 650;
     color:#111;
     white-space: pre-wrap;
   }
 
+  /* Quote card */
+  .quote{
+    font-family:"Playfair Display", serif;
+    font-size: 26px;
+    line-height: 1.35;
+    color:#111;
+  }
+  .quote .sig{
+    margin-top: 14px;
+    font-family:"Great Vibes", cursive;
+    font-size: 28px;
+    color: rgba(255,79,163,.95);
+  }
+
   footer{
     border-top:1px solid var(--line);
     padding: 26px 16px 90px;
-    background: rgba(255,255,255,.35);
+    background: rgba(255,255,255,.42);
   }
   .footer-inner{
     max-width:1100px;
@@ -353,7 +397,7 @@
   }
   #askBtn:hover{
     transform: translateY(-2px) scale(1.03);
-    border-color: rgba(255,79,163,.55);
+    border-color: rgba(255,79,163,.65);
     box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   }
   #askBtn span{ font-size: 22px; }
@@ -363,7 +407,7 @@
     color: rgba(0,0,0,.65);
     padding-left: 6px;
     text-transform: uppercase;
-    font-weight:800;
+    font-weight:900;
   }
 
   #askPanel{
@@ -409,11 +453,12 @@
   }
   .askClose:hover{ color: #000; }
 
+  /* Cursor mini bar INSIDE chat, hidden unless asked */
   #cursorMini{
     display:none;
     padding: 10px 12px;
     border-bottom: 1px solid rgba(0,0,0,.10);
-    background: rgba(255,79,163,.06);
+    background: rgba(255,79,163,.08);
     gap: 8px;
     align-items:center;
     flex-wrap: wrap;
@@ -434,15 +479,15 @@
     padding: 8px 10px;
     cursor:pointer;
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 900;
   }
   .cursorPick:hover{
-    border-color: rgba(255,79,163,.45);
-    background: rgba(255,79,163,.05);
+    border-color: rgba(255,79,163,.55);
+    background: rgba(255,79,163,.06);
   }
   #cursorReset{
-    border:1px solid rgba(255,79,163,.45);
-    background: rgba(255,79,163,.12);
+    border:1px solid rgba(255,79,163,.55);
+    background: rgba(255,79,163,.14);
     color:#111;
     border-radius: 999px;
     padding: 8px 10px;
@@ -452,10 +497,7 @@
     font-size: 11px;
     text-transform: uppercase;
   }
-  #cursorReset:hover{ background: rgba(255,79,163,.16); }
-
-  #askPanel { cursor: var(--askCursor, auto); }
-  #askPanel button, #askPanel a, #askPanel input { cursor: var(--askPointer, pointer); }
+  #cursorReset:hover{ background: rgba(255,79,163,.20); }
 
   #askMessages{
     padding: 12px;
@@ -464,7 +506,6 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
-
   .msg{ margin: 10px 0; display:flex; }
   .msg.user{ justify-content:flex-end; }
   .msg.bot{ justify-content:flex-start; }
@@ -480,8 +521,8 @@
     background:#fff;
   }
   .msg.user .bubble{
-    background: rgba(255,79,163,.12);
-    border-color: rgba(255,79,163,.22);
+    background: rgba(255,79,163,.14);
+    border-color: rgba(255,79,163,.25);
   }
   .msg.bot .bubble{ background: rgba(0,0,0,.03); }
   .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
@@ -511,17 +552,343 @@
     border-radius: 16px;
     padding: 10px 14px;
     cursor:pointer;
-    background: rgba(255,79,163,.18);
-    border: 1px solid rgba(255,79,163,.45);
+    background: rgba(255,79,163,.20);
+    border: 1px solid rgba(255,79,163,.55);
     color: #111;
     font-weight: 900;
     letter-spacing: .06em;
     text-transform: uppercase;
     font-size: 12px;
   }
-  #askSend:hover{ background: rgba(255,79,163,.24); }
+  #askSend:hover{ background: rgba(255,79,163,.26); }
 
-  @media (max-width: 900px){
+  /* ===== QUESTIONS ===== */
+  #questionInput{
+    width:100%;
+    padding:14px 16px;
+    border-radius:14px;
+    border:1px solid rgba(0,0,0,.20);
+    font-size:15px;
+    margin-bottom:12px;
+    outline:none;
+  }
+  #questionInput:focus{
+    border-color: rgba(255,79,163,.55);
+    box-shadow: 0 0 0 4px rgba(255,79,163,.12);
+  }
+  .qBtn{
+    border:none;
+    padding:12px 18px;
+    border-radius:999px;
+    background:#111;
+    color:#fff;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .qBtn:hover{ background: #1a1a1a; }
+
+  /* ===== SHOP VAULT (LOCKED OVERLAY) ===== */
+  #vaultOverlay{
+    position:fixed;
+    inset:0;
+    z-index: 99999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding: 18px;
+    background: rgba(0,0,0,.52);
+    backdrop-filter: blur(10px);
+  }
+
+  .vault{
+    width: min(980px, 100%);
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 20px;
+    box-shadow: 0 30px 120px rgba(0,0,0,.40);
+    overflow:hidden;
+  }
+
+  .vaultTop{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+    padding: 14px 16px;
+    background:
+      linear-gradient(90deg, rgba(199,162,75,.20), rgba(255,79,163,.10), rgba(199,162,75,.12));
+    border-bottom: 1px solid rgba(0,0,0,.10);
+  }
+  .vaultTop b{
+    font-family:"Playfair Display", serif;
+    font-size: 18px;
+    letter-spacing:.02em;
+  }
+  .vaultClose{
+    border:none;
+    background: transparent;
+    font-size: 20px;
+    cursor:pointer;
+    opacity:.70;
+  }
+  .vaultClose:hover{ opacity:1; }
+
+  .vaultBody{
+    display:grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 0;
+    min-height: 420px;
+  }
+
+  .vaultLeft{
+    padding: 22px 18px;
+    border-right: 1px solid rgba(0,0,0,.10);
+    background:
+      radial-gradient(900px 420px at 20% 15%, rgba(255,79,163,.14), transparent 55%),
+      linear-gradient(to bottom, rgba(255,255,255,.98), rgba(255,255,255,.92));
+  }
+
+  .vaultLock{
+    display:flex;
+    gap: 14px;
+    align-items:center;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,.10);
+    background:
+      linear-gradient(135deg, rgba(199,162,75,.16), rgba(255,255,255,.90));
+  }
+  .lockIcon{
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display:grid;
+    place-items:center;
+    background: rgba(199,162,75,.18);
+    border: 1px solid rgba(199,162,75,.35);
+    font-size: 26px;
+  }
+  .vaultLock small{
+    display:block;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: rgba(0,0,0,.55);
+  }
+  .vaultLock .big{
+    font-family:"Playfair Display", serif;
+    font-size: 20px;
+    margin-top: 4px;
+  }
+
+  .vaultMeta{
+    margin-top: 16px;
+    padding: 16px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: rgba(255,79,163,.06);
+  }
+  .vaultMeta .row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin: 6px 0;
+  }
+  .pill{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: #fff;
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-size: 11px;
+  }
+  .pill .pinkDot{
+    width:8px; height:8px; border-radius:999px; background: var(--pink);
+  }
+
+  .vaultActions{
+    margin-top: 14px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .earlyBtn{
+    border: 2px solid rgba(199,162,75,.85);
+    background: rgba(255,255,255,.96);
+    color:#111;
+    font-weight: 900;
+    letter-spacing:.08em;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    cursor:pointer;
+  }
+  .earlyBtn:hover{
+    background: rgba(199,162,75,.12);
+  }
+
+  .codeBox{
+    display:none;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top: 12px;
+  }
+  .codeBox input{
+    flex: 1;
+    min-width: 180px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.18);
+    padding: 12px 12px;
+    outline:none;
+    font-weight: 800;
+    letter-spacing:.10em;
+  }
+  .codeBox input:focus{
+    border-color: rgba(199,162,75,.85);
+    box-shadow: 0 0 0 4px rgba(199,162,75,.16);
+  }
+  .codeGo{
+    border:none;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #111;
+    color:#fff;
+    font-weight: 900;
+    letter-spacing:.08em;
+    text-transform: uppercase;
+    cursor:pointer;
+  }
+  .codeGo:hover{ background:#1a1a1a; }
+  .codeHint{
+    color: rgba(0,0,0,.60);
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .codeError{
+    color: rgba(180,0,60,.90);
+    font-weight: 800;
+    margin-top: 10px;
+    display:none;
+  }
+
+  .vaultRight{
+    padding: 22px 18px;
+    background:
+      radial-gradient(700px 280px at 70% 25%, rgba(255,79,163,.10), transparent 60%),
+      linear-gradient(to bottom, rgba(255,255,255,.96), rgba(255,255,255,.92));
+  }
+  .vaultRight h3{
+    font-family:"Playfair Display", serif;
+    font-size: 26px;
+    margin: 0 0 6px;
+  }
+  .vaultRight p{
+    margin: 0 0 14px;
+    color: rgba(0,0,0,.60);
+    line-height: 1.6;
+  }
+
+  .shopGrid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .shopCard{
+    border: 1px solid rgba(0,0,0,.10);
+    border-radius: 16px;
+    padding: 14px;
+    background: #fff;
+    min-height: 120px;
+    position:relative;
+    overflow:hidden;
+  }
+  .shopCard::before{
+    content:"";
+    position:absolute;
+    inset:-40px -60px auto auto;
+    width:140px; height:140px;
+    background: rgba(255,79,163,.14);
+    border-radius: 999px;
+    transform: rotate(10deg);
+  }
+  .shopCard b{
+    display:block;
+    position:relative;
+    font-weight: 900;
+    letter-spacing:.02em;
+    margin-bottom:6px;
+  }
+  .shopCard small{
+    position:relative;
+    display:block;
+    color: rgba(0,0,0,.58);
+    line-height:1.45;
+  }
+  .tagSoon{
+    position:absolute;
+    right: 12px;
+    bottom: 12px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,79,163,.25);
+    background: rgba(255,79,163,.10);
+    font-weight: 900;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    font-size: 10px;
+  }
+
+  .lockedCover{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    background: rgba(255,255,255,.84);
+    border-radius: 16px;
+    border: 1px dashed rgba(199,162,75,.60);
+    text-align:center;
+    padding: 14px;
+  }
+  .lockedCover .gold{
+    font-weight: 900;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+    font-size: 11px;
+    color: rgba(120,90,20,.85);
+  }
+  .lockedCover .big{
+    font-family:"Playfair Display", serif;
+    font-size: 18px;
+  }
+
+  .unlockedBadge{
+    display:none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.10);
+    background: rgba(199,162,75,.12);
+    font-weight: 900;
+  }
+
+  /* Responsive */
+  @media (max-width: 950px){
     .hero{ grid-template-columns: 1fr; }
     .hero-right{
       min-height: 44vh;
@@ -529,6 +896,9 @@
       border-top:1px solid var(--line);
     }
     .nav-left a{ display:none; }
+    .vaultBody{ grid-template-columns: 1fr; }
+    .vaultLeft{ border-right:none; border-bottom: 1px solid rgba(0,0,0,.10); }
+    .shopGrid{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -538,10 +908,9 @@
 <header>
   <div class="header-inner">
     <div class="nav-left">
-      <button class="shop-btn" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">SHOP</button>
-      <a href="#story">OUR STORY</a>
-      <a href="#hints">HINTS</a>
+      <button class="shop-btn" id="openVaultBtn">SHOP</button>
       <a href="#quiz">FIND YOUR SCENT</a>
+      <a href="#questions">QUESTIONS</a>
     </div>
 
     <h1 class="brand">Everose Boutique</h1>
@@ -571,6 +940,7 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <h2 class="hero-title">Luxury fragrance</h2>
@@ -580,69 +950,70 @@
       Everose Boutique is soft, personal, and effortlessly you — fragrance that highlights what’s already there.
       <br><br>
       <b>We are so excited to release our first scents.</b> Stay close. The rose is about to bloom.
+      <br><br>
+      (Psst… the <b>Shop</b> is a locked vault 👀✨)
     </p>
 
-    <!-- This is the button you wanted like “Shop your perfect lash” -->
-    <button class="hero-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
-      FIND YOUR SCENT
-    </button>
-
-    <div class="countdowns">
-      <div class="count">
-        <small>LAUNCHING IN</small>
-        <b id="launchCountdown">—</b>
-      </div>
-      <div class="count">
-        <small>NEXT UPDATE</small>
-        <b id="updateCountdown">—</b>
-      </div>
-    </div>
+    <button class="hero-cta" id="openVaultBtn2">OPEN THE SHOP VAULT</button>
   </div>
 
   <div class="hero-right" aria-label="Everose fragrance photo background"></div>
 </section>
 
-<section class="wrap" id="story">
-  <div class="card">
-    <div class="h2">About Me</div>
-    <div class="pinkline"></div>
-    <p class="p">
-      Hi! My name is Cruz Keller, and I absolutely love perfume. I was born in New York, then moved to New Jersey,
-      then to Miami, and after a few more moves, I finally landed in Austin.<br/><br/>
-      I’m 13 years old and currently attend Alpha School. My family is a family of four — my dad, mom, my brother, and me.<br/><br/>
-      We also have a dog named Banner. He’s a Rottweiler named after the Incredible Hulk.<br/><br/>
-      I’m so excited to start my own fragrance brand and share my love for scent with the world.
-    </p>
-  </div>
-</section>
-
-<section class="wrap" id="hints">
-  <div class="card">
-    <div class="h2">Everose Hints</div>
-    <div class="pinkline"></div>
-    <p class="p">
-      ✨ One scent feels like getting a suntan.<br/>
-      ❄ One scent feels like silk in winter air.<br/>
-      🌷 One scent feels like something new beginning.<br/>
-      🍂 One scent feels warm… familiar… unforgettable.
-    </p>
-  </div>
-</section>
-
+<!-- FIND YOUR SCENT -->
 <section class="wrap" id="quiz">
   <div class="card">
     <div class="h2">Find Your Scent</div>
     <div class="pinkline"></div>
     <p class="p">Choose what feels most like you 💗</p>
 
-    <div class="quiz-row">
-      <button onclick="result('soft')">Light scent</button>
-      <button onclick="result('warm')">Medium scent</button>
-      <button onclick="result('fresh')">Strong scent</button>
-      <button onclick="result('bright')">A mix of everything</button>
-    </div>
+    <div class="quiz-wrap" style="margin-top:16px;">
+      <div class="quiz-title">
+        <b>Find your scent match</b>
+        <small>tap a vibe</small>
+      </div>
 
-    <div id="answer"></div>
+      <div class="quiz-row">
+        <button onclick="result('soft')">Light scent</button>
+        <button onclick="result('warm')">Medium scent</button>
+        <button onclick="result('fresh')">Strong scent</button>
+        <button onclick="result('bright')">A mix of everything</button>
+      </div>
+
+      <div id="answer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE (your “5th photo vibe”) -->
+<section class="wrap" id="quote">
+  <div class="card">
+    <div class="h2">A little note</div>
+    <div class="pinkline"></div>
+    <div class="quote">
+      “The best fragrance doesn’t announce you — it <i>lingers</i> like a memory.”
+      <div class="sig">with love, Cruz</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="wrap" id="questions">
+  <div class="card">
+    <div class="h2">Have a Question?</div>
+    <div class="pinkline"></div>
+    <p class="p" style="margin-bottom:18px;">
+      Ask anything — scents, launch, the vault, or the vibe 🌸
+    </p>
+
+    <form id="questionForm">
+      <input type="text" id="questionInput" placeholder="Type your question here…" required />
+      <button class="qBtn" type="submit">Send Question</button>
+    </form>
+
+    <p id="questionThanks" style="display:none;margin-top:14px;color:#555;">
+      ✨ Thank you! Your question has been sent to Everose.
+    </p>
   </div>
 </section>
 
@@ -656,6 +1027,7 @@
   </div>
 </footer>
 
+<!-- ASK EVEROSE -->
 <div id="askWrap">
   <button id="askBtn" aria-label="Ask Everose"><span>💬</span></button>
   <div id="askLabel">Ask Everose</div>
@@ -670,6 +1042,7 @@
     <button class="askClose" id="askClose" aria-label="Close">✕</button>
   </div>
 
+  <!-- Cursor bar appears ONLY when asked -->
   <div id="cursorMini">
     <span class="tag">Cursor</span>
     <button class="cursorPick" data-emoji="🎀">🎀</button>
@@ -690,9 +1063,126 @@
   </form>
 </div>
 
+<!-- SHOP VAULT OVERLAY -->
+<div id="vaultOverlay" aria-label="Shop vault">
+  <div class="vault" role="dialog" aria-modal="true">
+    <div class="vaultTop">
+      <b>Everose Boutique — Shop Vault</b>
+      <button class="vaultClose" id="vaultClose" aria-label="Close">✕</button>
+    </div>
+
+    <div class="vaultBody">
+      <!-- LEFT: lock + launch date here (ONLY here) -->
+      <div class="vaultLeft">
+        <div class="vaultLock">
+          <div class="lockIcon">🔒</div>
+          <div>
+            <small>Locked vault</small>
+            <div class="big">Early access only</div>
+          </div>
+        </div>
+
+        <div class="vaultMeta">
+          <div class="row">
+            <span class="pill"><span class="pinkDot"></span> Launch Date</span>
+            <span style="font-weight:900;">September 29, 2026 • 12:00 PM</span>
+          </div>
+          <div class="row">
+            <span class="pill"><span class="pinkDot"></span> Launch Countdown</span>
+            <span id="vaultLaunchCountdown" style="font-weight:900;">—</span>
+          </div>
+        </div>
+
+        <div class="vaultActions">
+          <button class="earlyBtn" id="showCodeBox">ACCESS EARLY</button>
+          <button class="earlyBtn" id="resetVault" style="border-color:rgba(255,79,163,.70);">LOCK IT BACK</button>
+        </div>
+
+        <div class="codeBox" id="codeBox">
+          <input id="vaultCodeInput" inputmode="numeric" maxlength="5" placeholder="Enter code…" />
+          <button class="codeGo" id="vaultCodeGo">Unlock</button>
+        </div>
+
+        <div class="codeHint" id="codeHint">
+          Tip: the vault code is for <b>you</b> only 💗
+        </div>
+        <div class="codeError" id="codeError">Nope 😭 try again.</div>
+
+        <div class="unlockedBadge" id="unlockedBadge">🔓 Vault unlocked — welcome in ✨</div>
+      </div>
+
+      <!-- RIGHT: pastel shop placeholders -->
+      <div class="vaultRight">
+        <h3>Pastel Shop Preview</h3>
+        <p>Nothing is buyable yet — this is the vibe board. When you unlock, you can see what’s coming 💗</p>
+
+        <div class="shopGrid" id="shopGrid">
+          <!-- Each card starts “covered” until unlocked -->
+          <div class="shopCard">
+            <b>Everose Original</b>
+            <small>Clean, soft, signature energy — the “first bloom.”</small>
+            <span class="tagSoon">Coming</span>
+            <div class="lockedCover" data-lock>
+              <div class="gold">Locked</div>
+              <div class="big">Unlock to preview</div>
+            </div>
+          </div>
+
+          <div class="shopCard">
+            <b>Roseveil Mist</b>
+            <small>Airy rose + fresh skin — like silk in winter air.</small>
+            <span class="tagSoon">Coming</span>
+            <div class="lockedCover" data-lock>
+              <div class="gold">Locked</div>
+              <div class="big">Unlock to preview</div>
+            </div>
+          </div>
+
+          <div class="shopCard">
+            <b>Sunlit Bloom</b>
+            <small>Warm sunshine vibe — “getting a suntan” in a bottle.</small>
+            <span class="tagSoon">Coming</span>
+            <div class="lockedCover" data-lock>
+              <div class="gold">Locked</div>
+              <div class="big">Unlock to preview</div>
+            </div>
+          </div>
+
+          <div class="shopCard">
+            <b>Velvet Memory</b>
+            <small>Warm + familiar — the one people remember after you leave.</small>
+            <span class="tagSoon">Coming</span>
+            <div class="lockedCover" data-lock>
+              <div class="gold">Locked</div>
+              <div class="big">Unlock to preview</div>
+            </div>
+          </div>
+
+          <div class="shopCard" style="grid-column: 1 / -1;">
+            <b>Little Extras</b>
+            <small>Pastel boutique things coming soon: travel atomizers, ribbon tags, mini scent cards ✨</small>
+            <span class="tagSoon">Soon</span>
+            <div class="lockedCover" data-lock>
+              <div class="gold">Locked</div>
+              <div class="big">Unlock to preview</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px;color:rgba(0,0,0,.55);">
+          Want to make this even cuter? Tell me if you want <b>pink bows</b> or <b>clean editorial</b> vibes for the shop cards.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+  /* =========================
+     DATES
+     ========================= */
+  // LAUNCH is ONLY shown in the vault (per your request)
   const launchDate = new Date("September 29, 2026 12:00:00").getTime();
-  const updateDate = new Date("January 24, 2026 14:00:00").getTime();
 
   function fmtCountdown(targetMs){
     const now = Date.now();
@@ -704,15 +1194,15 @@
     const secs = Math.floor((d % (1000*60)) / 1000);
     return `${days}d ${hours}h ${mins}m ${secs}s`;
   }
-  function tick(){
-    const lc = document.getElementById("launchCountdown");
-    const uc = document.getElementById("updateCountdown");
-    if (lc) lc.textContent = fmtCountdown(launchDate);
-    if (uc) uc.textContent = fmtCountdown(updateDate);
-  }
-  tick();
-  setInterval(tick, 1000);
 
+  function tickVault(){
+    const el = document.getElementById("vaultLaunchCountdown");
+    if (el) el.textContent = fmtCountdown(launchDate);
+  }
+  tickVault();
+  setInterval(tickVault, 1000);
+
+  /* QUIZ */
   function result(type){
     const a = document.getElementById("answer");
     if (!a) return;
@@ -725,6 +1215,132 @@
     a.textContent = map[type] || "";
   }
 
+  /* =========================
+     QUESTIONS (local save)
+     ========================= */
+  const questionForm = document.getElementById("questionForm");
+  const questionInput = document.getElementById("questionInput");
+  const questionThanks = document.getElementById("questionThanks");
+
+  if (questionForm) {
+    questionForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const question = (questionInput.value || "").trim();
+      if (!question) return;
+
+      const saved = JSON.parse(localStorage.getItem("everose_questions") || "[]");
+      saved.push({ question, time: new Date().toISOString() });
+      localStorage.setItem("everose_questions", JSON.stringify(saved));
+
+      questionInput.value = "";
+      questionThanks.style.display = "block";
+      setTimeout(() => (questionThanks.style.display = "none"), 4000);
+    });
+  }
+
+  /* =========================
+     SHOP VAULT (code lock)
+     ========================= */
+  const VAULT_CODE = "92912";
+
+  const vaultOverlay = document.getElementById("vaultOverlay");
+  const vaultClose = document.getElementById("vaultClose");
+  const openVaultBtn = document.getElementById("openVaultBtn");
+  const openVaultBtn2 = document.getElementById("openVaultBtn2");
+
+  const showCodeBoxBtn = document.getElementById("showCodeBox");
+  const codeBox = document.getElementById("codeBox");
+  const codeInput = document.getElementById("vaultCodeInput");
+  const codeGo = document.getElementById("vaultCodeGo");
+  const codeError = document.getElementById("codeError");
+  const unlockedBadge = document.getElementById("unlockedBadge");
+  const resetVault = document.getElementById("resetVault");
+
+  function isVaultUnlocked(){
+    return localStorage.getItem("everose_vault_unlocked") === "true";
+  }
+  function setVaultUnlocked(val){
+    localStorage.setItem("everose_vault_unlocked", val ? "true" : "false");
+  }
+
+  function renderVaultLockState(){
+    const locks = document.querySelectorAll("[data-lock]");
+    const unlocked = isVaultUnlocked();
+
+    locks.forEach(el => {
+      el.style.display = unlocked ? "none" : "flex";
+    });
+
+    unlockedBadge.style.display = unlocked ? "block" : "none";
+    codeError.style.display = "none";
+    codeBox.style.display = "none";
+    codeInput.value = "";
+
+    // make it feel like a “gold vault” when unlocked
+    const lockIcon = document.querySelector(".lockIcon");
+    if (lockIcon) lockIcon.textContent = unlocked ? "🔓" : "🔒";
+  }
+
+  function openVault(){
+    vaultOverlay.style.display = "flex";
+    renderVaultLockState();
+  }
+  function closeVault(){
+    vaultOverlay.style.display = "none";
+  }
+
+  [openVaultBtn, openVaultBtn2].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener("click", openVault);
+  });
+
+  if (vaultClose) vaultClose.addEventListener("click", closeVault);
+  if (vaultOverlay) {
+    vaultOverlay.addEventListener("click", (e) => {
+      if (e.target === vaultOverlay) closeVault();
+    });
+  }
+
+  if (showCodeBoxBtn) {
+    showCodeBoxBtn.addEventListener("click", () => {
+      codeBox.style.display = "flex";
+      setTimeout(()=> codeInput.focus(), 50);
+    });
+  }
+
+  function tryUnlock(){
+    const v = (codeInput.value || "").trim();
+    if (v === VAULT_CODE){
+      setVaultUnlocked(true);
+      renderVaultLockState();
+      sparkleBurst(10);
+    } else {
+      codeError.style.display = "block";
+      sparkleBurst(4);
+    }
+  }
+
+  if (codeGo) codeGo.addEventListener("click", tryUnlock);
+  if (codeInput) {
+    codeInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        tryUnlock();
+      }
+    });
+  }
+
+  if (resetVault) {
+    resetVault.addEventListener("click", () => {
+      setVaultUnlocked(false);
+      renderVaultLockState();
+      sparkleBurst(6);
+    });
+  }
+
+  /* =========================
+     ASK EVEROSE + CURSOR (global)
+     ========================= */
   (function(){
     const askBtn = document.getElementById("askBtn");
     const askPanel = document.getElementById("askPanel");
@@ -747,9 +1363,9 @@
         botHTML(`
           <b>Hi 🌸 I’m Ask Everose Boutique.</b><br/>
           <ul>
-            <li>Ask me about <b>launch</b>, <b>update</b>, <b>hints</b>, or <b>finding your scent</b> ✨</li>
+            <li>Type <b>shop</b> to open the vault 🔒</li>
+            <li>Ask me for the <b>cursor changer</b> if you want ✨</li>
             <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
-            <li>If you want the <b>cursor changer</b>, just ask 😭</li>
             <li>VIP: type <b>everose vip</b> 💎</li>
           </ul>
         `);
@@ -759,11 +1375,13 @@
     }
     function closeChat(){ askPanel.style.display = "none"; }
 
-    askBtn.addEventListener("click", () => {
-      if (askPanel.style.display === "block") closeChat();
-      else openChat();
-    });
-    askClose.addEventListener("click", closeChat);
+    if (askBtn) {
+      askBtn.addEventListener("click", () => {
+        if (askPanel.style.display === "block") closeChat();
+        else openChat();
+      });
+    }
+    if (askClose) askClose.addEventListener("click", closeChat);
 
     function addBubble(content, who="bot", html=false){
       const row = document.createElement("div");
@@ -780,7 +1398,7 @@
 
     function botHTML(html){ addBubble(html, "bot", true); }
     function user(text){ addBubble(text, "user"); }
-    function thinking(){ return addBubble("Interesting 👀✨ I’m thinking…", "bot"); }
+    function thinking(){ return addBubble("Thinking… ✨", "bot"); }
 
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
     function hasAny(q, words){ return words.some(w => q.includes(w)); }
@@ -792,9 +1410,9 @@
     }
 
     function parseName(q){
-      let m = q.match(/\\bmy name is\\s+([a-zA-Z'-]{2,20})/i);
+      let m = q.match(/\bmy name is\s+([a-zA-Z'-]{2,20})/i);
       if (m) return m[1];
-      m = q.match(/\\b(i'm|im|i am)\\s+([a-zA-Z'-]{2,20})\\b/i);
+      m = q.match(/\b(i'm|im|i am)\s+([a-zA-Z'-]{2,20})\b/i);
       if (m) return m[2];
       return "";
     }
@@ -809,16 +1427,20 @@
         pointer:`url("data:image/svg+xml,${data}") 4 24, pointer`
       };
     }
-    function applyAskCursor(emoji){
+
+    function applySiteCursor(emoji){
       const c = makeEmojiCursor(emoji);
-      document.documentElement.style.setProperty("--askCursor", c.cursor);
-      document.documentElement.style.setProperty("--askPointer", c.pointer);
-      localStorage.setItem("everose_ask_cursor", emoji);
+      document.documentElement.style.setProperty("--siteCursor", c.cursor);
+      document.documentElement.style.setProperty("--sitePointer", c.pointer);
+      localStorage.setItem("everose_site_cursor", emoji);
+      sparkleBurst(8);
     }
-    function resetAskCursor(){
-      document.documentElement.style.setProperty("--askCursor", "auto");
-      document.documentElement.style.setProperty("--askPointer", "pointer");
-      localStorage.removeItem("everose_ask_cursor");
+
+    function resetSiteCursor(){
+      document.documentElement.style.setProperty("--siteCursor", "auto");
+      document.documentElement.style.setProperty("--sitePointer", "pointer");
+      localStorage.removeItem("everose_site_cursor");
+      sparkleBurst(6);
     }
 
     function showCursorBar(){
@@ -826,18 +1448,22 @@
       renderVIP();
     }
     function renderVIP(){
-      diamondBtn.style.display = vip ? "inline-flex" : "none";
+      if (diamondBtn) diamondBtn.style.display = vip ? "inline-flex" : "none";
     }
 
-    cursorMini.addEventListener("click", (e) => {
-      const b = e.target.closest(".cursorPick");
-      if (!b) return;
-      applyAskCursor(b.getAttribute("data-emoji"));
-    });
-    document.getElementById("cursorReset").addEventListener("click", resetAskCursor);
+    if (cursorMini) {
+      cursorMini.addEventListener("click", (e) => {
+        const b = e.target.closest(".cursorPick");
+        if (!b) return;
+        applySiteCursor(b.getAttribute("data-emoji"));
+      });
+    }
 
-    const savedAskCursor = localStorage.getItem("everose_ask_cursor");
-    if (savedAskCursor) applyAskCursor(savedAskCursor);
+    const cursorReset = document.getElementById("cursorReset");
+    if (cursorReset) cursorReset.addEventListener("click", resetSiteCursor);
+
+    const saved = localStorage.getItem("everose_site_cursor");
+    if (saved) applySiteCursor(saved);
 
     function reply(qRaw){
       const q = (qRaw||"").trim();
@@ -851,7 +1477,18 @@
           <b>Nice to meet you, ${escapeHtml(userName)} 💗</b><br/>
           <ul>
             <li>I’ll remember your name next time ✨</li>
-            <li>Want scent help or launch info?</li>
+            <li>Want scent help or to open the shop vault?</li>
+          </ul>
+        `;
+      }
+
+      if (hasAny(lower, ["shop","vault","open shop","open the shop","store"])){
+        openVault();
+        return `
+          <b>Opening the Shop Vault… 🔒✨</b><br/>
+          <ul>
+            <li>Tap <b>Access Early</b> inside the vault</li>
+            <li>That’s where the launch date lives now 💗</li>
           </ul>
         `;
       }
@@ -864,8 +1501,7 @@
           <b>VIP unlocked 💎✨</b><br/>
           <ul>
             <li>Diamond cursor is now available 💎</li>
-            <li>Ask: <b>show cursor changer</b> to open it</li>
-            <li>Welcome to the inner circle 🤫</li>
+            <li>Ask: <b>show cursor changer</b></li>
           </ul>
         `;
       }
@@ -874,86 +1510,81 @@
         showCursorBar();
         const nameBit = userName ? `, <b>${escapeHtml(userName)}</b>` : "";
         return `
-          <b>Cursor station unlocked${nameBit} 😭✨</b><br/>
+          <b>Cursor station unlocked${nameBit} ✨</b><br/>
           <ul>
-            <li>Pick one up top ☝️ (only affects <b>this chat</b>)</li>
+            <li>Pick one up top ☝️ (it changes the <b>whole site</b>)</li>
             <li>Hit reset anytime 💗</li>
           </ul>
         `;
       }
 
-      if (hasAny(lower, ["launch", "when is launch", "release", "drop", "come out"])){
-        return `
-          <b>Launch info 📅✨</b><br/>
-          <ul>
-            <li><b>September 29, 2026</b> at <b>12:00 PM</b></li>
-            <li>Countdown is on the homepage ⏳</li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["update", "next update", "when is the update"])){
-        return `
-          <b>Next update 💗</b><br/>
-          <ul>
-            <li><b>January 24, 2026</b></li>
-            <li><b>2:00 PM</b></li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["hints", "what are the hints", "notes", "vibe"])){
-        return `
-          <b>Everose hints ✨</b><br/>
-          <ul>
-            <li>🌞 One scent feels like getting a suntan</li>
-            <li>❄ One scent feels like silk in winter air</li>
-            <li>🌷 One scent feels like something new beginning</li>
-            <li>🍂 One scent feels warm… familiar… unforgettable</li>
-          </ul>
-        `;
+      if (hasAny(lower, ["scent","recommend","match me","what scent","which scent","vibe"])){
+        return pick([
+          `<b>Okay vibe check 🪞✨</b><br/><ul><li>Pick one word: <b>clean</b> / <b>cozy</b> / <b>sweet</b> / <b>airy</b></li></ul>`,
+          `<b>I can match you 💗</b><br/><ul><li>Are you <b>warm 🍂</b> or <b>fresh ❄️</b> today?</li></ul>`
+        ]);
       }
 
       if (hasAny(lower, ["hi","hello","hey","hii","yo"])){
         const nameBit = userName ? ` ${escapeHtml(userName)} 💗` : " bestie 💗";
         return pick([
-          `<b>Hii${nameBit} 🌸</b><br/><ul><li>Do you want <b>launch</b>, <b>update</b>, or <b>scent help</b>?</li></ul>`,
-          `<b>Hey${nameBit} ✨</b><br/><ul><li>Tell me one word: clean / cozy / sweet / airy 👀</li></ul>`,
-          `<b>Hello${nameBit} 💋</b><br/><ul><li>I can help with hints + matching your vibe ✨</li></ul>`
+          `<b>Hii${nameBit} 🌸</b><br/><ul><li>Want to open the <b>shop vault</b> or find your scent?</li></ul>`,
+          `<b>Hello${nameBit} ✨</b><br/><ul><li>Type <b>shop</b> if you want the vault 🔒</li></ul>`
         ]);
       }
 
-      return pick([
-        `<b>I got you 👀✨</b><br/>
-         <ul>
-           <li>If it’s about <b>launch</b> → ask “when is launch”</li>
-           <li>If it’s about <b>update</b> → ask “when is the update”</li>
-           <li>If it’s about <b>cursor</b> → ask “show cursor changer”</li>
-           <li>If it’s about <b>scents</b> → tell me warm/fresh/soft</li>
-         </ul>`,
-        `<b>I’m listening ✨</b><br/>
-         <ul>
-           <li>Drop 2–3 keywords (example: “clean, pink, expensive”)</li>
-           <li>I’ll match you to a vibe 💗</li>
-         </ul>`
-      ]);
+      return `
+        <b>I got you ✨</b><br/>
+        <ul>
+          <li>Type <b>shop</b> → open the vault</li>
+          <li>Ask <b>show cursor changer</b> → change cursor</li>
+          <li>Ask <b>match my vibe</b> → scent help</li>
+        </ul>
+      `;
     }
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
 
-      user(text);
-      input.value = "";
+        user(text);
+        input.value = "";
 
-      const t = thinking();
-      setTimeout(() => {
-        if (t && t.parentNode) t.remove();
-        botHTML(reply(text));
-      }, 900);
-    });
+        const t = thinking();
+        setTimeout(() => {
+          if (t && t.parentNode) t.remove();
+          botHTML(reply(text));
+        }, 650);
+      });
+    }
   })();
+
+  /* Tiny sparkles (cute feedback) */
+  function sparkleBurst(count){
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("div");
+      s.style.position = "fixed";
+      s.style.left = (Math.random() * window.innerWidth) + "px";
+      s.style.bottom = (10 + Math.random() * 60) + "px";
+      s.style.pointerEvents = "none";
+      s.style.zIndex = "999999";
+      s.style.fontSize = "14px";
+      s.style.opacity = "0.95";
+      s.textContent = "✨";
+      document.body.appendChild(s);
+
+      const dx = (Math.random() * 40) - 20;
+      const dy = (Math.random() * 70) + 30;
+      s.animate([
+        { transform: "translate(0,0) scale(1)", opacity: 1 },
+        { transform: `translate(${dx}px, -${dy}px) scale(1.2)`, opacity: 0 }
+      ], { duration: 900 + Math.random()*400, easing: "ease-out" });
+
+      setTimeout(() => s.remove(), 1400);
+    }
+  }
 </script>
 
 </body>
