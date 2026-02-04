@@ -18,6 +18,13 @@
     --line:rgba(0,0,0,.12);
     --pink:#ff4fa3;
     --gold:#c8a64a;
+
+    /* pastels */
+    --p1: rgba(255,79,163,.14);
+    --p2: rgba(200,166,74,.16);
+    --p3: rgba(175,220,255,.22);
+    --p4: rgba(210,255,220,.22);
+    --p5: rgba(245,230,255,.26);
   }
 
   *{ box-sizing:border-box; }
@@ -56,7 +63,6 @@
     min-width: 0;
   }
 
-  /* ✅ SHOP button back to the original black/white */
   .shop-btn{
     border:2px solid #111;
     background:#fff;
@@ -340,12 +346,7 @@
   .fbrand{ font-family:"Great Vibes", cursive; font-size: 34px; }
   .fby{ font-family:"Great Vibes", cursive; font-size: 24px; color: rgba(255,79,163,.95); }
 
-  /* Whole-site cursor (kept) */
-  :root{ --everose-cursor:auto; --everose-pointer:pointer; }
-  body{ cursor: var(--everose-cursor); }
-  a, button, input, textarea, select, label { cursor: var(--everose-pointer); }
-
-  /* ===== VAULT MODAL (layout kept clean + centered) ===== */
+  /* ===== VAULT MODAL ===== */
   #vaultOverlay{
     position:fixed;
     inset:0;
@@ -385,7 +386,7 @@
 
   .vaultStage{
     position:relative;
-    height: 520px;
+    height: 560px;
     background: linear-gradient(to bottom, #f7f7f7, #efefef);
     overflow:hidden;
   }
@@ -465,37 +466,131 @@
     display:none;
     position:absolute;
     inset:0;
-    padding: 60px 22px;
-    text-align:center;
+    padding: 44px 18px;
+    overflow:auto;
   }
   .vaultInside h2{
     font-family:"Playfair Display", serif;
-    font-size: 40px;
-    margin: 0 0 10px;
+    font-size: 38px;
+    margin: 0 0 6px;
+    text-align:center;
   }
-  .vaultInside p{
-    margin: 6px 0;
-    color: rgba(0,0,0,.65);
-    line-height:1.7;
+  .vaultInside .sub{
+    text-align:center;
+    color: rgba(0,0,0,.62);
+    margin: 0 0 18px;
+    line-height: 1.6;
   }
-  .pastelRow{
-    margin-top: 18px;
+
+  /* pastel tabs */
+  .tabs{
     display:flex;
-    gap: 10px;
-    flex-wrap:wrap;
+    gap:10px;
     justify-content:center;
+    flex-wrap:wrap;
+    margin: 10px 0 16px;
   }
-  .pastelTag{
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(0,0,0,.12);
+  .tabBtn{
+    border:1px solid rgba(0,0,0,.14);
+    background:#fff;
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size: 11px;
+    cursor:pointer;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .tabBtn:hover{ transform: translateY(-1px); }
+  .tabBtn.active{
+    border-color: rgba(255,79,163,.45);
     background: rgba(255,79,163,.10);
-    font-weight: 800;
   }
-  .pastelTag.gold{
-    background: rgba(200,166,74,.16);
-    border-color: rgba(200,166,74,.30);
+
+  /* pastel page cards */
+  .page{
+    display:none;
+    max-width: 820px;
+    margin: 0 auto;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.12);
+    border-radius: 18px;
+    overflow:hidden;
+    box-shadow: 0 20px 70px rgba(0,0,0,.12);
   }
+  .pageHead{
+    padding: 18px 18px 16px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    background: linear-gradient(90deg, var(--p5), #fff);
+  }
+  .pageHead b{
+    font-family:"Playfair Display", serif;
+    font-size: 22px;
+  }
+  .pageHead .tagline{
+    margin-top:6px;
+    color: rgba(0,0,0,.62);
+    line-height: 1.6;
+  }
+
+  .pageBody{
+    padding: 16px 18px 20px;
+  }
+
+  .pastelGrid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .pastelCard{
+    border:1px solid rgba(0,0,0,.10);
+    border-radius: 16px;
+    padding: 14px;
+    background: #fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .pastelCard::after{
+    content:"";
+    position:absolute;
+    inset:-80px -80px auto auto;
+    width: 220px;
+    height: 220px;
+    border-radius: 999px;
+    background: rgba(255,79,163,.12);
+    filter: blur(0px);
+  }
+  .pastelCard h3{
+    margin:0 0 6px;
+    font-size: 14px;
+    letter-spacing:.10em;
+    text-transform:uppercase;
+  }
+  .pastelCard p{
+    margin:0;
+    color: rgba(0,0,0,.62);
+    line-height: 1.65;
+    font-size: 13px;
+  }
+
+  .softNote{
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px dashed rgba(0,0,0,.16);
+    background: rgba(255,79,163,.06);
+    color: rgba(0,0,0,.70);
+    line-height: 1.7;
+  }
+
+  /* different pastel flavors per page */
+  .page[data-page="original"] .pageHead{ background: linear-gradient(90deg, var(--p2), #fff); }
+  .page[data-page="cloud"] .pageHead{ background: linear-gradient(90deg, var(--p3), #fff); }
+  .page[data-page="petal"] .pageHead{ background: linear-gradient(90deg, var(--p4), #fff); }
+  .page[data-page="vip"] .pageHead{ background: linear-gradient(90deg, rgba(200,166,74,.22), rgba(255,79,163,.12), #fff); }
 
   .opening .vaultDoor.left{ animation: openLeft .95s ease forwards; }
   .opening .vaultDoor.right{ animation: openRight .95s ease forwards; }
@@ -513,6 +608,7 @@
     }
     .nav-left a{ display:none; }
     .galleryGrid{ grid-template-columns: 1fr; }
+    .pastelGrid{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -522,7 +618,6 @@
 <header>
   <div class="header-inner">
     <div class="nav-left">
-      <!-- ✅ SHOP is back here, same spot -->
       <button class="shop-btn" id="shopBtn">SHOP</button>
       <a href="#gallery">GALLERY</a>
       <a href="#quiz">FIND YOUR SCENT</a>
@@ -530,8 +625,8 @@
 
     <h1 class="brand">Everose Boutique</h1>
 
-    <div class="icons" aria-label="header icons">
-      <button class="icon-btn" aria-label="Cart" onclick="openVault()">
+    <div class="icons">
+      <button class="icon-btn" aria-label="Open vault" onclick="openVault()">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 6h15l-2 9H7L6 6Z"></path>
           <path d="M6 6 5 3H2"></path>
@@ -637,18 +732,143 @@
       </div>
 
       <div class="vaultInside" id="vaultInside">
-        <h2>Welcome inside ✨</h2>
-        <p><b>Launch date:</b> September 29, 2026 • 12:00 PM</p>
-        <p>Pastel shop pages are coming soon.</p>
+        <h2>Pastel Shop Pages ✨</h2>
+        <p class="sub">
+          <b>Launch date:</b> September 29, 2026 • 12:00 PM<br>
+          Everything here is a preview — no products are visible yet.
+        </p>
 
-        <div class="pastelRow">
-          <div class="pastelTag gold">Everose Original</div>
-          <div class="pastelTag">Rose Cloud</div>
-          <div class="pastelTag">Velvet Petal</div>
-          <div class="pastelTag gold">VIP Vault</div>
+        <div class="tabs" role="tablist" aria-label="Pastel shop pages">
+          <button class="tabBtn active" data-tab="original">Everose Original</button>
+          <button class="tabBtn" data-tab="cloud">Rose Cloud</button>
+          <button class="tabBtn" data-tab="petal">Velvet Petal</button>
+          <button class="tabBtn" data-tab="vip">VIP Vault</button>
         </div>
 
-        <p style="margin-top:18px;color:rgba(0,0,0,.55)">No products are visible yet — this is just the vault preview.</p>
+        <!-- PAGE: Original -->
+        <div class="page" data-page="original" style="display:block;">
+          <div class="pageHead">
+            <b>Everose Original</b>
+            <div class="tagline">The signature mood — clean, rosy, expensive, effortless.</div>
+          </div>
+          <div class="pageBody">
+            <div class="pastelGrid">
+              <div class="pastelCard">
+                <h3>Notes teaser</h3>
+                <p>Soft rose • airy musk • a tiny sweet sparkle. (Details coming soon.)</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Packaging vibe</h3>
+                <p>Black &amp; white bottle with a whisper of pink. Minimal but rich.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Wear it when</h3>
+                <p>You want “pretty” without trying. Brunch, school, dinner, always.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Coming soon</h3>
+                <p>Price • size • full scent story will unlock closer to launch.</p>
+              </div>
+            </div>
+            <div class="softNote">
+              Tip: This is the “main character” page — it’ll be the first one people see when shop opens.
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE: Cloud -->
+        <div class="page" data-page="cloud">
+          <div class="pageHead">
+            <b>Rose Cloud</b>
+            <div class="tagline">Light, floating, soft-girl energy — like fresh sheets in a rose garden.</div>
+          </div>
+          <div class="pageBody">
+            <div class="pastelGrid">
+              <div class="pastelCard">
+                <h3>Vibe</h3>
+                <p>Clean + airy + sweet in the cutest way. Not too loud.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Notes teaser</h3>
+                <p>Petals • cottony musk • pink sugar haze. (Just a preview.)</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Perfect for</h3>
+                <p>Everyday, layering, and “I just naturally smell good” moments.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Coming soon</h3>
+                <p>Photo set • story • full details closer to launch.</p>
+              </div>
+            </div>
+            <div class="softNote">
+              Cute idea: later you can add a “Layering guide” section here.
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE: Petal -->
+        <div class="page" data-page="petal">
+          <div class="pageHead">
+            <b>Velvet Petal</b>
+            <div class="tagline">Warm, cozy, unforgettable — soft velvet in winter air.</div>
+          </div>
+          <div class="pageBody">
+            <div class="pastelGrid">
+              <div class="pastelCard">
+                <h3>Vibe</h3>
+                <p>Warm glow + “hug” energy. Cozy but still chic.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Notes teaser</h3>
+                <p>Vanilla veil • amber warmth • rose shadow. (Preview only.)</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Wear it when</h3>
+                <p>Night plans, chilly days, or when you want compliments.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Coming soon</h3>
+                <p>Full description, price, size, and launch photos.</p>
+              </div>
+            </div>
+            <div class="softNote">
+              This page will look AMAZING with darker B&amp;W photos + a tiny gold accent later.
+            </div>
+          </div>
+        </div>
+
+        <!-- PAGE: VIP -->
+        <div class="page" data-page="vip">
+          <div class="pageHead">
+            <b>VIP Vault</b>
+            <div class="tagline">Private previews, early drops, and little “insider” surprises.</div>
+          </div>
+          <div class="pageBody">
+            <div class="pastelGrid">
+              <div class="pastelCard">
+                <h3>Early access</h3>
+                <p>VIP members get first look at the official notes + photos.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Secret perks</h3>
+                <p>Limited packaging, tiny extras, and soft surprise drops.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Preview only</h3>
+                <p>This page is visible, but the real content unlocks later.</p>
+              </div>
+              <div class="pastelCard">
+                <h3>Coming soon</h3>
+                <p>A VIP signup box (we’ll add it when you’re ready).</p>
+              </div>
+            </div>
+            <div class="softNote">
+              Future idea: VIP can unlock a diamond cursor + private gallery page.
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -702,6 +922,16 @@
   function closeVault(){
     vaultOverlay.style.display = "none";
   }
+
+  function setActiveTab(tab){
+    document.querySelectorAll(".tabBtn").forEach(b=>{
+      b.classList.toggle("active", b.dataset.tab === tab);
+    });
+    document.querySelectorAll(".page").forEach(p=>{
+      p.style.display = (p.dataset.page === tab) ? "block" : "none";
+    });
+  }
+
   function unlockVault(){
     const code = (vaultCode.value || "").trim();
     if (code === "92912"){
@@ -709,6 +939,7 @@
       setTimeout(()=>{
         vaultUI.style.display = "none";
         vaultInside.style.display = "block";
+        setActiveTab("original");
       }, 900);
     } else {
       alert("Wrong code 🤫");
@@ -720,6 +951,12 @@
   document.getElementById("vaultUnlockBtn").addEventListener("click", unlockVault);
   vaultOverlay.addEventListener("click", (e)=>{ if(e.target === vaultOverlay) closeVault(); });
   vaultCode.addEventListener("keydown", (e)=>{ if(e.key === "Enter") unlockVault(); });
+
+  document.addEventListener("click", (e)=>{
+    const btn = e.target.closest(".tabBtn");
+    if (!btn) return;
+    setActiveTab(btn.dataset.tab);
+  });
 </script>
 
 </body>
