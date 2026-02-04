@@ -5,22 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Everose Boutique</title>
 
-<!-- Fonts (serif + cursive like inspo) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#e6e6e6;          /* slightly darker gray */
+    --bg:#e6e6e6;
     --paper:#ffffff;
     --ink:#111111;
     --muted:#4a4a4a;
     --line:rgba(0,0,0,.12);
     --pink:#ff4fa3;
-    --pinkSoft:rgba(255,79,163,.12);
     --gold:#c8a64a;
-    --goldSoft:rgba(200,166,74,.18);
   }
 
   *{ box-sizing:border-box; }
@@ -33,7 +30,6 @@
     overflow-x:hidden;
   }
 
-  /* Header like inspo */
   header{
     position:sticky;
     top:0;
@@ -60,6 +56,7 @@
     min-width: 0;
   }
 
+  /* ✅ SHOP button back to the original black/white */
   .shop-btn{
     border:2px solid #111;
     background:#fff;
@@ -110,12 +107,8 @@
     opacity:.85;
   }
   .icon-btn:hover{ opacity:1; background: rgba(0,0,0,.04); }
-  .icon{
-    width:20px; height:20px;
-    display:block;
-  }
+  .icon{ width:20px; height:20px; display:block; }
 
-  /* HERO split like inspo */
   .hero{
     position:relative;
     min-height: calc(100vh - 74px);
@@ -126,7 +119,6 @@
     background: var(--bg);
   }
 
-  /* left side */
   .hero-left{
     padding: clamp(38px, 5vw, 70px);
     display:flex;
@@ -182,7 +174,6 @@
     box-shadow: 0 12px 30px rgba(255,79,163,.18);
   }
 
-  /* only keep NEXT UPDATE visible (launch is inside vault only) */
   .countdowns{
     display:flex;
     gap:12px;
@@ -210,7 +201,6 @@
     font-size:18px;
   }
 
-  /* right side image */
   .hero-right{
     position:relative;
     border-left:1px solid var(--line);
@@ -218,7 +208,6 @@
     overflow:hidden;
   }
 
-  /* YOUR HERO IMAGE LINK (you gave me) */
   .hero-right::before{
     content:"";
     position:absolute;
@@ -277,7 +266,6 @@
     line-height: 1.75;
   }
 
-  /* Gallery section for your 2nd image */
   .galleryGrid{
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -307,7 +295,6 @@
     pointer-events:none;
   }
 
-  /* Quiz buttons */
   .quiz-row{
     display:flex;
     gap:10px;
@@ -350,210 +337,15 @@
     flex-wrap:wrap;
     align-items:center;
   }
-  .fbrand{
-    font-family:"Great Vibes", cursive;
-    font-size: 34px;
-  }
-  .fby{
-    font-family:"Great Vibes", cursive;
-    font-size: 24px;
-    color: rgba(255,79,163,.95);
-  }
+  .fbrand{ font-family:"Great Vibes", cursive; font-size: 34px; }
+  .fby{ font-family:"Great Vibes", cursive; font-size: 24px; color: rgba(255,79,163,.95); }
 
-  /* ===== ASK EVEROSE bottom-left ===== */
-  #askWrap{
-    position: fixed;
-    left: 16px;
-    bottom: 16px;
-    z-index: 9999;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap: 6px;
-  }
-  #askBtn{
-    width: 56px;
-    height: 56px;
-    border-radius: 999px;
-    border: 1px solid rgba(0,0,0,.18);
-    cursor: pointer;
-    background: #fff;
-    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  #askBtn:hover{
-    transform: translateY(-2px) scale(1.03);
-    border-color: rgba(255,79,163,.55);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-  }
-  #askBtn span{ font-size: 22px; }
-  #askLabel{
-    font-size: 12px;
-    letter-spacing: .06em;
-    color: rgba(0,0,0,.65);
-    padding-left: 6px;
-    text-transform: uppercase;
-    font-weight:800;
-  }
-
-  #askPanel{
-    position: fixed;
-    left: 16px;
-    bottom: 92px;
-    width: 360px;
-    max-width: calc(100vw - 32px);
-    height: 470px;
-    max-height: calc(100vh - 140px);
-    background: rgba(255,255,255,.96);
-    border: 1px solid rgba(0,0,0,.16);
-    border-radius: 18px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.28);
-    display: none;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-  }
-  .askHeader{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 12px 12px 10px;
-    background: rgba(0,0,0,.04);
-    border-bottom: 1px solid rgba(0,0,0,.10);
-  }
-  .askTitle b{
-    font-family: "Playfair Display", serif;
-    font-size: 16px;
-  }
-  .askTitle small{
-    display:block;
-    color: rgba(0,0,0,.60);
-    font-size: 12px;
-    margin-top: 2px;
-  }
-  .askClose{
-    border:none;
-    background: transparent;
-    cursor:pointer;
-    font-size: 18px;
-    color: rgba(0,0,0,.65);
-  }
-  .askClose:hover{ color: #000; }
-
-  #cursorMini{
-    display:none;
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(0,0,0,.10);
-    background: rgba(255,79,163,.06);
-    gap: 8px;
-    align-items:center;
-    flex-wrap: wrap;
-  }
-  #cursorMini .tag{
-    font-size: 11px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,.55);
-    margin-right: 6px;
-    font-weight: 900;
-  }
-  .cursorPick{
-    border: 1px solid rgba(0,0,0,.14);
-    background: #fff;
-    color: #111;
-    border-radius: 999px;
-    padding: 8px 10px;
-    cursor:pointer;
-    font-size: 14px;
-    font-weight: 800;
-  }
-  .cursorPick:hover{
-    border-color: rgba(255,79,163,.45);
-    background: rgba(255,79,163,.05);
-  }
-  #cursorReset{
-    border:1px solid rgba(255,79,163,.45);
-    background: rgba(255,79,163,.12);
-    color:#111;
-    border-radius: 999px;
-    padding: 8px 10px;
-    cursor:pointer;
-    font-weight: 900;
-    letter-spacing: .06em;
-    font-size: 11px;
-    text-transform: uppercase;
-  }
-  #cursorReset:hover{ background: rgba(255,79,163,.16); }
-
-  /* CURSOR NOW AFFECTS THE WHOLE SITE (you asked) */
+  /* Whole-site cursor (kept) */
   :root{ --everose-cursor:auto; --everose-pointer:pointer; }
   body{ cursor: var(--everose-cursor); }
   a, button, input, textarea, select, label { cursor: var(--everose-pointer); }
 
-  #askMessages{
-    padding: 12px;
-    height: calc(100% - 160px);
-    overflow:auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-  }
-
-  .msg{ margin: 10px 0; display:flex; }
-  .msg.user{ justify-content:flex-end; }
-  .msg.bot{ justify-content:flex-start; }
-  .bubble{
-    max-width: 86%;
-    padding: 10px 12px;
-    border-radius: 16px;
-    font-size: 13px;
-    line-height: 1.42;
-    border: 1px solid rgba(0,0,0,.10);
-    box-shadow: 0 10px 18px rgba(0,0,0,.10);
-    white-space: pre-wrap;
-    background:#fff;
-  }
-  .msg.user .bubble{
-    background: rgba(255,79,163,.12);
-    border-color: rgba(255,79,163,.22);
-  }
-  .msg.bot .bubble{ background: rgba(0,0,0,.03); }
-  .bubble ul{ margin: 6px 0 0 18px; padding: 0; }
-  .bubble li{ margin: 6px 0; }
-
-  #askForm{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    padding: 10px;
-    display:flex;
-    gap: 8px;
-    border-top: 1px solid rgba(0,0,0,.10);
-    background: rgba(255,255,255,.96);
-  }
-  #askInput{
-    flex:1;
-    border-radius: 16px;
-    border: 1px solid rgba(0,0,0,.14);
-    padding: 10px 12px;
-    outline:none;
-    background: #fff;
-    color: #111;
-    font-family: inherit;
-  }
-  #askSend{
-    border:none;
-    border-radius: 16px;
-    padding: 10px 14px;
-    cursor:pointer;
-    background: rgba(255,79,163,.18);
-    border: 1px solid rgba(255,79,163,.45);
-    color: #111;
-    font-weight: 900;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-  #askSend:hover{ background: rgba(255,79,163,.24); }
-
-  /* ===== VAULT MODAL ===== */
+  /* ===== VAULT MODAL (layout kept clean + centered) ===== */
   #vaultOverlay{
     position:fixed;
     inset:0;
@@ -569,22 +361,19 @@
     width: min(980px, 100%);
     background: #fff;
     border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.2);
     overflow:hidden;
     box-shadow: 0 40px 140px rgba(0,0,0,.45);
+    border: 1px solid rgba(0,0,0,.12);
   }
   .vaultTop{
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding: 12px 14px;
-    background: linear-gradient(90deg, rgba(255,255,255,1), rgba(200,166,74,.18), rgba(255,79,163,.10), rgba(255,255,255,1));
+    background: linear-gradient(90deg, #fff, rgba(200,166,74,.18), rgba(255,79,163,.10), #fff);
     border-bottom: 1px solid rgba(0,0,0,.10);
   }
-  .vaultTop b{
-    font-family:"Playfair Display", serif;
-    letter-spacing: .04em;
-  }
+  .vaultTop b{ font-family:"Playfair Display", serif; letter-spacing: .04em; }
   .vaultClose{
     border:none;
     background:transparent;
@@ -600,10 +389,8 @@
     background: linear-gradient(to bottom, #f7f7f7, #efefef);
     overflow:hidden;
   }
-
   .vaultDoor{
-    position:absolute;
-    top:0; bottom:0;
+    position:absolute; top:0; bottom:0;
     width:50%;
     background:
       radial-gradient(600px 420px at 40% 35%, rgba(255,255,255,.85), rgba(240,240,240,.85)),
@@ -691,7 +478,6 @@
     color: rgba(0,0,0,.65);
     line-height:1.7;
   }
-
   .pastelRow{
     margin-top: 18px;
     display:flex;
@@ -736,6 +522,7 @@
 <header>
   <div class="header-inner">
     <div class="nav-left">
+      <!-- ✅ SHOP is back here, same spot -->
       <button class="shop-btn" id="shopBtn">SHOP</button>
       <a href="#gallery">GALLERY</a>
       <a href="#quiz">FIND YOUR SCENT</a>
@@ -744,18 +531,6 @@
     <h1 class="brand">Everose Boutique</h1>
 
     <div class="icons" aria-label="header icons">
-      <button class="icon-btn" aria-label="Search" onclick="document.getElementById('askBtn').click()">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"></circle>
-          <path d="M20 20l-3.5-3.5"></path>
-        </svg>
-      </button>
-      <button class="icon-btn" aria-label="Account" onclick="document.getElementById('askBtn').click()">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21a8 8 0 0 0-16 0"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </button>
       <button class="icon-btn" aria-label="Cart" onclick="openVault()">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 6h15l-2 9H7L6 6Z"></path>
@@ -768,7 +543,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-left">
     <h2 class="hero-title">Luxury fragrance</h2>
@@ -799,7 +573,6 @@
   <div class="hero-right" aria-label="Everose fragrance photo background"></div>
 </section>
 
-<!-- GALLERY (2nd image goes here - “different place”) -->
 <section class="wrap" id="gallery">
   <div class="card">
     <div class="h2">Everose Gallery</div>
@@ -807,17 +580,16 @@
     <p class="p">A few quiet previews — black &amp; white with a blush of pink.</p>
 
     <div class="galleryGrid">
-      <div class="shot" aria-label="Gallery image 1">
+      <div class="shot">
         <img src="https://i.postimg.cc/zDjmCk4R/Screenshot-2026-02-02-at-12-33-19-PM.png" alt="Everose gallery image">
       </div>
-      <div class="shot" aria-label="Gallery image 2">
+      <div class="shot">
         <img src="https://i.postimg.cc/MH73SY8L/Screenshot-2026-01-31-at-1-51-34-PM.png" alt="Everose gallery image">
       </div>
     </div>
   </div>
 </section>
 
-<!-- FIND YOUR SCENT -->
 <section class="wrap" id="quiz">
   <div class="card">
     <div class="h2">Find Your Scent</div>
@@ -845,47 +617,12 @@
   </div>
 </footer>
 
-<!-- ASK EVEROSE -->
-<div id="askWrap">
-  <button id="askBtn" aria-label="Ask Everose"><span>💬</span></button>
-  <div id="askLabel">Ask Everose</div>
-</div>
-
-<div id="askPanel" role="dialog" aria-label="Ask Everose chat">
-  <div class="askHeader">
-    <div class="askTitle">
-      <b>Ask Everose Boutique</b>
-      <small>soft answers • pink energy • scent help</small>
-    </div>
-    <button class="askClose" id="askClose" aria-label="Close">✕</button>
-  </div>
-
-  <div id="cursorMini">
-    <span class="tag">Cursor</span>
-    <button class="cursorPick" data-emoji="🎀">🎀</button>
-    <button class="cursorPick" data-emoji="🦢">🦢</button>
-    <button class="cursorPick" data-emoji="🤍">🤍</button>
-    <button class="cursorPick" data-emoji="✧">✧</button>
-    <button class="cursorPick" data-emoji="♡">♡</button>
-    <button class="cursorPick" data-emoji="💋">💋</button>
-    <button class="cursorPick" data-emoji="💎" id="diamondCursorBtn" style="display:none;">💎</button>
-    <button id="cursorReset">Reset</button>
-  </div>
-
-  <div id="askMessages"></div>
-
-  <form id="askForm">
-    <input id="askInput" type="text" placeholder="Ask anything… 🌸" autocomplete="off" />
-    <button id="askSend" type="submit">Send</button>
-  </form>
-</div>
-
-<!-- VAULT MODAL -->
-<div id="vaultOverlay" aria-label="Everose Vault">
+<!-- VAULT -->
+<div id="vaultOverlay">
   <div class="vault">
     <div class="vaultTop">
       <b>Everose Vault</b>
-      <button class="vaultClose" id="vaultCloseBtn" aria-label="Close">✕</button>
+      <button class="vaultClose" id="vaultCloseBtn">✕</button>
     </div>
 
     <div class="vaultStage" id="vaultStage">
@@ -918,7 +655,7 @@
 </div>
 
 <script>
-  /* UPDATE countdown only (launch is inside vault only) */
+  /* UPDATE countdown only */
   const updateDate = new Date("January 24, 2026 14:00:00").getTime();
 
   function fmtCountdown(targetMs){
@@ -951,33 +688,7 @@
     a.textContent = map[type] || "";
   }
 
-  /* ===== CURSOR (NOW WHOLE SITE) ===== */
-  function makeEmojiCursor(emoji) {
-    const svg =
-      `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-        <text x="2" y="24" font-size="24">${emoji}</text>
-      </svg>`;
-    const data = encodeURIComponent(svg);
-    return {
-      cursor: `url("data:image/svg+xml,${data}") 4 24, auto`,
-      pointer:`url("data:image/svg+xml,${data}") 4 24, pointer`
-    };
-  }
-  function applyGlobalCursor(emoji){
-    const c = makeEmojiCursor(emoji);
-    document.documentElement.style.setProperty("--everose-cursor", c.cursor);
-    document.documentElement.style.setProperty("--everose-pointer", c.pointer);
-    localStorage.setItem("everose_cursor_emoji", emoji);
-  }
-  function resetGlobalCursor(){
-    document.documentElement.style.setProperty("--everose-cursor", "auto");
-    document.documentElement.style.setProperty("--everose-pointer", "pointer");
-    localStorage.removeItem("everose_cursor_emoji");
-  }
-  const savedGlobal = localStorage.getItem("everose_cursor_emoji");
-  if (savedGlobal) applyGlobalCursor(savedGlobal);
-
-  /* ===== VAULT ===== */
+  /* VAULT */
   const vaultOverlay = document.getElementById("vaultOverlay");
   const vaultStage = document.getElementById("vaultStage");
   const vaultUI = document.getElementById("vaultUI");
@@ -1009,224 +720,6 @@
   document.getElementById("vaultUnlockBtn").addEventListener("click", unlockVault);
   vaultOverlay.addEventListener("click", (e)=>{ if(e.target === vaultOverlay) closeVault(); });
   vaultCode.addEventListener("keydown", (e)=>{ if(e.key === "Enter") unlockVault(); });
-
-  /* ===== ASK EVEROSE ===== */
-  (function(){
-    const askBtn = document.getElementById("askBtn");
-    const askPanel = document.getElementById("askPanel");
-    const askClose = document.getElementById("askClose");
-    const form = document.getElementById("askForm");
-    const input = document.getElementById("askInput");
-    const messages = document.getElementById("askMessages");
-
-    const cursorMini = document.getElementById("cursorMini");
-    const diamondBtn = document.getElementById("diamondCursorBtn");
-
-    let userName = localStorage.getItem("everose_name") || "";
-    let vip = (localStorage.getItem("everose_vip") === "true");
-
-    function openChat(){
-      askPanel.style.display = "block";
-      setTimeout(()=> input.focus(), 50);
-
-      if (!messages.dataset.greeted){
-        botHTML(`
-          <b>Hi 🌸 I’m Ask Everose Boutique.</b><br/>
-          <ul>
-            <li>Ask me about <b>the vault</b>, <b>the update</b>, or <b>finding your scent</b> ✨</li>
-            <li>Say “<b>my name is ___</b>” and I’ll remember you 💗</li>
-            <li>If you want the <b>cursor changer</b>, just ask 😭</li>
-            <li>VIP: type <b>everose vip</b> 💎</li>
-          </ul>
-        `);
-        messages.dataset.greeted = "true";
-      }
-      renderVIP();
-    }
-    function closeChat(){ askPanel.style.display = "none"; }
-
-    askBtn.addEventListener("click", () => {
-      if (askPanel.style.display === "block") closeChat();
-      else openChat();
-    });
-    askClose.addEventListener("click", closeChat);
-
-    function addBubble(content, who="bot", html=false){
-      const row = document.createElement("div");
-      row.className = `msg ${who}`;
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
-      if (html) bubble.innerHTML = content;
-      else bubble.textContent = content;
-      row.appendChild(bubble);
-      messages.appendChild(row);
-      messages.scrollTop = messages.scrollHeight;
-      return row;
-    }
-
-    function botHTML(html){ addBubble(html, "bot", true); }
-    function user(text){ addBubble(text, "user"); }
-    function thinking(){ return addBubble("Thinking… ✨", "bot"); }
-
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-    function hasAny(q, words){ return words.some(w => q.includes(w)); }
-
-    function escapeHtml(s){
-      return (s||"").replace(/[&<>"']/g, (c)=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"
-      }[c]));
-    }
-
-    function parseName(q){
-      let m = q.match(/\bmy name is\s+([a-zA-Z'-]{2,20})/i);
-      if (m) return m[1];
-      m = q.match(/\b(i'm|im|i am)\s+([a-zA-Z'-]{2,20})\b/i);
-      if (m) return m[2];
-      return "";
-    }
-
-    function showCursorBar(){
-      cursorMini.style.display = "flex";
-      renderVIP();
-    }
-    function renderVIP(){
-      diamondBtn.style.display = vip ? "inline-flex" : "none";
-    }
-
-    cursorMini.addEventListener("click", (e) => {
-      const b = e.target.closest(".cursorPick");
-      if (!b) return;
-      applyGlobalCursor(b.getAttribute("data-emoji"));
-    });
-    document.getElementById("cursorReset").addEventListener("click", resetGlobalCursor);
-
-    function reply(qRaw){
-      const q = (qRaw||"").trim();
-      const lower = q.toLowerCase();
-
-      const nm = parseName(q);
-      if (nm){
-        userName = nm;
-        localStorage.setItem("everose_name", userName);
-        return `
-          <b>Nice to meet you, ${escapeHtml(userName)} 💗</b><br/>
-          <ul>
-            <li>Want scent help or vault help?</li>
-          </ul>
-        `;
-      }
-
-      if (lower.includes("everose vip") || lower.includes("unlock vip") || lower.includes("vip mode")){
-        vip = true;
-        localStorage.setItem("everose_vip","true");
-        renderVIP();
-        return `
-          <b>VIP unlocked 💎✨</b><br/>
-          <ul>
-            <li>Diamond cursor is now available 💎</li>
-            <li>Ask: <b>show cursor changer</b> to open it</li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["cursor", "cursor changer", "change cursor", "show cursor"])){
-        showCursorBar();
-        return `
-          <b>Cursor station unlocked 😭✨</b><br/>
-          <ul>
-            <li>Pick one up top ☝️ (now affects the <b>whole site</b>)</li>
-            <li>Hit reset anytime 💗</li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["shop","vault","code","unlock"])){
-        return `
-          <b>The shop is locked in the vault 🔒</b><br/>
-          <ul>
-            <li>Tap <b>SHOP</b> in the header</li>
-            <li>Then enter your code to unlock</li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["update", "next update", "when is the update"])){
-        return `
-          <b>Next update 💗</b><br/>
-          <ul>
-            <li><b>January 24, 2026</b></li>
-            <li><b>2:00 PM</b></li>
-          </ul>
-        `;
-      }
-
-      if (hasAny(lower, ["hi","hello","hey","hii","yo"])){
-        const nameBit = userName ? ` ${escapeHtml(userName)} 💗` : " bestie 💗";
-        return pick([
-          `<b>Hii${nameBit} 🌸</b><br/><ul><li>Need the vault, the update, or scent help?</li></ul>`,
-          `<b>Hey${nameBit} ✨</b><br/><ul><li>Tell me one word: clean / cozy / sweet / airy 👀</li></ul>`,
-          `<b>Hello${nameBit} 💋</b><br/><ul><li>I can match you to a vibe ✨</li></ul>`
-        ]);
-      }
-
-      if (hasAny(lower, ["soft","airy","light","floral","powder"])){
-        return `
-          <b>Soft bloom 🌸</b><br/>
-          <ul>
-            <li>Gentle + close-to-the-skin</li>
-            <li>Pretty, clean, effortless ✨</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["warm","cozy","vanilla","amber","sweet"])){
-        return `
-          <b>Warm glow 🍂</b><br/>
-          <ul>
-            <li>Comforting + addictive</li>
-            <li>Familiar, unforgettable 💗</li>
-          </ul>
-        `;
-      }
-      if (hasAny(lower, ["fresh","clean","citrus","mint","ocean"])){
-        return `
-          <b>Fresh energy ❄️</b><br/>
-          <ul>
-            <li>Crisp + confident</li>
-            <li>Clean, expensive, “just showered” ✨</li>
-          </ul>
-        `;
-      }
-
-      return pick([
-        `<b>I got you 👀✨</b><br/>
-         <ul>
-           <li>For the vault → ask “how do I unlock the shop?”</li>
-           <li>For the cursor → ask “show cursor changer”</li>
-           <li>For scent → tell me warm/fresh/soft</li>
-         </ul>`,
-        `<b>I’m listening ✨</b><br/>
-         <ul>
-           <li>Drop 2–3 keywords (example: “clean, pink, expensive”)</li>
-           <li>I’ll match you to a vibe 💗</li>
-         </ul>`
-      ]);
-    }
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
-
-      user(text);
-      input.value = "";
-
-      const t = thinking();
-      setTimeout(() => {
-        if (t && t.parentNode) t.remove();
-        botHTML(reply(text));
-      }, 700);
-    });
-  })();
 </script>
 
 </body>
